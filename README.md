@@ -1,6 +1,8 @@
-﻿# CRM_Application
-##Objetivo do Projeto
+# CRM_Application
+## Objetivo do Projeto
+## Integrantes
+Gabriel Feliciano (Desenvolvedor Frontend)
 
-##Integrantes
+Lucas Firmiano (Desenvolvedor Backend)
 
-##Tecnologias Usadas
+## Tecnologias Usadas
