@@ -1,0 +1,23 @@
+<div class="header-container">
+    <div class="col">
+        <div class="logo-container">
+            <a (click)="toggle()" href="#" class="sidebar-toggle">
+            <nb-icon icon="menu-2-outline" class="toggle-menu" status="basic"></nb-icon>
+            </a>
+            <a href="#" class="mx-4">
+                <img src="../../../../assets/logo-01.png" alt="" class="logo">
+            </a>
+        </div>
+    </div>
+    <div class="col">
+        <nb-actions size="small">
+            <nb-action class="control-item" icon="bell-outline"></nb-action>
+            <nb-action class="user-action">
+                <nb-user [nbContextMenu]="userMenu"
+                        size="medium"
+                        name="Gabriel">
+                </nb-user>
+                </nb-action>
+        </nb-actions>
+    </div>    
+</div>
