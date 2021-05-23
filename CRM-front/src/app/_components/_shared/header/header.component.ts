@@ -8,7 +8,12 @@ import { NbSidebarService} from '@nebular/theme';
 })
 export class HeaderComponent implements OnInit {
   
-  userMenu = [{title: 'Meus Dados'} , {title: 'Log out'}]
+  userMenu = [{title: 'Meus Dados'} , {title: 'Log out'}];
+
+  itemsNotificacao = [
+    { title: 'Seja Bem Vindo!' },
+    { title: 'Mais informações' },
+  ];
 
   constructor(private sidebarService: NbSidebarService) { }
 

@@ -1,37 +1,39 @@
-.logo-container{
-    display: flex;
-    align-items: center;
-}
+@import '../../themes.scss';
 
-nb-action {
-    height: auto;
-    display: flex;
-    align-content: center;
+@include nb-install-component() {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+    .logo-container{
+      display: flex;
+      align-items: center;
   }
+
 
   nb-user {
     cursor: pointer;
   }
 
-.header-container {
-    display: flex;
-  justify-content: space-between;
-  width: 100%;
-    display: flex;
-    align-items: center;
-    width: auto;
-    .sidebar-toggle {
-        nb-icon {
-        font-size: 1.75rem;
-        }
-    }
 
-    .logo{
-        width: 90px;
-    }
+  .header-container {
+      display: flex;
+      align-items: center;
+      width: auto;
 
-    .user-action {  
-        border: none;
-    }
+      .sidebar-toggle {
+          nb-icon {
+          font-size: 1.75rem;
+          }
+      }
+
+      .logo{
+          width: 90px;
+      }
+
+      .user-action {  
+          border: none;
+      }
+  }
+
 }
-
