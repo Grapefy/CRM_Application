@@ -8,16 +8,23 @@ import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuM
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MenuComponent } from './_components/_shared/menu/menu.component';
 import { HeaderComponent } from './_components/_shared/header/header.component';
+import { CustomerComponent } from './pages/customer/customer.component';
+import {MatTableModule} from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
@@ -29,7 +36,10 @@ import { HeaderComponent } from './_components/_shared/header/header.component';
     NbIconModule,
     NbActionsModule,
     NbUserModule,
-    NbContextMenuModule
+    NbContextMenuModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
