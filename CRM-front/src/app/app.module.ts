@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserComponent, NbUserModule, NbContextMenuModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserComponent, NbUserModule, NbContextMenuModule, NbDialogModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MenuComponent } from './_components/_shared/menu/menu.component';
 import { HeaderComponent } from './_components/_shared/header/header.component';
@@ -13,13 +13,18 @@ import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { CreateCustomerComponent } from './pages/customer/create-customer/create-customer.component';
+import { EditCustomerComponent } from './pages/customer/edit-customer/edit-customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
     HeaderComponent,
-    CustomerComponent
+    CustomerComponent,
+    CreateCustomerComponent,
+    EditCustomerComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,9 @@ import {MatInputModule} from '@angular/material/input';
     NbContextMenuModule,
     MatTableModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule,
+    NbDialogModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
