@@ -10,11 +10,93 @@
   
     <nb-layout-column>
 
-      <nb-card>
-        <nb-card-body>
-            <p>create-customer works!</p>
-        </nb-card-body>
-      </nb-card>
+          <nb-card>
+            <nb-card-header>
+              <h4 class="text-center my-2">Cadastro de Cliente</h4>
+            </nb-card-header>
+
+            <nb-card-body class="mx-4">
+              <nb-stepper orientation="horizontal">
+                <!-- Part 1 -->
+                <nb-step [label]="labelOne">
+                  <ng-template #labelOne>Dados Pessoais</ng-template>
+                  <div class="row">
+                    <nb-radio-group [(ngModel)]="option">
+                      <nb-radio
+                        *ngFor="let option of typeCustomer"
+                        [value]="option.value">
+                        {{ option.label }}
+                      </nb-radio>
+                    </nb-radio-group>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label">Nome:</label>
+                        <input type="text" nbInput class="form-control" placeholder="Nome">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label">E-mail:</label>
+                        <input type="email" nbInput class="form-control" placeholder="E-mail">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="label">Fone:</label>
+                        <input type="text" nbInput class="form-control" placeholder="Fone">
+                      </div>
+                    </div>
+                    <div class="col-md-4" *ngIf="option==='cf'">
+                      <div class="form-group" >
+                        <label class="label">CPF:</label>
+                        <input type="text" nbInput class="form-control" placeholder="CPF">
+                      </div>
+                    </div>
+                    <div class="col-md-4"  *ngIf="option==='cj'">
+                      <div class="form-group"> 
+                        <label class="label">CNPJ:</label>
+                        <input type="text" nbInput class="form-control" placeholder="CNPJ">
+                      </div>
+                    </div>
+                    <div class="col-md-4" *ngIf="option==='cf'">
+                      <label class="label">Data de Nascimento:</label>
+                      <input nbInput placeholder="Data de Nascimento" [nbDatepicker]="dateTimePicker">
+                      <nb-datepicker #dateTimePicker></nb-datepicker>
+                    </div>
+                  </div>
+                  <div class="row d-flex justify-content-center mt-4">
+                    <div class="col-2">
+                      <button nbButton routerLink="../customer">Voltar</button>
+                    </div>
+                    <div class="col-2">
+                      <button nbButton nbStepperNext status="primary">Avançar</button>
+                    </div>
+                  </div>
+                </nb-step>
+                
+                <!-- Part 2 -->
+                <nb-step [label]="labelTwo">
+                  <ng-template #labelTwo>Endereço</ng-template>
+                  <h4>Step content #2</h4>
+                  <p class="lorem">
+                    Second
+                  </p>
+                  <button nbButton nbStepperPrevious>prev</button>
+                  <button nbButton nbStepperNext>next</button>
+                </nb-step>
+
+                <!-- Part 3 -->
+                <nb-step label="Finalização">
+                  <h4>Finalização</h4>
+                  <p class="lorem">
+                    Finish
+                  </p>
+                  <button nbButton nbStepperPrevious>prev</button>
+                  <button nbButton nbStepperNext>next</button>
+                </nb-step>
+              </nb-stepper>
+            </nb-card-body>
+          </nb-card>
 
     </nb-layout-column>
   
