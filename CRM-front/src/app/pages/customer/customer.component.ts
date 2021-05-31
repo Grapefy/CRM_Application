@@ -56,10 +56,6 @@ export class CustomerComponent implements OnInit {
   open(dialog: TemplateRef<any>) {
     this.dialogService.open(dialog);
   }
-
-  onSelected(){
-
-  }
 }
 
 

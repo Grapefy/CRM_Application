@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-auto">
               <!-- Cadastro de cliente -->
-              <button nbButton ghost status="primary"><nb-icon icon="person-add-outline"></nb-icon></button>  
+              <button nbButton ghost status="primary" routerLink="../create-customer"><nb-icon icon="person-add-outline"></nb-icon></button>  
             </div>
                       
           </div>
@@ -55,7 +55,7 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
                   <td mat-cell *matCellDef="let row"> 
                     <!-- Edit de cliente -->
-                    <button nbButton ghost status="primary">
+                    <button nbButton ghost status="primary" routerLink="../info-customer">
                       <nb-icon icon="more-horizontal-outline"></nb-icon>
                     </button>  
                     <!-- Delete de cliente -->
