@@ -24,43 +24,44 @@
                     <nb-radio-group [(ngModel)]="option">
                       <nb-radio
                         *ngFor="let option of typeCustomer"
-                        [value]="option.value">
+                        [value]="option.value"
+                        >
                         {{ option.label }}
                       </nb-radio>
                     </nb-radio-group>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label class="label">Nome:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Nome">
+                        <input type="text" nbInput class="form-control" placeholder="Nome" fullWidth>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label class="label">E-mail:</label>
-                        <input type="email" nbInput class="form-control" placeholder="E-mail">
+                        <input type="email" nbInput class="form-control" placeholder="E-mail" fullWidth>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label class="label">Fone:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Fone">
+                        <input type="text" nbInput class="form-control" placeholder="Fone" fullWidth>
                       </div>
                     </div>
                     <div class="col-md-4" *ngIf="option==='cf'">
                       <div class="form-group" >
                         <label class="label">CPF:</label>
-                        <input type="text" nbInput class="form-control" placeholder="CPF">
+                        <input type="text" nbInput class="form-control" placeholder="CPF" fullWidth>
                       </div>
                     </div>
                     <div class="col-md-4"  *ngIf="option==='cj'">
                       <div class="form-group"> 
                         <label class="label">CNPJ:</label>
-                        <input type="text" nbInput class="form-control" placeholder="CNPJ">
+                        <input type="text" nbInput class="form-control" placeholder="CNPJ" fullWidth>
                       </div>
                     </div>
                     <div class="col-md-4" *ngIf="option==='cf'">
                       <label class="label">Data de Nascimento:</label>
-                      <input nbInput placeholder="Data de Nascimento" [nbDatepicker]="dateTimePicker">
+                      <input nbInput placeholder="Data de Nascimento" [nbDatepicker]="dateTimePicker" fullWidth>
                       <nb-datepicker #dateTimePicker></nb-datepicker>
                     </div>
                   </div>
@@ -77,22 +78,66 @@
                 <!-- Part 2 -->
                 <nb-step [label]="labelTwo">
                   <ng-template #labelTwo>Endereço</ng-template>
-                  <h4>Step content #2</h4>
-                  <p class="lorem">
-                    Second
-                  </p>
-                  <button nbButton nbStepperPrevious>prev</button>
-                  <button nbButton nbStepperNext>next</button>
+                  <div class="row">
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="label">CEP:</label>
+                        <input type="text" nbInput class="form-control" placeholder="CEP" fullWidth>
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label class="label">Logradouro:</label>
+                        <input type="text" nbInput class="form-control" placeholder="Logradouro" fullWidth>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group">
+                        <label class="label">UF:</label>
+                        <input type="text" nbInput class="form-control" placeholder="UF" fullWidth>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group" >
+                        <label class="label">Bairro:</label>
+                        <input type="text" nbInput class="form-control" placeholder="Bairro" fullWidth>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-group"> 
+                        <label class="label">Número:</label>
+                        <input type="text" nbInput class="form-control" placeholder="Número" fullWidth>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group"> 
+                        <label class="label">Complemento:</label>
+                        <input type="text" nbInput class="form-control" placeholder="Complemento" fullWidth>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row d-flex justify-content-center mt-4">
+                    <div class="col-2">
+                      <button nbButton nbStepperPrevious>Voltar</button>
+                    </div>
+                    <div class="col-2">
+                      <button nbButton nbStepperNext status="primary">Avançar</button>
+                    </div>
+                  </div>
                 </nb-step>
 
                 <!-- Part 3 -->
                 <nb-step label="Finalização">
-                  <h4>Finalização</h4>
-                  <p class="lorem">
-                    Finish
+                  <h4 class="text-center text-success">Finalização</h4>
+                  <p class="lorem text-center text-success">
+                    Acesse a tabela de clientes para mais informações
                   </p>
-                  <button nbButton nbStepperPrevious>prev</button>
-                  <button nbButton nbStepperNext>next</button>
+                  <div class="row d-flex justify-content-center mt-4">
+                    <div class="col-2">
+                      <button type="submit" nbButton nbStepperNext status="success" fullWidth>Finalizar</button>
+                    </div>
+                  </div>
+                  
                 </nb-step>
               </nb-stepper>
             </nb-card-body>
