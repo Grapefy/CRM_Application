@@ -51,7 +51,6 @@ import { EditCustomerComponent } from './pages/customer/edit-customer/edit-custo
     NbInputModule,
     NbDatepickerModule.forRoot(),
     NbRadioModule
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
