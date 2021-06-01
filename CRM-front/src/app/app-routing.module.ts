@@ -7,6 +7,17 @@ import { EditCustomerComponent } from './pages/customer/edit-customer/edit-custo
 const routes: Routes = [
   { path: 'customer', 
     component: CustomerComponent, 
+    
+    // children: [
+    //   {
+    //     path: 'register', 
+    //     component: CreateCustomerComponent, 
+    //   },
+    //   {
+    //     path: 'info',
+    //     component: EditCustomerComponent, 
+    //   },
+    // ],
   },
   {
     path: 'create-customer', 
@@ -19,7 +30,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),
+            RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
