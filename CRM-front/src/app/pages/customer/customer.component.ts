@@ -25,6 +25,8 @@ export class CustomerComponent implements OnInit {
   
   displayedColumns: string[] = ['id', 'nome', 'email','actions'];
   dataSource: MatTableDataSource<Customer>;
+  selectedName: string = '';
+  selectedId: number = 0;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -53,7 +55,9 @@ export class CustomerComponent implements OnInit {
     }
   }
 
-  open(dialog: TemplateRef<any>) {
+  open(dialog: TemplateRef<any>, nome: string, id: number) {
+    this.selectedName = nome
+    this.selectedId = id
     this.dialogService.open(dialog);
   }
 }

@@ -55,11 +55,11 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
                   <td mat-cell *matCellDef="let row"> 
                     <!-- Edit de cliente -->
-                    <button nbButton ghost status="primary" routerLink="../info-customer">
+                    <button nbButton ghost status="primary" routerLink="../info-customer/{{ row.id }}">
                       <nb-icon icon="more-horizontal-outline"></nb-icon>
                     </button>  
                     <!-- Delete de cliente -->
-                    <button nbButton ghost status="danger" (click)="open(dialog)">
+                    <button nbButton ghost status="danger" (click)="open(dialog, row.name, row.id)">
                       <nb-icon icon="trash-outline"></nb-icon>
                     </button>
                   </td>
@@ -88,7 +88,7 @@
   <ng-template #dialog let-data let-ref="dialogRef" >
     <nb-card>
       <nb-card-header>Excluir Cliente</nb-card-header>
-      <nb-card-body>Deseja excluir o cliente ...</nb-card-body>
+      <nb-card-body>Deseja excluir o cliente: <strong> {{ selectedName }} ({{ selectedId }})</strong>? </nb-card-body>
       <nb-card-footer>
         <button nbButton (click)="ref.close()">Voltar</button>
         <button nbButton (click)="ref.close()" status="danger" class="mx-4">Excluir</button>
