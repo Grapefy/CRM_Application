@@ -12,7 +12,14 @@
 
           <nb-card>
             <nb-card-header>
-              <h4 class="text-center my-2">Cadastro de Cliente</h4>
+              <div class="row my-2">
+                <div class="col-md-1">
+                  <button nbButton ghost status="primary" routerLink="../customer"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+                </div>
+                <div class="col-md-10">
+                  <h4 class="text-center">Cadastro de Cliente</h4>
+                </div>
+              </div>
             </nb-card-header>
 
             <nb-card-body class="mx-4">
@@ -21,14 +28,14 @@
                 <nb-step [label]="labelOne">
                   <ng-template #labelOne>Dados Pessoais</ng-template>
                   <div class="row">
-                    <nb-radio-group [(ngModel)]="option">
-                      <nb-radio
-                        *ngFor="let option of typeCustomer"
-                        [value]="option.value"
-                        >
-                        {{ option.label }}
-                      </nb-radio>
-                    </nb-radio-group>
+                      <nb-radio-group [(ngModel)]="option">
+                        <nb-radio
+                          *ngFor="let option of typeCustomer"
+                          [value]="option.value"
+                          >
+                          {{ option.label }}
+                        </nb-radio>
+                      </nb-radio-group>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label class="label">Nome:</label>
