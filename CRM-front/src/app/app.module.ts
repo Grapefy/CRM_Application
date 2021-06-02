@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CreateCustomerComponent } from './pages/customer/create-customer/create-customer.component';
 import { EditCustomerComponent } from './pages/customer/edit-customer/edit-customer.component';
+import { AdministradorComponent } from './pages/administrador/administrador.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EditCustomerComponent } from './pages/customer/edit-customer/edit-custo
     CustomerComponent,
     CreateCustomerComponent,
     EditCustomerComponent,
+    AdministradorComponent,
   ],
   imports: [
     BrowserModule,
