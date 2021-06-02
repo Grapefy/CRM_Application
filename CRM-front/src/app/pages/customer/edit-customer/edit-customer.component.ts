@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edit-customer',
@@ -9,9 +10,11 @@ export class EditCustomerComponent implements OnInit {
 
   onEdit = false; 
 
-  constructor() { }
+  constructor( private lastRoute: ActivatedRoute ) { }
 
   ngOnInit(): void {
+    const id = this.lastRoute.snapshot.paramMap.get('id')
+    console.log(id)
   }
 
   onEditForm(){
