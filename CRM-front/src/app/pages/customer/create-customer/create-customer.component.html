@@ -36,41 +36,68 @@
                           {{ option.label }}
                         </nb-radio>
                       </nb-radio-group>
+                    <!-- <form [formGroup]="formCustomer"> -->
+                    <!-- Input Name -->
                     <div class="col-md-4">
                       <div class="form-group">
                         <label class="label">Nome:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Nome" fullWidth>
+                        <input type="text" nbInput class="form-control" placeholder="Nome" fullWidth [formControl]="nome"
+                        [ngClass]="{'status-danger':nome.invalid && (nome.dirty || nome.touched),
+                                    'status-success':nome.valid}">
+                        <p class="caption status-danger" *ngIf="nome.invalid && (nome.dirty || nome.touched)">Nome é obrigatório</p>
                       </div>
                     </div>
+                    <!-- Input Email -->
                     <div class="col-md-4">
                       <div class="form-group">
                         <label class="label">E-mail:</label>
-                        <input type="email" nbInput class="form-control" placeholder="E-mail" fullWidth>
+                        <input type="email" nbInput class="form-control" placeholder="E-mail" fullWidth [formControl]="email" 
+                        [ngClass]="{'status-danger':email.invalid && (email.dirty || email.touched),
+                                    'status-success':email.valid}">
+                        <p class="caption status-danger" *ngIf="email.invalid && (email.dirty || email.touched)">Email Inválido</p>
                       </div>
                     </div>
+                    <!-- Input Fone -->
                     <div class="col-md-4">
                       <div class="form-group">
                         <label class="label">Fone:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Fone" fullWidth>
+                        <input type="text" nbInput class="form-control" placeholder="Fone" fullWidth [formControl]="fone"
+                        [ngClass]="{'status-danger':fone.invalid && (fone.dirty || fone.touched),
+                                    'status-success':fone.valid}">
+                        <p class="caption status-danger" *ngIf="fone.invalid && (fone.dirty || fone.touched)">Fone é obrigatório</p>
                       </div>
                     </div>
+                    <!-- Input CPF -->
                     <div class="col-md-4" *ngIf="option==='cf'">
                       <div class="form-group" >
                         <label class="label">CPF:</label>
-                        <input type="text" nbInput class="form-control" placeholder="CPF" fullWidth>
+                        <input type="text" nbInput class="form-control" placeholder="CPF" fullWidth [formControl]="cpf"
+                        [ngClass]="{'status-danger':cpf.invalid && (cpf.dirty || cpf.touched),
+                                    'status-success':cpf.valid}">
+                        <p class="caption status-danger" *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">CPF é obrigatório</p>
                       </div>
                     </div>
+                    <!-- Input CNPJ -->
                     <div class="col-md-4"  *ngIf="option==='cj'">
                       <div class="form-group"> 
                         <label class="label">CNPJ:</label>
-                        <input type="text" nbInput class="form-control" placeholder="CNPJ" fullWidth>
+                        <input type="text" nbInput class="form-control" placeholder="CNPJ" fullWidth [formControl]="cnpj"
+                        [ngClass]="{'status-danger':cnpj.invalid && (cnpj.dirty || cnpj.touched),
+                                    'status-success':cnpj.valid}">
+                        <p class="caption status-danger" *ngIf="cnpj.invalid && (cnpj.dirty || cnpj.touched)">CNPJ é obrigatório</p>
                       </div>
                     </div>
+                    <!-- Input Date -->
                     <div class="col-md-4" *ngIf="option==='cf'">
                       <label class="label">Data de Nascimento:</label>
-                      <input nbInput placeholder="Data de Nascimento" [nbDatepicker]="dateTimePicker" fullWidth>
+                      <input nbInput placeholder="Data de Nascimento" [nbDatepicker]="dateTimePicker" fullWidth 
+                      [formControl]="dt_nascimento"
+                      [ngClass]="{'status-danger':dt_nascimento.invalid && (dt_nascimento.dirty || dt_nascimento.touched),
+                                  'status-success':dt_nascimento.valid}">
+                      <p class="caption status-danger" *ngIf="dt_nascimento.invalid && (dt_nascimento.dirty || dt_nascimento.touched)">Data de Nascimento é obrigatório</p>
                       <nb-datepicker #dateTimePicker></nb-datepicker>
                     </div>
+                    <!-- </form> -->
                   </div>
                   <div class="row d-flex justify-content-center mt-4">
                     <div class="col-2">
@@ -89,37 +116,55 @@
                     <div class="col-md-2">
                       <div class="form-group">
                         <label class="label">CEP:</label>
-                        <input type="text" nbInput class="form-control" placeholder="CEP" fullWidth>
+                        <input type="text" nbInput class="form-control" placeholder="CEP" fullWidth [formControl]="cep"
+                        [ngClass]="{'status-danger':cep.invalid && (cep.dirty || cep.touched),
+                                    'status-success':cep.valid}">
+                        <p class="caption status-danger" *ngIf="cep.invalid && (cep.dirty || cep.touched)">CEP é obrigatório</p>
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <label class="label">Logradouro:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Logradouro" fullWidth>
+                        <input type="text" nbInput class="form-control" placeholder="Logradouro" fullWidth [formControl]="logradouro"
+                        [ngClass]="{'status-danger':logradouro.invalid && (logradouro.dirty || logradouro.touched),
+                                    'status-success':logradouro.valid}">
+                        <p class="caption status-danger" *ngIf="logradouro.invalid && (logradouro.dirty || logradouro.touched)">Logradouro é obrigatório</p>
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="form-group">
                         <label class="label">UF:</label>
-                        <input type="text" nbInput class="form-control" placeholder="UF" fullWidth>
+                        <input type="text" nbInput class="form-control" placeholder="UF" fullWidth [formControl]="uf"
+                        [ngClass]="{'status-danger':uf.invalid && (uf.dirty || uf.touched),
+                                    'status-success':uf.valid}">
+                        <p class="caption status-danger" *ngIf="uf.invalid && (uf.dirty || uf.touched)">UF é obrigatório</p>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group" >
                         <label class="label">Bairro:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Bairro" fullWidth>
+                        <input type="text" nbInput class="form-control" placeholder="Bairro" fullWidth [formControl]="bairro"
+                        [ngClass]="{'status-danger':bairro.invalid && (bairro.dirty || bairro.touched),
+                                    'status-success':bairro.valid}">
+                        <p class="caption status-danger" *ngIf="bairro.invalid && (bairro.dirty || bairro.touched)">Bairro é obrigatório</p>
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="form-group"> 
                         <label class="label">Número:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Número" fullWidth>
+                        <input type="text" nbInput class="form-control" placeholder="Número" fullWidth [formControl]="numero"
+                        [ngClass]="{'status-danger':numero.invalid && (numero.dirty || numero.touched),
+                                    'status-success':numero.valid}">
+                        <p class="caption status-danger" *ngIf="numero.invalid && (numero.dirty || numero.touched)">Número é obrigatório</p>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group"> 
                         <label class="label">Complemento:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Complemento" fullWidth>
+                        <input type="text" nbInput class="form-control" placeholder="Complemento" fullWidth [formControl]="complemento"
+                        [ngClass]="{'status-danger':complemento.invalid && (complemento.dirty || complemento.touched),
+                                    'status-success':complemento.valid}">
+                        <p class="caption status-danger" *ngIf="complemento.invalid && (complemento.dirty || complemento.touched)">Complemento é obrigatório</p>
                       </div>
                     </div>
                   </div>
