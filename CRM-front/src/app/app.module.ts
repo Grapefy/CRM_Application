@@ -11,7 +11,7 @@ import { HeaderComponent } from './_components/_shared/header/header.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import {MatTableModule} from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CreateCustomerComponent } from './pages/customer/create-customer/create-customer.component';
@@ -52,7 +52,8 @@ import { AdministradorComponent } from './pages/administrador/administrador.comp
     NbStepperModule,
     NbInputModule,
     NbDatepickerModule.forRoot(),
-    NbRadioModule
+    NbRadioModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
