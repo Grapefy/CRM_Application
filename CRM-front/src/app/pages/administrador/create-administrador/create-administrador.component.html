@@ -1,41 +1,30 @@
 <nb-layout>
-
     <nb-layout-header fixed>
-      <app-header></app-header>
+        <app-header></app-header>
     </nb-layout-header>
-  
-    <nb-sidebar>
-      <app-menu></app-menu>
-    </nb-sidebar>
-  
-    <nb-layout-column>
 
-          <nb-card>
+    <nb-sidebar>
+        <app-menu></app-menu>
+    </nb-sidebar>
+
+    <nb-layout-column>
+        <nb-card>
             <nb-card-header>
               <div class="row my-2">
                 <div class="col-md-1">
-                  <button nbButton ghost status="primary" routerLink="../customer"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+                  <button nbButton ghost status="primary" routerLink="../administrador"><nb-icon icon="arrow-back-outline"></nb-icon></button>
                 </div>
                 <div class="col-md-10">
-                  <h4 class="text-center">Cadastro de Cliente</h4>
+                  <h4 class="text-center">Cadastro de Administrador</h4>
                 </div>
               </div>
             </nb-card-header>
-
             <nb-card-body class="mx-4">
               <nb-stepper orientation="horizontal">
                 <!-- Part 1 -->
                 <nb-step [label]="labelOne">
                   <ng-template #labelOne>Dados Pessoais</ng-template>
                   <div class="row">
-                      <nb-radio-group [(ngModel)]="option">
-                        <nb-radio
-                          *ngFor="let option of typeCustomer"
-                          [value]="option.value"
-                          >
-                          {{ option.label }}
-                        </nb-radio>
-                      </nb-radio-group>
                     <!-- <form [formGroup]="formCustomer"> -->
                     <!-- Input Name -->
                     <div class="col-md-4">
@@ -67,41 +56,11 @@
                         <p class="caption status-danger" *ngIf="fone.invalid && (fone.dirty || fone.touched)">Fone é obrigatório</p>
                       </div>
                     </div>
-                    <!-- Input CPF -->
-                    <div class="col-md-4" *ngIf="option==='cf'">
-                      <div class="form-group" >
-                        <label class="label">CPF:</label>
-                        <input type="text" nbInput class="form-control" placeholder="CPF" fullWidth [formControl]="cpf"
-                        [ngClass]="{'status-danger':cpf.invalid && (cpf.dirty || cpf.touched),
-                                    'status-success':cpf.valid}">
-                        <p class="caption status-danger" *ngIf="cpf.invalid && (cpf.dirty || cpf.touched)">CPF é obrigatório</p>
-                      </div>
-                    </div>
-                    <!-- Input CNPJ -->
-                    <div class="col-md-4"  *ngIf="option==='cj'">
-                      <div class="form-group"> 
-                        <label class="label">CNPJ:</label>
-                        <input type="text" nbInput class="form-control" placeholder="CNPJ" fullWidth [formControl]="cnpj"
-                        [ngClass]="{'status-danger':cnpj.invalid && (cnpj.dirty || cnpj.touched),
-                                    'status-success':cnpj.valid}">
-                        <p class="caption status-danger" *ngIf="cnpj.invalid && (cnpj.dirty || cnpj.touched)">CNPJ é obrigatório</p>
-                      </div>
-                    </div>
-                    <!-- Input Date -->
-                    <div class="col-md-4" *ngIf="option==='cf'">
-                      <label class="label">Data de Nascimento:</label>
-                      <input nbInput placeholder="Data de Nascimento" [nbDatepicker]="dateTimePicker" fullWidth 
-                      [formControl]="dt_nascimento"
-                      [ngClass]="{'status-danger':dt_nascimento.invalid && (dt_nascimento.dirty || dt_nascimento.touched),
-                                  'status-success':dt_nascimento.valid}">
-                      <p class="caption status-danger" *ngIf="dt_nascimento.invalid && (dt_nascimento.dirty || dt_nascimento.touched)">Data de Nascimento é obrigatório</p>
-                      <nb-datepicker #dateTimePicker></nb-datepicker>
-                    </div>
                     <!-- </form> -->
                   </div>
                   <div class="row d-flex justify-content-center mt-4">
                     <div class="col-2">
-                      <button nbButton routerLink="../customer">Voltar</button>
+                      <button nbButton routerLink="../administrador">Voltar</button>
                     </div>
                     <div class="col-2">
                       <button nbButton nbStepperNext status="primary">Avançar</button>
@@ -179,7 +138,7 @@
                 <nb-step label="Finalização">
                   <h4 class="text-center text-success">Finalização</h4>
                   <p class="lorem text-center text-success">
-                    Acesse a tabela de clientes para mais informações
+                    Acesse a tabela de administrador para mais informações
                   </p>
                   <div class="row d-flex justify-content-center mt-4">
                     <div class="col-2">
@@ -191,7 +150,6 @@
               </nb-stepper>
             </nb-card-body>
           </nb-card>
-
     </nb-layout-column>
-  
+        
 </nb-layout>
