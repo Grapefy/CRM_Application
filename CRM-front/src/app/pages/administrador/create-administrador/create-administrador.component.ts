@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { NbComponentStatus, NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'app-create-administrador',
@@ -8,9 +9,8 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class CreateAdministradorComponent implements OnInit {
 
-  nome = new FormControl('',[Validators.required]); 
-  email = new FormControl('',[Validators.required, Validators.email]);
-  fone = new FormControl('',[Validators.required ]);
+  linearMode = true;
+  firstForm!: FormGroup;
 
   cep = new FormControl('',[Validators.required]);
   logradouro  = new FormControl('',[Validators.required ]);
@@ -19,9 +19,21 @@ export class CreateAdministradorComponent implements OnInit {
   numero = new FormControl('',[Validators.required]);
   complemento = new FormControl('');
   
-  constructor() { }
+  constructor(private fb: FormBuilder, private toastrService: NbToastrService) { }
 
   ngOnInit(): void {
+    this.firstForm = this.fb.group({
+      nome: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      fone: ['', Validators.required],
+    });
+
+  }
+
+  stepErrorMessage(status: NbComponentStatus) {
+    if (this.firstForm.invalid){
+      this.toastrService.show('Digita essas porra ae preguicoso', 'ATENCAO!', { status, preventDuplicates: true });
+    }
   }
 
 }
