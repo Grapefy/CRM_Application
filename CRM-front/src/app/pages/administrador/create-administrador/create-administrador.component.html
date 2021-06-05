@@ -20,52 +20,60 @@
               </div>
             </nb-card-header>
             <nb-card-body class="mx-4">
-              <nb-stepper orientation="horizontal">
+              <nb-stepper orientation="horizontal" [linear]="linearMode">
                 <!-- Part 1 -->
-                <nb-step [label]="labelOne">
-                  <ng-template #labelOne>Dados Pessoais</ng-template>
-                  <div class="row">
-                    <!-- <form [formGroup]="formCustomer"> -->
-                    <!-- Input Name -->
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="label">Nome:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Nome" fullWidth [formControl]="nome"
-                        [ngClass]="{'status-danger':nome.invalid && (nome.dirty || nome.touched),
-                                    'status-success':nome.valid}">
-                        <p class="caption status-danger" *ngIf="nome.invalid && (nome.dirty || nome.touched)">Nome é obrigatório</p>
+                <nb-step [label]="labelOne" [stepControl]="firstForm">
+                  <form [formGroup]="firstForm" class="step-container">
+                    <ng-template #labelOne>Dados Pessoais</ng-template>
+                    <div class="row">
+                      <!-- <form [formGroup]="formCustomer"> -->
+                      <!-- Input Name -->
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="label">Nome:</label>
+                          <input type="text" nbInput class="form-control" placeholder="Nome"
+                          formControlName="nome" 
+                          [ngClass]="{'status-danger': firstForm.controls.nome.invalid && (firstForm.controls.nome.dirty || firstForm.controls.nome.touched),
+                                      'status-success':firstForm.controls.nome.valid}"
+                          fullWidth>
+                          <p class="caption status-danger" *ngIf="firstForm.controls.nome.invalid && (firstForm.controls.nome.dirty || firstForm.controls.nome.touched)">Nome é obrigatório</p>
+                        </div>
+                      </div>
+                      <!-- Input Email -->
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="label">E-mail:</label>
+                          <input type="email" nbInput class="form-control" placeholder="E-mail"
+                          formControlName="email"
+                          [ngClass]="{'status-danger':firstForm.controls.email.invalid && (firstForm.controls.email.dirty || firstForm.controls.email.touched),
+                                      'status-success':firstForm.controls.email.valid}"
+                          fullWidth>
+                          <p class="caption status-danger" *ngIf="firstForm.controls.email.invalid && (firstForm.controls.email.dirty || firstForm.controls.email.touched)">Email Inválido</p>
+                        </div>
+                      </div>
+                      <!-- Input Fone -->
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="label">Fone:</label>
+                          <input type="text" nbInput class="form-control" placeholder="Fone"
+                          formControlName="fone" 
+                          [ngClass]="{'status-danger':firstForm.controls.fone.invalid && (firstForm.controls.fone.dirty || firstForm.controls.fone.touched),
+                                      'status-success':firstForm.controls.fone.valid}"
+                          fullWidth>
+                          <p class="caption status-danger" *ngIf="firstForm.controls.fone.invalid && (firstForm.controls.fone.dirty || firstForm.controls.fone.touched)">Fone é obrigatório</p>
+                        </div>
+                      </div>
+                      <!-- </form> -->
+                    </div>
+                    <div class="row d-flex justify-content-center mt-4">
+                      <div class="col-2">
+                        <button nbButton routerLink="../administrador">Voltar</button>
+                      </div>
+                      <div class="col-2">
+                        <button nbButton nbStepperNext (click)="stepErrorMessage('warning')" status="primary">Avançar</button>
                       </div>
                     </div>
-                    <!-- Input Email -->
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="label">E-mail:</label>
-                        <input type="email" nbInput class="form-control" placeholder="E-mail" fullWidth [formControl]="email" 
-                        [ngClass]="{'status-danger':email.invalid && (email.dirty || email.touched),
-                                    'status-success':email.valid}">
-                        <p class="caption status-danger" *ngIf="email.invalid && (email.dirty || email.touched)">Email Inválido</p>
-                      </div>
-                    </div>
-                    <!-- Input Fone -->
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label class="label">Fone:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Fone" fullWidth [formControl]="fone"
-                        [ngClass]="{'status-danger':fone.invalid && (fone.dirty || fone.touched),
-                                    'status-success':fone.valid}">
-                        <p class="caption status-danger" *ngIf="fone.invalid && (fone.dirty || fone.touched)">Fone é obrigatório</p>
-                      </div>
-                    </div>
-                    <!-- </form> -->
-                  </div>
-                  <div class="row d-flex justify-content-center mt-4">
-                    <div class="col-2">
-                      <button nbButton routerLink="../administrador">Voltar</button>
-                    </div>
-                    <div class="col-2">
-                      <button nbButton nbStepperNext status="primary">Avançar</button>
-                    </div>
-                  </div>
+                  </form>
                 </nb-step>
                 
                 <!-- Part 2 -->
