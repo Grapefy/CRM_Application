@@ -10,30 +10,45 @@ import { NbComponentStatus, NbToastrService } from '@nebular/theme';
 export class CreateAdministradorComponent implements OnInit {
 
   linearMode = true;
-  firstForm!: FormGroup;
-
-  cep = new FormControl('',[Validators.required]);
-  logradouro  = new FormControl('',[Validators.required ]);
-  uf = new FormControl('',[Validators.required ]);
-  bairro = new FormControl('',[Validators.required]);
-  numero = new FormControl('',[Validators.required]);
-  complemento = new FormControl('');
+  admForm!: FormGroup;
+  adressForm!: FormGroup;
   
   constructor(private fb: FormBuilder, private toastrService: NbToastrService) { }
 
   ngOnInit(): void {
-    this.firstForm = this.fb.group({
+    this.admForm = this.fb.group({
       nome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       fone: ['', Validators.required],
     });
 
+    this.adressForm = this.fb.group({
+      cep: ['', Validators.required],
+      logradouro: ['', Validators.required],
+      uf: ['', Validators.required],
+      bairro: ['', Validators.required],
+      numero: ['', Validators.required],
+      complemento: [''],
+    });
+
   }
 
-  stepErrorMessage(status: NbComponentStatus) {
-    if (this.firstForm.invalid){
+  stepOneErrorMessage(status: NbComponentStatus) {
+    if (this.admForm.invalid){
       this.toastrService.show('Digita essas porra ae preguicoso', 'ATENCAO!', { status, preventDuplicates: true });
     }
+  }
+
+  stepTwoErrorMessage(status: NbComponentStatus) {
+    if (this.adressForm.invalid){
+      this.toastrService.show('Digita essas porra ae preguicoso', 'ATENCAO!', { status, preventDuplicates: true });
+    }
+  }
+
+  // FUNCAO TESTE QUE ME BASEEI PRA VERIFICAR COMO OBTER OS PARAMETROS PRO BD (NAO APAGAR ELA)
+  submit() {
+    console.log(this.admForm.controls)
+    console.log(this.adressForm.controls)
   }
 
 }
