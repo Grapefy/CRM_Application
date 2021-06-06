@@ -18,6 +18,7 @@ import { CreateCustomerComponent } from './pages/customer/create-customer/create
 import { EditCustomerComponent } from './pages/customer/edit-customer/edit-customer.component';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
 import { CreateAdministradorComponent } from './pages/administrador/create-administrador/create-administrador.component';
+import { EditAdministradorComponent } from './pages/administrador/edit-administrador/edit-administrador.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CreateAdministradorComponent } from './pages/administrador/create-admin
     EditCustomerComponent,
     AdministradorComponent,
     CreateAdministradorComponent,
+    EditAdministradorComponent,
   ],
   imports: [
     BrowserModule,

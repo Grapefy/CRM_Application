@@ -1,0 +1,109 @@
+<nb-layout>
+
+    <nb-layout-header fixed>
+      <app-header></app-header>
+    </nb-layout-header>
+  
+    <nb-sidebar>
+      <app-menu></app-menu>
+    </nb-sidebar>
+  
+    <nb-layout-column>
+
+      <nb-card>
+        <nb-card-header>
+          <div class="row my-2">
+            <div class="col-md-1">
+              <button nbButton ghost status="primary" routerLink="/administrador"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+            </div>
+            <div class="col-md-10">
+              <h4 class="text-center">Informações de Administrador</h4>
+            </div>
+          </div>
+          
+        </nb-card-header>
+
+        <nb-card-body>
+          <div class="row m-2">
+            <h6 class="text-center my-2">Dados Pessoais</h6>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="label">Nome:</label>
+                <input type="text" nbInput class="form-control" value="Gabriel" fullWidth [disabled]="!onEdit">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="label">E-mail:</label>
+                <input type="email" nbInput class="form-control" value="gabriel.feliciano@gmail.com" fullWidth [disabled]="!onEdit">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="label">Fone:</label>
+                <input type="text" nbInput class="form-control" value="(85)997912500" fullWidth [disabled]="!onEdit">
+              </div>
+            </div>
+          </div>
+          <div class="row m-2">
+            <h6 class="text-center my-2">Endereço</h6>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="label">CEP:</label>
+                <input type="text" nbInput class="form-control" value="60744" fullWidth [disabled]="!onEdit">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <label class="label">Logradouro:</label>
+                <input type="text" nbInput class="form-control" value="Avenida Palestina" fullWidth [disabled]="!onEdit">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label class="label">UF:</label>
+                <input type="text" nbInput class="form-control" value="CE" fullWidth [disabled]="!onEdit">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group" >
+                <label class="label">Bairro:</label>
+                <input type="text" nbInput class="form-control" value="Passaré" fullWidth [disabled]="!onEdit">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group"> 
+                <label class="label">Número:</label>
+                <input type="text" nbInput class="form-control" value="994" fullWidth [disabled]="!onEdit">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group"> 
+                <label class="label">Complemento:</label>
+                <input type="text" nbInput class="form-control" value="Apartamento 205" fullWidth [disabled]="!onEdit">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="onEdit">
+            <div class="row d-flex justify-content-center mt-4" >
+              <div class="col-2">
+                <button nbButton (click)="offEditForm()">Cancelar</button>
+              </div>
+              <div class="col-2">
+                <button nbButton status="success">Salvar Alterações</button>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="onEdit === false">
+            <div class="row d-flex justify-content-center mt-4">
+              <div class="col-2">
+                <button nbButton status="primary" (click)="onEditForm()">Editar</button>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+    </nb-layout-column>
+  
+</nb-layout>
