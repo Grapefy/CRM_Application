@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserComponent, NbUserModule, NbContextMenuModule, NbDialogModule, NbStepperModule, NbInputModule, NbDatepickerModule, NbRadioModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserComponent, NbUserModule, NbContextMenuModule, NbDialogModule, NbStepperModule, NbInputModule, NbDatepickerModule, NbRadioModule, NbToastrModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MenuComponent } from './_components/_shared/menu/menu.component';
 import { HeaderComponent } from './_components/_shared/header/header.component';
@@ -17,6 +17,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { CreateCustomerComponent } from './pages/customer/create-customer/create-customer.component';
 import { EditCustomerComponent } from './pages/customer/edit-customer/edit-customer.component';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
+import { CreateAdministradorComponent } from './pages/administrador/create-administrador/create-administrador.component';
+import { EditAdministradorComponent } from './pages/administrador/edit-administrador/edit-administrador.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { AdministradorComponent } from './pages/administrador/administrador.comp
     CreateCustomerComponent,
     EditCustomerComponent,
     AdministradorComponent,
+    CreateAdministradorComponent,
+    EditAdministradorComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,8 @@ import { AdministradorComponent } from './pages/administrador/administrador.comp
     NbInputModule,
     NbDatepickerModule.forRoot(),
     NbRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NbToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

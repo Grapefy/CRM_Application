@@ -53,6 +53,7 @@ export class MenuComponent implements OnInit {
         },
         {
           title: 'Administradores',
+          link: '/administrador',
         },
       ],
     },

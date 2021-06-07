@@ -161,10 +161,7 @@
                     <div class="col-md-6">
                       <div class="form-group"> 
                         <label class="label">Complemento:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Complemento" fullWidth [formControl]="complemento"
-                        [ngClass]="{'status-danger':complemento.invalid && (complemento.dirty || complemento.touched),
-                                    'status-success':complemento.valid}">
-                        <p class="caption status-danger" *ngIf="complemento.invalid && (complemento.dirty || complemento.touched)">Complemento é obrigatório</p>
+                        <input type="text" nbInput class="form-control" placeholder="Complemento" fullWidth [formControl]="complemento">
                       </div>
                     </div>
                   </div>
