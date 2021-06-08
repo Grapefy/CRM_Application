@@ -6,6 +6,7 @@ import { EditAdministradorComponent } from './pages/administrador/edit-administr
 import { CreateCustomerComponent } from './pages/customer/create-customer/create-customer.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { EditCustomerComponent } from './pages/customer/edit-customer/edit-customer.component';
+import { SectorComponent } from './pages/sector/sector.component';
 
 const routes: Routes = [
   { path: 'customer', 
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'info-administrador/:id',
     component: EditAdministradorComponent
+  },
+  {
+    path: 'sector',
+    component: SectorComponent
   }
 ];
 

@@ -44,6 +44,7 @@ export class MenuComponent implements OnInit {
       children: [
         {
           title: 'Setores',
+          link: '/sector',
         },
         {
           title: 'Cargos',
