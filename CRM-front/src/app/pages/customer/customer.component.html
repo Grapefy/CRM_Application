@@ -90,8 +90,14 @@
       <nb-card-header>Excluir Cliente</nb-card-header>
       <nb-card-body>Deseja excluir o cliente: <strong> {{ selectedName }} ({{ selectedId }})</strong>? </nb-card-body>
       <nb-card-footer>
-        <button nbButton (click)="ref.close()">Voltar</button>
-        <button nbButton (click)="ref.close()" status="danger" class="mx-4">Excluir</button>
+        <div class="row">
+          <div class="col">
+            <button nbButton (click)="ref.close()">Voltar</button>
+          </div>
+          <div class="col">
+            <button nbButton (click)="ref.close()" status="danger">Excluir</button>
+          </div>  
+        </div> 
       </nb-card-footer>
     </nb-card>
   </ng-template>
