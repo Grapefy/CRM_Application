@@ -20,6 +20,7 @@ import { AdministradorComponent } from './pages/administrador/administrador.comp
 import { CreateAdministradorComponent } from './pages/administrador/create-administrador/create-administrador.component';
 import { EditAdministradorComponent } from './pages/administrador/edit-administrador/edit-administrador.component';
 import { SectorComponent } from './pages/sector/sector.component';
+import { EditSectorComponent } from './pages/sector/edit-sector/edit-sector.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SectorComponent } from './pages/sector/sector.component';
     CreateAdministradorComponent,
     EditAdministradorComponent,
     SectorComponent,
+    EditSectorComponent,
   ],
   imports: [
     BrowserModule,
