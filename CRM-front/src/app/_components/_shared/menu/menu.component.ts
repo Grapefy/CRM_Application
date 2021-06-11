@@ -48,6 +48,7 @@ export class MenuComponent implements OnInit {
         },
         {
           title: 'Cargos',
+          link: '/office',
         },
         {
           title: 'Nossos Planos',
