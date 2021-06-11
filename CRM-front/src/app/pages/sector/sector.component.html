@@ -55,7 +55,7 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
                   <td mat-cell *matCellDef="let row"> 
                     <!-- Edit de cliente -->
-                    <button nbButton ghost status="primary"> <!--routerLink="../info-customer/{{ row.id }}"-->
+                    <button nbButton ghost status="primary" routerLink="../info-sector/{{ row.id }}"> 
                       <nb-icon icon="edit-outline"></nb-icon>
                     </button>  
                     <!-- Delete de cliente -->
