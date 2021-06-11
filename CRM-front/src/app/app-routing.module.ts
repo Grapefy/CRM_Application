@@ -6,6 +6,7 @@ import { EditAdministradorComponent } from './pages/administrador/edit-administr
 import { CreateCustomerComponent } from './pages/customer/create-customer/create-customer.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { EditCustomerComponent } from './pages/customer/edit-customer/edit-customer.component';
+import { OfficeComponent } from './pages/office/office.component';
 import { EditSectorComponent } from './pages/sector/edit-sector/edit-sector.component';
 import { SectorComponent } from './pages/sector/sector.component';
 
@@ -40,6 +41,11 @@ const routes: Routes = [
     path: 'info-sector/:id',
     component: EditSectorComponent, 
   },
+  {
+    path: 'office',
+    component: OfficeComponent
+  },
+
 ];
 
 @NgModule({
