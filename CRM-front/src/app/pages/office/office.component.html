@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-1">
                   <!-- Cadastro de cliente -->
-                  <!-- <button nbButton ghost status="primary" (click)="openRegister(dialogCreate)"><nb-icon icon="plus-circle-outline"></nb-icon></button>   -->
+                  <button nbButton ghost status="primary" (click)="openRegister(dialogCreate)"><nb-icon icon="plus-circle-outline"></nb-icon></button>  
                 </div>
                           
               </div>
@@ -56,11 +56,11 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
                   <td mat-cell *matCellDef="let row"> 
                     <!-- Edit de cliente -->
-                    <button nbButton ghost status="primary" routerLink="../info-sector/{{ row.id }}"> 
+                    <button nbButton ghost status="primary" routerLink="../info-office/{{ row.id }}"> 
                       <nb-icon icon="edit-outline"></nb-icon>
                     </button>  
                     <!-- Delete de cliente -->
-                    <button nbButton ghost status="danger" ><!--(click)="openDelete(dialog, row.setor, row.id)" -->
+                    <button nbButton ghost status="danger" (click)="openDelete(dialog, row.cargo, row.id)" >
                       <nb-icon icon="trash-2-outline"></nb-icon>
                     </button>
                   </td>
@@ -87,29 +87,43 @@
 
   
 <!-- Modal Cadastro -->
-<!-- <ng-template #dialogCreate let-data let-ref="dialogRef" >
+<ng-template #dialogCreate let-data let-ref="dialogRef" >
   <nb-card>
-  <nb-card-header class="text-center"><h5>Cadastro de Setor</h5></nb-card-header>
+  <nb-card-header class="text-center"><h5>Cadastro de Cargo</h5></nb-card-header>
     <nb-card-body>
-      <form [formGroup]="sectorForm" class="step-container">
+      <form [formGroup]="officeForm" class="step-container">
+        <!-- Input Cargo -->
+        <div class="form-group" >
+          <label class="label">Cargo:</label>
+          <input type="text" nbInput class="form-control" placeholder="Cargo" fullWidth formControlName="cargo"
+          [ngClass]="{'status-danger':officeForm.controls.cargo.invalid && (officeForm.controls.cargo.dirty || officeForm.controls.cargo.touched),
+                                      'status-success':officeForm.controls.cargo.valid}">
+          <p class="caption status-danger" *ngIf="officeForm.controls.cargo.invalid && (officeForm.controls.cargo.dirty || officeForm.controls.cargo.touched)">Cargo é obrigatório</p>
+        </div>
+        <!-- Input Setor -->
         <div class="form-group" >
           <label class="label">Setor:</label>
-          <input type="text" nbInput class="form-control" placeholder="Setor" fullWidth formControlName="setor"
-          [ngClass]="{'status-danger':sectorForm.controls.setor.invalid && (sectorForm.controls.setor.dirty || sectorForm.controls.setor.touched),
-                                      'status-success':sectorForm.controls.setor.valid}">
-          <p class="caption status-danger" *ngIf="sectorForm.controls.setor.invalid && (sectorForm.controls.setor.dirty || sectorForm.controls.setor.touched)">Setor é obrigatório</p>
+          <nb-select placeholder="Setor" fullWidth formControlName="setor"
+          [ngClass]="{'status-danger':officeForm.controls.setor.invalid && (officeForm.controls.setor.dirty || officeForm.controls.setor.touched),
+                      'status-success':officeForm.controls.setor.valid}">
+            <nb-option *ngFor="let sector of Sectors" [value]="sector.value">{{ sector.label }}</nb-option>
+          </nb-select>
+          <p class="caption status-danger" *ngIf="officeForm.controls.setor.invalid && (officeForm.controls.setor.dirty || officeForm.controls.setor.touched)">Setor é obrigatório</p>
         </div>
+        <!-- Input Salário Bruto -->
         <div class="form-group" >
-          <label class="label">Responsável:</label>
-          <input type="text" nbInput class="form-control" placeholder="Responsável" fullWidth formControlName="responsavel"
-          [ngClass]="{'status-danger':sectorForm.controls.responsavel.invalid && (sectorForm.controls.responsavel.dirty || sectorForm.controls.responsavel.touched),
-          'status-success':sectorForm.controls.responsavel.valid}">
-          <p class="caption status-danger" *ngIf="sectorForm.controls.responsavel.invalid && (sectorForm.controls.responsavel.dirty || sectorForm.controls.responsavel.touched)">Responsável é obrigatório</p>
+          <label class="label">Salário Bruto:</label>
+          <input type="text" nbInput class="form-control" placeholder="Salário Bruto" fullWidth formControlName="salario_bruto"
+          [ngClass]="{'status-danger':officeForm.controls.salario_bruto.invalid && (officeForm.controls.salario_bruto.dirty || officeForm.controls.salario_bruto.touched),
+          'status-success':officeForm.controls.salario_bruto.valid}">
+          <p class="caption status-danger" *ngIf="officeForm.controls.salario_bruto.invalid && (officeForm.controls.salario_bruto.dirty || officeForm.controls.salario_bruto.touched)">Salário é obrigatório</p>
         </div>
+        <!-- Input Descrição -->
           <label class="label">Descrição:</label>
-          <textarea nbInput fullWidth placeholder="Descreva sobre o setor." formControlName="descricao"></textarea>
+          <textarea nbInput fullWidth placeholder="Descreva sobre o cargo." formControlName="descricao"></textarea>
       </form>
     </nb-card-body>
+
     <nb-card-footer class="text-center">
       <div class="row">
         <div class="col">
@@ -121,14 +135,14 @@
       </div> 
     </nb-card-footer>
   </nb-card>
-</ng-template> -->
+</ng-template>
 
 
 <!-- Modal Delete -->
-  <!-- <ng-template #dialog let-data let-ref="dialogRef" >
+  <ng-template #dialog let-data let-ref="dialogRef" >
     <nb-card>
-      <nb-card-header>Excluir Setor</nb-card-header>
-      <nb-card-body>Deseja excluir o cliente: <strong> {{ selectedSector }} ({{ selectedId }})</strong>? </nb-card-body>
+      <nb-card-header>Excluir Cargo</nb-card-header>
+      <nb-card-body>Deseja excluir o cargo: <strong> {{ selectedOffice }} ({{ selectedId }})</strong>? </nb-card-body>
       <nb-card-footer>
         <div class="row">
           <div class="col">
@@ -140,6 +154,6 @@
         </div>  
       </nb-card-footer>
     </nb-card>
-  </ng-template> -->
+  </ng-template>
 
   
