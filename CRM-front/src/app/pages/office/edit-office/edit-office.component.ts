@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditOfficeComponent implements OnInit {
 
+  onEdit = false; 
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onEditForm(){
+    this.onEdit = true;
+  }
+  
+  offEditForm(){
+    this.onEdit = false;
   }
 
 }

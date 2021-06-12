@@ -6,6 +6,7 @@ import { EditAdministradorComponent } from './pages/administrador/edit-administr
 import { CreateCustomerComponent } from './pages/customer/create-customer/create-customer.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { EditCustomerComponent } from './pages/customer/edit-customer/edit-customer.component';
+import { EditOfficeComponent } from './pages/office/edit-office/edit-office.component';
 import { OfficeComponent } from './pages/office/office.component';
 import { EditSectorComponent } from './pages/sector/edit-sector/edit-sector.component';
 import { SectorComponent } from './pages/sector/sector.component';
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: 'office',
     component: OfficeComponent
+  },
+  {
+    path: 'info-office/:id',
+    component: EditOfficeComponent
   },
 
 ];

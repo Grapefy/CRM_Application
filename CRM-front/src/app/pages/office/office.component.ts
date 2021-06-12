@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,6 +13,12 @@ import { Office } from 'src/app/models/office.model';
 })
 export class OfficeComponent implements OnInit {
 
+  Sectors = [
+    { value: 'TI', label: 'TI'},
+    { value: 'RH', label: 'RH' },
+  ];
+
+
   offices: Office[] = [
     new Office(1,'Desenvolvedor Júnior', 'TI'),
     new Office(2,'Desenvolvedor Pleno', 'TI'),
@@ -20,9 +26,9 @@ export class OfficeComponent implements OnInit {
 
   displayedColumns: string[] = ['id', 'cargo', 'setor','actions'];
   dataSource: MatTableDataSource<Office>;
-  selectedSector: string = '';
+  selectedOffice: string = '';
   selectedId: number = 0;
-  sectorForm!: FormGroup;
+  officeForm!: FormGroup;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -33,6 +39,12 @@ export class OfficeComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.offices);  }
 
   ngOnInit(): void {
+    this.officeForm = this.fb.group({
+      cargo:['', Validators.required],
+      setor: ['', Validators.required],
+      salario_bruto: ['',Validators.required],
+      descricao: [''],
+    });
   }
 
   //INICIAR PÁGINAÇÃO E QTD DE ITENS
@@ -50,5 +62,16 @@ export class OfficeComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  openDelete(dialog: TemplateRef<any>, cargo: string, id: number) {
+    this.selectedOffice = cargo
+    this.selectedId = id
+    this.dialogService.open(dialog);
+  }
+
+  openRegister(dialogCreate: TemplateRef<any>) {
+    this.dialogService.open(dialogCreate);
+  }
+
 
 }
