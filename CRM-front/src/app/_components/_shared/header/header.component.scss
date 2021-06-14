@@ -1,0 +1,39 @@
+@import '../../themes.scss';
+
+@include nb-install-component() {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+    .logo-container{
+      display: flex;
+      align-items: center;
+  }
+
+
+  nb-user {
+    cursor: pointer;
+  }
+
+
+  .header-container {
+      display: flex;
+      align-items: center;
+      width: auto;
+
+      .sidebar-toggle {
+          nb-icon {
+          font-size: 1.75rem;
+          }
+      }
+
+      .logo{
+          width: 90px;
+      }
+
+      .user-action {  
+          border: none;
+      }
+  }
+
+}
