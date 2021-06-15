@@ -113,7 +113,7 @@
         <!-- Input Salário Bruto -->
         <div class="form-group" >
           <label class="label">Salário Bruto:</label>
-          <input type="text" nbInput class="form-control" placeholder="Salário Bruto" fullWidth formControlName="salario_bruto"
+          <input type="text" nbInput class="form-control" placeholder="Salário Bruto" fullWidth formControlName="salario_bruto" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','" prefix="R$ "
           [ngClass]="{'status-danger':officeForm.controls.salario_bruto.invalid && (officeForm.controls.salario_bruto.dirty || officeForm.controls.salario_bruto.touched),
           'status-success':officeForm.controls.salario_bruto.valid}">
           <p class="caption status-danger" *ngIf="officeForm.controls.salario_bruto.invalid && (officeForm.controls.salario_bruto.dirty || officeForm.controls.salario_bruto.touched)">Salário é obrigatório</p>

@@ -24,83 +24,89 @@
         </nb-card-header>
 
         <nb-card-body>
-          <div class="row m-2">
-            <h6 class="text-center my-2">Dados Pessoais</h6>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="label">Nome:</label>
-                <input type="text" nbInput class="form-control" value="Gabriel" fullWidth [disabled]="!onEdit">
+          <form [formGroup]="customerEditForm" class="step-container">
+            <div class="row m-2">
+              <h6 class="text-center my-2">Dados Pessoais</h6>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="label">Nome:</label>
+                  <input type="text" nbInput class="form-control" formControlName="nome" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="label">E-mail:</label>
+                  <input type="email" nbInput class="form-control" formControlName="email" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="label">Fone:</label>
+                  <input type="text" nbInput class="form-control" mask="(00) 00000-0000" formControlName="fone" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group" >
+                  <label class="label">CPF:</label>
+                  <input type="text" nbInput class="form-control" formControlName="cpf" fullWidth mask="000.000.000-00">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group"> 
+                  <label class="label">CNPJ:</label>
+                  <input type="text" nbInput class="form-control" formControlName="cnpj" fullWidth mask="00.000.000/0000-00">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label class="label">Data de Nascimento:</label>
+                <input nbInput [nbDatepicker]="dateTimePicker" formControlName="dt_nascimento" fullWidth >
+                <nb-datepicker #dateTimePicker></nb-datepicker>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="label">E-mail:</label>
-                <input type="email" nbInput class="form-control" value="gabriel.feliciano@gmail.com" fullWidth [disabled]="!onEdit">
+          </form>
+          
+          <form [formGroup]="addressEditForm" class="step-container">
+            <div class="row m-2">
+              <h6 class="text-center my-2">Endereço</h6>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="label">CEP:</label>
+                  <input type="text" nbInput class="form-control" formControlName="cep" mask="00000-00" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label class="label">Logradouro:</label>
+                  <input type="text" nbInput class="form-control" formControlName="logradouro" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="label">UF:</label>
+                  <input type="text" nbInput class="form-control" formControlName="uf" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group" >
+                  <label class="label">Bairro:</label>
+                  <input type="text" nbInput class="form-control" formControlName="bairro" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group"> 
+                  <label class="label">Número:</label>
+                  <input type="text" nbInput class="form-control" formControlName="numero" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group"> 
+                  <label class="label">Complemento:</label>
+                  <input type="text" nbInput class="form-control" formControlName="complemento" fullWidth>
+                </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="label">Fone:</label>
-                <input type="text" nbInput class="form-control" value="(85)997912500" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group" >
-                <label class="label">CPF:</label>
-                <input type="text" nbInput class="form-control" value="603.335.953-00" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group"> 
-                <label class="label">CNPJ:</label>
-                <input type="text" nbInput class="form-control" value="-" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <label class="label">Data de Nascimento:</label>
-              <input nbInput value="17/05/2002" [nbDatepicker]="dateTimePicker" fullWidth [disabled]="!onEdit">
-              <nb-datepicker #dateTimePicker></nb-datepicker>
-            </div>
-          </div>
-          <div class="row m-2">
-            <h6 class="text-center my-2">Endereço</h6>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label class="label">CEP:</label>
-                <input type="text" nbInput class="form-control" value="60744" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="form-group">
-                <label class="label">Logradouro:</label>
-                <input type="text" nbInput class="form-control" value="Avenida Palestina" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <label class="label">UF:</label>
-                <input type="text" nbInput class="form-control" value="CE" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group" >
-                <label class="label">Bairro:</label>
-                <input type="text" nbInput class="form-control" value="Passaré" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group"> 
-                <label class="label">Número:</label>
-                <input type="text" nbInput class="form-control" value="994" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group"> 
-                <label class="label">Complemento:</label>
-                <input type="text" nbInput class="form-control" value="Apartamento 205" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-          </div>
+          </form>
+
           <div *ngIf="onEdit">
             <div class="row d-flex justify-content-center mt-4" >
               <div class="col-2">

@@ -23,6 +23,7 @@ import { SectorComponent } from './pages/sector/sector.component';
 import { EditSectorComponent } from './pages/sector/edit-sector/edit-sector.component';
 import { OfficeComponent } from './pages/office/office.component';
 import { EditOfficeComponent } from './pages/office/edit-office/edit-office.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,10 @@ import { EditOfficeComponent } from './pages/office/edit-office/edit-office.comp
     NbRadioModule,
     ReactiveFormsModule,
     NbToastrModule.forRoot(),
-    NbSelectModule
+    NbSelectModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
