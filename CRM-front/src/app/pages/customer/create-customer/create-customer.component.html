@@ -60,8 +60,8 @@
                       <!-- Input Fone -->
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label class="label">Fone:</label>
-                          <input type="text" nbInput class="form-control" placeholder="Fone" fullWidth formControlName="fone"
+                          <label class="label">Fone:</label> 
+                          <input type="text" nbInput class="form-control" placeholder="Fone" fullWidth formControlName="fone" mask="(00) 00000-0000"
                           [ngClass]="{'status-danger':customerForm.controls.fone.invalid && (customerForm.controls.fone.dirty || customerForm.controls.fone.touched),
                                       'status-success':customerForm.controls.fone.valid}">
                           <p class="caption status-danger" *ngIf="customerForm.controls.fone.invalid && (customerForm.controls.fone.dirty || customerForm.controls.fone.touched)">Fone é obrigatório</p>
@@ -71,7 +71,7 @@
                       <div class="col-md-4" *ngIf="option==='cf'">
                         <div class="form-group" >
                           <label class="label">CPF:</label>
-                          <input type="text" nbInput class="form-control" placeholder="CPF" fullWidth formControlName="cpf"
+                          <input type="text" nbInput class="form-control" placeholder="CPF" fullWidth formControlName="cpf" mask="000.000.000-00"
                           [ngClass]="{'status-danger':customerForm.controls.cpf.invalid && (customerForm.controls.cpf.dirty || customerForm.controls.cpf.touched),
                                       'status-success':customerForm.controls.cpf.valid}">
                           <p class="caption status-danger" *ngIf="customerForm.controls.cpf.invalid && (customerForm.controls.cpf.dirty || customerForm.controls.cpf.touched)">CPF é obrigatório</p>
@@ -81,7 +81,7 @@
                       <div class="col-md-4"  *ngIf="option==='cj'">
                         <div class="form-group"> 
                           <label class="label">CNPJ:</label>
-                          <input type="text" nbInput class="form-control" placeholder="CNPJ" fullWidth formControlName="cnpj"
+                          <input type="text" nbInput class="form-control" placeholder="CNPJ" fullWidth formControlName="cnpj" mask="00.000.000/0000-00"
                           [ngClass]="{'status-danger':customerForm.controls.cnpj.invalid && (customerForm.controls.cnpj.dirty || customerForm.controls.cnpj.touched),
                                       'status-success':customerForm.controls.cnpj.valid}">
                           <p class="caption status-danger" *ngIf="customerForm.controls.cnpj.invalid && (customerForm.controls.cnpj.dirty || customerForm.controls.cnpj.touched)">CNPJ é obrigatório</p>
@@ -118,7 +118,7 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <label class="label">CEP:</label>
-                          <input type="text" nbInput class="form-control" placeholder="CEP" fullWidth formControlName="cep"
+                          <input type="text" nbInput class="form-control" placeholder="CEP" fullWidth formControlName="cep" mask="00000-00"
                           [ngClass]="{'status-danger':adressForm.controls.cep.invalid && (adressForm.controls.cep.dirty || adressForm.controls.cep.touched),
                                       'status-success':adressForm.controls.cep.valid}">
                           <p class="caption status-danger" *ngIf="adressForm.controls.cep.invalid && (adressForm.controls.cep.dirty || adressForm.controls.cep.touched)">CEP é obrigatório</p>
