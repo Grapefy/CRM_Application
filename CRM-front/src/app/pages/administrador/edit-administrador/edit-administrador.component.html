@@ -24,27 +24,29 @@
         </nb-card-header>
 
         <nb-card-body>
-          <div class="row m-2">
-            <h6 class="text-center my-2">Dados Pessoais</h6>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="label">Nome:</label>
-                <input type="text" nbInput class="form-control" value="Gabriel" fullWidth [disabled]="!onEdit">
+          <form [formGroup]="administradorEditForm">
+            <div class="row m-2">
+              <h6 class="text-center my-2">Dados Pessoais</h6>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="label">Nome:</label>
+                  <input type="text" nbInput class="form-control" value="Gabriel" fullWidth formControlName="nome" [disabled]="!onEdit">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="label">E-mail:</label>
+                  <input type="email" nbInput class="form-control" value="gabriel.feliciano@gmail.com" formControlName="email" fullWidth [disabled]="!onEdit">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label class="label">Fone:</label>
+                  <input type="text" nbInput class="form-control"  mask="(00) 00000-0000" value="(85)997912500" formControlName="fone" fullWidth [disabled]="!onEdit">
+                </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="label">E-mail:</label>
-                <input type="email" nbInput class="form-control" value="gabriel.feliciano@gmail.com" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="label">Fone:</label>
-                <input type="text" nbInput class="form-control" value="(85)997912500" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-          </div>
+          </form>
           <div class="row m-2">
             <h6 class="text-center my-2">Endereço</h6>
             <div class="col-md-2">
