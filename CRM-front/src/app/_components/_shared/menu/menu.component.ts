@@ -21,6 +21,7 @@ export class MenuComponent implements OnInit {
     {
       title: 'Funcionarios',
       icon:'person-outline',
+      link:'/employee',
     },
     {
       title: 'Nossos Serviços',

@@ -25,6 +25,7 @@ import { OfficeComponent } from './pages/office/office.component';
 import { EditOfficeComponent } from './pages/office/edit-office/edit-office.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { EmployeeComponent } from './pages/employee/employee.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { NgxCurrencyModule } from 'ngx-currency';
     EditSectorComponent,
     OfficeComponent,
     EditOfficeComponent,
+    EmployeeComponent,
   ],
   imports: [
     BrowserModule,

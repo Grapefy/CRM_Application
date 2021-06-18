@@ -1,3 +1,4 @@
+import { EmployeeComponent } from './pages/employee/employee.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'info-office/:id',
     component: EditOfficeComponent
+  },
+  {
+    path: 'employee',
+    component: EmployeeComponent
   },
 
 ];
