@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\I18n\Date;
 
 /**
  * Enderecos Model
@@ -104,4 +105,22 @@ class EnderecosTable extends Table
 
         return $rules;
     }
+
+    public function genarateAdressArray($address,$id){
+
+        $array = [
+            'cep' => $address->cep,
+            'logradouro' => $address->logradouro,
+            'bairro' => $address->bairro,
+            'uf' => $address->uf,
+            'numero' => $address->numero,
+            'complemento' => 'AAA',
+            'cliente_id' => $id,
+            'created'=> Date::now(),
+            'modified'=> Date::now()
+        ];
+
+        return $array;
+    }
+
 }

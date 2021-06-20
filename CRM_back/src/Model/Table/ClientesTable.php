@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\I18n\Date;
 
 /**
  * Clientes Model
@@ -89,5 +90,26 @@ class ClientesTable extends Table
             ->allowEmptyDate('dt_nascimento');
 
         return $validator;
+    }
+
+    public function genarateCustomerArray($customer){
+        $is_empresa = false;
+        $idf = $customer->cpf;
+        if ($idf == ''){
+            $is_empresa = true;
+            $idf = $customer->cnpj;
+        }
+        $array = [
+            'nome' => $customer->nome,
+            'email'=> $customer->email,
+            'fone'=> $customer->fone,
+            'is_empresa'=> $is_empresa,
+            'identificador'=> $idf,
+            'dt_nascimento'=> new Date($customer->dt_nascimento),
+            'created'=> Date::now(),
+            'modified'=> Date::now()
+        ];
+
+        return $array;
     }
 }

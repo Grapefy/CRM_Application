@@ -55,37 +55,18 @@ class ClientesController extends AppController
     {
         $this->loadModel('Enderecos');
 
-        $cliente = $this->Clientes->newEmptyEntity();
-        $endereco = $this->Enderecos->newEmptyEntity();
+        $data_json = $this->request->input('json_decode');
 
-        $array = [
-            'nome' => 'LUCAS FIRMIANO SILVA GIRAO',
-            'email'=> 'lucas.firmianosg@gmail.com',
-            'fone'=> '997028392',
-            'is_empresa'=> false,
-            'identificador'=> '068681043-08',
-            'dt_nascimento'=> Date::now(),
-            'created'=> Date::now(),
-            'modified'=> Date::now()
-        ];
+        $array_customer = $this->Clientes->genarateCustomerArray($data_json[0]);
 
-        $array_endereco = [
-            'cep' => '60455-365',
-            'logradouro' => 'RUA PADRE GUERRA',
-            'bairro' => 'PARQUELANDIA',
-            'uf' => 'CE',
-            'numero' => 1045,
-            'complemento' => 'CASA A',
-            'cliente_id' => null,
-            'created'=> Date::now(),
-            'modified'=> Date::now()
-        ];
-
-        $cliente = $this->Clientes->patchEntity($cliente, $array);
+        $cliente = $this->Clientes->newEntity($array_customer);
 
         if ($this->Clientes->save($cliente)) {
-            $array_endereco['cliente_id'] = $cliente->id_cliente;
-            $endereco = $this->Enderecos->patchEntity($endereco, $array_endereco);
+
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$cliente->id_cliente);
+
+            $endereco = $this->Enderecos->newEntity($array_address);
+
             if ($this->Enderecos->save($endereco)) {
                 $message = "Cliente e Endereco Cadastrados com Sucesso!";
             } else {

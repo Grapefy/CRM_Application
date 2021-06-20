@@ -16,14 +16,14 @@ export class CustomerService {
     return this.http.get<Customer[]>(this.baseUrl)
   }
 
-//   readById(id: string | null): Observable<Customer> {
-//     const url =`${this.baseUrl}view/${id}`
-//     return this.http.get<Customer>(url)
-//   }
+  readById(id: string | null): Observable<JSON> {
+    const url =`${this.baseUrl}view/${id}`
+    return this.http.get<JSON>(url)
+  }
 
-//   create(clientes: Customer): Observable<Customer>{
-//     return this.http.post<Customer>(this.baseUrl + 'add', JSON.stringify(clientes))
-//   }
+  create(clientes: any): Observable<JSON>{
+    return this.http.post<JSON>(this.baseUrl + 'add', clientes)
+  }
 
 //   update(clientes: Customer): Observable<Customer> {
 //     const url =`${this.baseUrl}edit/${clientes.id_cliente}`
