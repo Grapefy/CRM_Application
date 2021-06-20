@@ -55,7 +55,7 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="label">Fone:</label>
-                          <input type="text" nbInput class="form-control" placeholder="Fone"
+                          <input type="text" nbInput class="form-control" placeholder="Fone" mask="(00) 00000-0000"
                           formControlName="fone" 
                           [ngClass]="{'status-danger':admForm.controls.fone.invalid && (admForm.controls.fone.dirty || admForm.controls.fone.touched),
                                       'status-success':admForm.controls.fone.valid}"
@@ -84,7 +84,7 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <label class="label">CEP:</label>
-                          <input type="text" nbInput class="form-control" placeholder="CEP"  
+                          <input type="text" nbInput class="form-control" placeholder="CEP"  mask="00000-00"
                           formControlName="cep"
                           [ngClass]="{'status-danger':adressForm.controls.cep.invalid && (adressForm.controls.cep.dirty || adressForm.controls.cep.touched),
                                       'status-success':adressForm.controls.cep.valid}"

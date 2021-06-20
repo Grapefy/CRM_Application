@@ -1,3 +1,4 @@
+import { EmployeeComponent } from './pages/employee/employee.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdministradorComponent } from './pages/administrador/administrador.component';
@@ -6,6 +7,9 @@ import { EditAdministradorComponent } from './pages/administrador/edit-administr
 import { CreateCustomerComponent } from './pages/customer/create-customer/create-customer.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { EditCustomerComponent } from './pages/customer/edit-customer/edit-customer.component';
+import { EditOfficeComponent } from './pages/office/edit-office/edit-office.component';
+import { OfficeComponent } from './pages/office/office.component';
+import { EditSectorComponent } from './pages/sector/edit-sector/edit-sector.component';
 import { SectorComponent } from './pages/sector/sector.component';
 
 const routes: Routes = [
@@ -34,7 +38,24 @@ const routes: Routes = [
   {
     path: 'sector',
     component: SectorComponent
-  }
+  },
+  {
+    path: 'info-sector/:id',
+    component: EditSectorComponent, 
+  },
+  {
+    path: 'office',
+    component: OfficeComponent
+  },
+  {
+    path: 'info-office/:id',
+    component: EditOfficeComponent
+  },
+  {
+    path: 'employee',
+    component: EmployeeComponent
+  },
+
 ];
 
 @NgModule({

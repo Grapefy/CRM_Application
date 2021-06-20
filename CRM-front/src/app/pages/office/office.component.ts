@@ -4,26 +4,31 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
-import { Sector } from 'src/app/models/sector.model';
+import { Office } from 'src/app/models/office.model';
 
 @Component({
-  selector: 'app-sector',
-  templateUrl: './sector.component.html',
-  styleUrls: ['./sector.component.scss']
+  selector: 'app-office',
+  templateUrl: './office.component.html',
+  styleUrls: ['./office.component.scss']
 })
-export class SectorComponent implements OnInit {
+export class OfficeComponent implements OnInit {
 
-  sectors: Sector[] = [
-    new Sector(1,'TI', 'Gabriel'),
-    new Sector(2,'RH', 'Lucas'),
+  Sectors = [
+    { value: 'TI', label: 'TI'},
+    { value: 'RH', label: 'RH' },
   ];
 
-  displayedColumns: string[] = ['id', 'setor', 'responsavel','actions'];
-  dataSource: MatTableDataSource<Sector>;
-  selectedSector: string = '';
+
+  offices: Office[] = [
+    new Office(1,'Desenvolvedor Júnior', 'TI'),
+    new Office(2,'Desenvolvedor Pleno', 'TI'),
+  ];
+
+  displayedColumns: string[] = ['id', 'cargo', 'setor','actions'];
+  dataSource: MatTableDataSource<Office>;
+  selectedOffice: string = '';
   selectedId: number = 0;
-  sectorForm!: FormGroup;
-  
+  officeForm!: FormGroup;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -31,15 +36,15 @@ export class SectorComponent implements OnInit {
   sort!: MatSort;
   
   constructor(private dialogService: NbDialogService, private fb: FormBuilder, private toastrService: NbToastrService) { 
-    this.dataSource = new MatTableDataSource(this.sectors);
-  }
+    this.dataSource = new MatTableDataSource(this.offices);  }
 
   ngOnInit(): void {
-    this.sectorForm = this.fb.group({
-    setor: ['', Validators.required],
-    responsavel: ['',Validators.required],
-    descricao: [''],
-  });
+    this.officeForm = this.fb.group({
+      cargo:['', Validators.required],
+      setor: ['', Validators.required],
+      salario_bruto: ['',Validators.required],
+      descricao: [''],
+    });
   }
 
   //INICIAR PÁGINAÇÃO E QTD DE ITENS
@@ -58,8 +63,8 @@ export class SectorComponent implements OnInit {
     }
   }
 
-  openDelete(dialog: TemplateRef<any>, setor: string, id: number) {
-    this.selectedSector = setor
+  openDelete(dialog: TemplateRef<any>, cargo: string, id: number) {
+    this.selectedOffice = cargo
     this.selectedId = id
     this.dialogService.open(dialog);
   }
@@ -67,5 +72,6 @@ export class SectorComponent implements OnInit {
   openRegister(dialogCreate: TemplateRef<any>) {
     this.dialogService.open(dialogCreate);
   }
+
 
 }
