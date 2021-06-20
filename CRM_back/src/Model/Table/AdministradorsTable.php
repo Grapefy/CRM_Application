@@ -93,4 +93,13 @@ class AdministradorsTable extends Table
         return $array;
     }
 
+    public function verifyExistingAdress($id){
+        $total = $this->Enderecos->find('all',['conditions' => [ 'administrador_id' => $id ] ])->count();
+        $continuarExclusao = true;
+        if ($total != 0) {
+            $continuarExclusao = false;
+        }
+        return $continuarExclusao;
+    }
+
 }

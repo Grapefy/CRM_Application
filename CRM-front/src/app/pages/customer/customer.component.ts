@@ -13,7 +13,7 @@ import { Customer } from 'src/app/models/customer.model';
 })
 export class CustomerComponent implements OnInit {
 
-  customers: Customer[] = []
+  // customers: Customer[] = []
 
   // customers: Customer[] = [
   //   new Customer(1,'Gabriel', 'gabriel-feliciano@gmail.com'),
@@ -78,7 +78,12 @@ export class CustomerComponent implements OnInit {
     this.dialogService.open(dialog);
   }
 
-  submitDelete() {
+  submitDelete(id: number) {
+    this.CustomerService.delete(id).subscribe( (result: any) => {
+      window.location.reload();
+    }, error => {
+      window.location.reload();
+    })
   }
 }
 

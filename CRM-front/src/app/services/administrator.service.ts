@@ -31,9 +31,9 @@ export class AdministratorService {
 //     return this.http.put<Administrador>(url,clientes)
 //   }
 
-//   delete(id: number): Observable<JSON> {
-//     const url =`${this.baseUrl}delete/${id}`
-//     return this.http.delete<JSON>(url)
-//   }
+  delete(id: number): Observable<JSON> {
+    const url =`${this.baseUrl}delete/${id}`
+    return this.http.delete<JSON>(url)
+  }
 
 }

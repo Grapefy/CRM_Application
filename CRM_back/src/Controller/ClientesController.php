@@ -118,14 +118,17 @@ class ClientesController extends AppController
      */
     public function delete($id = null)
     {
-        // $this->request->allowMethod(['post', 'delete']);
+        $continuarExclusao = $this->Clientes->verifyExistingAdress($id);
 
-        $cliente = $this->Clientes->get($id);
-
-        if ($this->Clientes->delete($cliente)) {
-            $message = "Cliente Deletado com Sucesso!";
+        if ($continuarExclusao){
+            $cliente = $this->Clientes->get($id);
+            if ($this->Clientes->delete($cliente)) {
+                $message = "Cliente Deletado com Sucesso!";
+            } else {
+                $message = "Cliente Nao foi Deletado.";
+            }
         } else {
-            $message = "Cliente Nao foi Deletado.";
+            $message = "Existe um endereco atrelado a esse cliente";
         }
 
         $this->set(compact('message'));

@@ -15,14 +15,14 @@ export class AdministradorComponent implements OnInit {
 
   //nome variavel: tipo = valor
 
-  administradores: Administrador[] = [
-    new Administrador(1,'Gabriel', 'gabriel-feliciano@gmail.com'),
-    new Administrador(2,'Lucas', 'lucas-firmiano@gmail.com'),
-    new Administrador(3,'Inácio', 'gabriel-inácio@gmail.com'),
-    new Administrador(4,'bot', 'server-bot@gmail.com'),
-    new Administrador(5,'bot', 'server-bot@gmail.com'),
-    new Administrador(6,'bot', 'server-bot@gmail.com'),
-  ];
+  // administradores: Administrador[] = [
+  //   new Administrador(1,'Gabriel', 'gabriel-feliciano@gmail.com'),
+  //   new Administrador(2,'Lucas', 'lucas-firmiano@gmail.com'),
+  //   new Administrador(3,'Inácio', 'gabriel-inácio@gmail.com'),
+  //   new Administrador(4,'bot', 'server-bot@gmail.com'),
+  //   new Administrador(5,'bot', 'server-bot@gmail.com'),
+  //   new Administrador(6,'bot', 'server-bot@gmail.com'),
+  // ];
 
   displayedColumns: string[] = ['id', 'nome', 'email','actions'];
   dataSource = new MatTableDataSource<Administrador>();
@@ -72,4 +72,13 @@ export class AdministradorComponent implements OnInit {
     this.selectedId = id
     this.dialogService.open(dialog);
   }
+
+  submitDelete(id: number) {
+    this.AdministratorService.delete(id).subscribe( (result: any) => {
+      window.location.reload();
+    }, error => {
+      window.location.reload();
+    })
+  }
+
 }
