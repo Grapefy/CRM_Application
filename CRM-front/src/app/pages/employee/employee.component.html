@@ -19,8 +19,7 @@
                 </div>
                 <div class="col-md-1">
                   <!-- Cadastro de funcionário -->
-                  <!-- routerLink="../create-administrador" -->
-                  <button nbButton ghost status="primary" ><nb-icon icon="person-add-outline"></nb-icon></button>  
+                  <button nbButton ghost status="primary"routerLink="../create-employee" ><nb-icon icon="person-add-outline"></nb-icon></button>  
                 </div>
                           
               </div>
@@ -55,8 +54,7 @@
                       <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
                       <td mat-cell *matCellDef="let row"> 
                         <!-- Edit de adm -->
-                        <button nbButton ghost status="primary" >
-                            <!-- routerLink="../info-administrador/{{ row.id }}" -->
+                        <button nbButton ghost status="primary" routerLink="../info-employee/{{ row.id }}">
                           <nb-icon icon="more-horizontal-outline"></nb-icon>
                         </button>  
                         <!-- Delete de adm -->

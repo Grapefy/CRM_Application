@@ -27,6 +27,8 @@ import { EditOfficeComponent } from './pages/office/edit-office/edit-office.comp
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { EmployeeComponent } from './pages/employee/employee.component';
+import { CreateEmployeeComponent } from './pages/employee/create-employee/create-employee.component';
+import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { EmployeeComponent } from './pages/employee/employee.component';
     OfficeComponent,
     EditOfficeComponent,
     EmployeeComponent,
+    CreateEmployeeComponent,
+    EditEmployeeComponent,
   ],
   imports: [
     BrowserModule,
