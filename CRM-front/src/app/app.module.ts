@@ -20,6 +20,7 @@ import { AdministradorComponent } from './pages/administrador/administrador.comp
 import { CreateAdministradorComponent } from './pages/administrador/create-administrador/create-administrador.component';
 import { EditAdministradorComponent } from './pages/administrador/edit-administrador/edit-administrador.component';
 import { SectorComponent } from './pages/sector/sector.component';
+import { HttpClientModule } from '@angular/common/http';
 import { EditSectorComponent } from './pages/sector/edit-sector/edit-sector.component';
 import { OfficeComponent } from './pages/office/office.component';
 import { EditOfficeComponent } from './pages/office/edit-office/edit-office.component';
@@ -85,7 +86,8 @@ import { EmployeeComponent } from './pages/employee/employee.component';
       suffix: "",
       thousands: ".",
       nullable: true
-    })
+    }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

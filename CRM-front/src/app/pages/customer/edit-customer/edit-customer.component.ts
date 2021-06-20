@@ -1,3 +1,4 @@
+import { CustomerService } from './../../../services/customer.service';
 import { NbToastrService } from '@nebular/theme';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -14,10 +15,15 @@ export class EditCustomerComponent implements OnInit {
   customerEditForm!: FormGroup;
   addressEditForm!: FormGroup;
 
-  constructor( private lastRoute: ActivatedRoute, private fb: FormBuilder, private toastrService: NbToastrService ) { }
+  constructor( private lastRoute: ActivatedRoute, private fb: FormBuilder, private toastrService: NbToastrService, private CustomerService: CustomerService ) { }
 
   ngOnInit(): void {
     const id = this.lastRoute.snapshot.paramMap.get('id')
+
+    this.CustomerService.readById(id).subscribe((cliente: any) => {
+      console.log(cliente.cliente)
+    })
+
     this.customerEditForm = this.fb.group({
       nome: ['Lucas', Validators.required],
       email: ['lucas.firmianosg@gmail.com', [Validators.required, Validators.email]],
