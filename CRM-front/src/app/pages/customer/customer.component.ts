@@ -1,3 +1,4 @@
+import { CustomerService } from './../../services/customer.service';
 import { Component, EventEmitter, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -12,19 +13,21 @@ import { Customer } from 'src/app/models/customer.model';
 })
 export class CustomerComponent implements OnInit {
 
-  customers: Customer[] = [
-    new Customer(1,'Gabriel', 'gabriel-feliciano@gmail.com'),
-    new Customer(2,'Lucas', 'lucas-firmiano@gmail.com'),
-    new Customer(3,'Inácio', 'gabriel-inácio@gmail.com'),
-    new Customer(4,'bot', 'server-bot@gmail.com'),
-    new Customer(5,'bot', 'server-bot@gmail.com'),
-    new Customer(6,'bot', 'server-bot@gmail.com'),
-    new Customer(7,'bot', 'server-bot@gmail.com'),
-    new Customer(8,'bot', 'server-bot@gmail.com'),
-  ];
+  customers: Customer[] = []
+
+  // customers: Customer[] = [
+  //   new Customer(1,'Gabriel', 'gabriel-feliciano@gmail.com'),
+  //   new Customer(2,'Lucas', 'lucas-firmiano@gmail.com'),
+  //   new Customer(3,'Inácio', 'gabriel-inácio@gmail.com'),
+  //   new Customer(4,'bot', 'server-bot@gmail.com'),
+  //   new Customer(5,'bot', 'server-bot@gmail.com'),
+  //   new Customer(6,'bot', 'server-bot@gmail.com'),
+  //   new Customer(7,'bot', 'server-bot@gmail.com'),
+  //   new Customer(8,'bot', 'server-bot@gmail.com'),
+  // ];
   
   displayedColumns: string[] = ['id', 'nome', 'email','actions'];
-  dataSource: MatTableDataSource<Customer>;
+  dataSource =  new MatTableDataSource<Customer>();
   selectedName: string = '';
   selectedId: number = 0;
 
@@ -34,16 +37,30 @@ export class CustomerComponent implements OnInit {
   sort!: MatSort;
 
   ngOnInit(): void {
+    this.CustomerService.list().subscribe( (clientes: any) => {
+      // clientes.clientes.forEach( (element: any) => {
+      //   this.customers.push(new Customer(element.id_cliente,element.nome, element.email))
+      //   // console.log(element)
+      // });
+      // this.customers = clientes.clientes
+      // console.log(this.customers)
+      // console.log(clientes) 
+
+      this.dataSource = clientes.clientes;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
+    
   }
 
-  constructor(private dialogService: NbDialogService) {
-    this.dataSource = new MatTableDataSource(this.customers);
+  constructor(private dialogService: NbDialogService, private CustomerService: CustomerService) {
   }
+  
   //INICIAR PÁGINAÇÃO E QTD DE ITENS
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   //FILTRO
   applyFilter(event: Event) {

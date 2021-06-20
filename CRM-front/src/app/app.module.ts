@@ -20,6 +20,7 @@ import { AdministradorComponent } from './pages/administrador/administrador.comp
 import { CreateAdministradorComponent } from './pages/administrador/create-administrador/create-administrador.component';
 import { EditAdministradorComponent } from './pages/administrador/edit-administrador/edit-administrador.component';
 import { SectorComponent } from './pages/sector/sector.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { SectorComponent } from './pages/sector/sector.component';
     NbDatepickerModule.forRoot(),
     NbRadioModule,
     ReactiveFormsModule,
-    NbToastrModule.forRoot()
+    NbToastrModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
