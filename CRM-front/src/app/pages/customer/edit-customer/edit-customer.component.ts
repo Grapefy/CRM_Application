@@ -21,30 +21,43 @@ export class EditCustomerComponent implements OnInit {
     const id = this.lastRoute.snapshot.paramMap.get('id')
 
     this.CustomerService.readById(id).subscribe((cliente: any) => {
+
       console.log(cliente.cliente)
+
+      this.customerEditForm = this.fb.group({
+        nome: [cliente.cliente.nome, Validators.required],
+        email: [cliente.cliente.email, [Validators.required, Validators.email]],
+        fone: [cliente.cliente.fone, Validators.required],
+        cpf: [cliente.cliente.identificador],
+        cnpj: ['-'],
+        dt_nascimento: [''],
+      });
+
+      this.addressEditForm = this.fb.group({
+        cep: [cliente.cliente.enderecos[0].cep, Validators.required],
+        logradouro: [cliente.cliente.enderecos[0].logradouro, Validators.required],
+        uf: [cliente.cliente.enderecos[0].uf, Validators.required],
+        bairro: [cliente.cliente.enderecos[0].bairro, Validators.required],
+        numero: [cliente.cliente.enderecos[0].numero, Validators.required],
+        complemento: ['CASA A'],
+      });
+
+      this.addressEditForm.disable();
+      this.customerEditForm.disable();
+
+      // console.log(cliente.cliente)
     })
 
-    this.customerEditForm = this.fb.group({
-      nome: ['Lucas', Validators.required],
-      email: ['lucas.firmianosg@gmail.com', [Validators.required, Validators.email]],
-      fone: ['(85) 99702-8392', Validators.required],
-      cpf: ['068.681.043-08'],
-      cnpj: ['-'],
-      dt_nascimento: [''],
-    });
+    // this.customerEditForm = this.fb.group({
+    //   nome: ['Lucas', Validators.required],
+    //   email: ['lucas.firmianosg@gmail.com', [Validators.required, Validators.email]],
+    //   fone: ['(85) 99702-8392', Validators.required],
+    //   cpf: ['068.681.043-08'],
+    //   cnpj: ['-'],
+    //   dt_nascimento: [''],
+    // });
 
 
-    this.addressEditForm = this.fb.group({
-      cep: ['60455-365', Validators.required],
-      logradouro: ['RUA PADRE GUERRA', Validators.required],
-      uf: ['CE', Validators.required],
-      bairro: ['PARQUELANDIA', Validators.required],
-      numero: ['1045', Validators.required],
-      complemento: ['CASA A'],
-    });
-
-    this.customerEditForm.disable();
-    this.addressEditForm.disable();
   }
 
   onEditForm(){

@@ -42,23 +42,20 @@ export class AdministradorComponent implements OnInit {
 
   ngOnInit(): void {
     this.AdministratorService.list().subscribe( (administradors: any) => {
-      
-      this.dataSource = administradors.administradors;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSource.data = administradors.administradors;
+      console.log(this.dataSource.data)
     })
   }
 
 
   // //INICIAR PÁGINAÇÃO E QTD DE ITENS
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
   //FILTRO
   applyFilter(event: Event) {
-    
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 

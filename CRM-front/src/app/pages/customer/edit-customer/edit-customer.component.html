@@ -24,7 +24,7 @@
         </nb-card-header>
 
         <nb-card-body>
-          <form [formGroup]="customerEditForm" class="step-container">
+          <form [formGroup]="customerEditForm" *ngIf="customerEditForm" class="step-container">
             <div class="row m-2">
               <h6 class="text-center my-2">Dados Pessoais</h6>
               <div class="col-md-4">
@@ -65,7 +65,7 @@
             </div>
           </form>
           
-          <form [formGroup]="addressEditForm" class="step-container">
+          <form [formGroup]="addressEditForm" *ngIf="addressEditForm" class="step-container">
             <div class="row m-2">
               <h6 class="text-center my-2">Endereço</h6>
               <div class="col-md-2">
