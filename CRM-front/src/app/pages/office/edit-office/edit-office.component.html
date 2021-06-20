@@ -32,10 +32,12 @@
               </div>
             </div>
             <div class="col-md-4">
-                <div class="form-group">
-                <label class="label">Cargo:</label>
-                <input type="text" nbInput class="form-control" value="TI" fullWidth [disabled]="!onEdit">
-                </div>
+              <div class="form-group" >
+                  <label class="label">Setor:</label>
+                  <nb-select placeholder="Setor" fullWidth [disabled]="!onEdit">
+                  <nb-option *ngFor="let sector of Sectors" [value]="sector.value">{{ sector.label }}</nb-option>
+                  </nb-select>
+              </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">

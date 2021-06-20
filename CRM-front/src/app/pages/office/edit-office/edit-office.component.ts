@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditOfficeComponent implements OnInit {
 
+  Sectors = [
+    { value: 'TI', label: 'TI'},
+    { value: 'RH', label: 'RH' },
+  ];
   onEdit = false; 
 
   constructor() { }
