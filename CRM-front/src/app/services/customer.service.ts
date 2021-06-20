@@ -30,9 +30,9 @@ export class CustomerService {
 //     return this.http.put<Customer>(url,clientes)
 //   }
 
-//   delete(id: number): Observable<Customer> {
-//     const url =`${this.baseUrl}delete/${id}`
-//     return this.http.delete<Customer>(url)
-//   }
+  delete(id: number): Observable<JSON> {
+    const url =`${this.baseUrl}delete/${id}`
+    return this.http.delete<JSON>(url)
+  }
 
 }

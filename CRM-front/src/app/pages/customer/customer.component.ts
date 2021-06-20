@@ -77,6 +77,9 @@ export class CustomerComponent implements OnInit {
     this.selectedId = id
     this.dialogService.open(dialog);
   }
+
+  submitDelete() {
+  }
 }
 
 
