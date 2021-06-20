@@ -12,6 +12,8 @@ use Cake\I18n\Date;
 /**
  * Administradors Model
  *
+ * @property \App\Model\Table\EnderecosTable&\Cake\ORM\Association\HasMany $Enderecos
+ *
  * @method \App\Model\Entity\Administrador newEmptyEntity()
  * @method \App\Model\Entity\Administrador newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Administrador[] newEntities(array $data, array $options = [])
@@ -41,8 +43,14 @@ class AdministradorsTable extends Table
         parent::initialize($config);
 
         $this->setTable('administradors');
+        $this->setDisplayField('id_administrador');
+        $this->setPrimaryKey('id_administrador');
 
         $this->addBehavior('Timestamp');
+
+        $this->hasMany('Enderecos', [
+            'foreignKey' => 'administrador_id',
+        ]);
     }
 
     /**
@@ -55,8 +63,7 @@ class AdministradorsTable extends Table
     {
         $validator
             ->integer('id_administrador')
-            ->requirePresence('id_administrador', 'create')
-            ->notEmptyString('id_administrador');
+            ->allowEmptyString('id_administrador', null, 'create');
 
         $validator
             ->scalar('nome')
@@ -85,4 +92,5 @@ class AdministradorsTable extends Table
 
         return $array;
     }
+
 }

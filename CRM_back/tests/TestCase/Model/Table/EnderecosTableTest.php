@@ -26,6 +26,7 @@ class EnderecosTableTest extends TestCase
     protected $fixtures = [
         'app.Enderecos',
         'app.Clientes',
+        'app.Administradors',
     ];
 
     /**
@@ -68,6 +69,16 @@ class EnderecosTableTest extends TestCase
      * @return void
      */
     public function testBuildRules(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test genarateAdressArray method
+     *
+     * @return void
+     */
+    public function testGenarateAdressArray(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

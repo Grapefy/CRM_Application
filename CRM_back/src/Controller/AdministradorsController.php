@@ -62,7 +62,7 @@ class AdministradorsController extends AppController
 
         if ($this->Administradors->save($administrador)) {
 
-            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$administrador->id_administrador);
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,$administrador->id_administrador);
 
             $endereco = $this->Enderecos->newEntity($array_address);
 

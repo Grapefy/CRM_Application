@@ -63,7 +63,7 @@ class ClientesController extends AppController
 
         if ($this->Clientes->save($cliente)) {
 
-            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$cliente->id_cliente);
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$cliente->id_cliente,null);
 
             $endereco = $this->Enderecos->newEntity($array_address);
 

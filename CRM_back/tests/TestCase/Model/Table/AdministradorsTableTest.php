@@ -25,6 +25,7 @@ class AdministradorsTableTest extends TestCase
      */
     protected $fixtures = [
         'app.Administradors',
+        'app.Enderecos',
     ];
 
     /**
@@ -57,6 +58,16 @@ class AdministradorsTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault(): void
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test genarateAdministratorArray method
+     *
+     * @return void
+     */
+    public function testGenarateAdministratorArray(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

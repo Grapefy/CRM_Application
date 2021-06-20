@@ -1,3 +1,4 @@
+import { AdministratorService } from './../../services/administrator.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -24,7 +25,7 @@ export class AdministradorComponent implements OnInit {
   ];
 
   displayedColumns: string[] = ['id', 'nome', 'email','actions'];
-  dataSource: MatTableDataSource<Administrador>;
+  dataSource = new MatTableDataSource<Administrador>();
   selectedName: string = '';
   selectedId: number = 0;
 
@@ -34,20 +35,26 @@ export class AdministradorComponent implements OnInit {
   sort!: MatSort;
     
 
-  constructor(private dialogService: NbDialogService) { 
-    this.dataSource = new MatTableDataSource(this.administradores);
+  constructor(private dialogService: NbDialogService, private AdministratorService: AdministratorService) { 
+    // this.dataSource = new MatTableDataSource(this.administradores);
   }
 
 
   ngOnInit(): void {
+    this.AdministratorService.list().subscribe( (administradors: any) => {
+      
+      this.dataSource = administradors.administradors;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
   }
 
 
-  //INICIAR PÁGINAÇÃO E QTD DE ITENS
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
+  // //INICIAR PÁGINAÇÃO E QTD DE ITENS
+  // ngAfterViewInit() {
+  //   this.dataSource.paginator = this.paginator;
+  //   this.dataSource.sort = this.sort;
+  // }
 
   //FILTRO
   applyFilter(event: Event) {

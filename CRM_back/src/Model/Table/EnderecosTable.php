@@ -13,6 +13,7 @@ use Cake\I18n\Date;
  * Enderecos Model
  *
  * @property \App\Model\Table\ClientesTable&\Cake\ORM\Association\BelongsTo $Clientes
+ * @property \App\Model\Table\AdministradorsTable&\Cake\ORM\Association\BelongsTo $Administradors
  *
  * @method \App\Model\Entity\Endereco newEmptyEntity()
  * @method \App\Model\Entity\Endereco newEntity(array $data, array $options = [])
@@ -50,6 +51,9 @@ class EnderecosTable extends Table
 
         $this->belongsTo('Clientes', [
             'foreignKey' => 'cliente_id',
+        ]);
+        $this->belongsTo('Administradors', [
+            'foreignKey' => 'administrador_id',
         ]);
     }
 
@@ -102,11 +106,12 @@ class EnderecosTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['cliente_id'], 'Clientes'), ['errorField' => 'cliente_id']);
+        $rules->add($rules->existsIn(['administrador_id'], 'Administradors'), ['errorField' => 'administrador_id']);
 
         return $rules;
     }
 
-    public function genarateAdressArray($address,$id){
+    public function genarateAdressArray($address,$id,$id_adm){
 
         $array = [
             'cep' => $address->cep,
@@ -116,11 +121,16 @@ class EnderecosTable extends Table
             'numero' => $address->numero,
             'complemento' => 'AAA',
             'cliente_id' => $id,
+            'administrador_id' => null,
             'created'=> Date::now(),
             'modified'=> Date::now()
         ];
 
+        if ($id_adm != null) {
+            $array['cliente_id'] = null;
+            $array['administrador_id'] = $id_adm;
+        }
+
         return $array;
     }
-
 }

@@ -23,6 +23,9 @@ class AdministradorsFixture extends TestFixture
         'fone' => ['type' => 'string', 'length' => null, 'default' => null, 'null' => true, 'collate' => null, 'comment' => null, 'precision' => null],
         'created' => ['type' => 'timestampfractional', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
         'modified' => ['type' => 'timestampfractional', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
+        '_constraints' => [
+            'primary' => ['type' => 'primary', 'columns' => ['id_administrador'], 'length' => []],
+        ],
     ];
     // phpcs:enable
     /**
@@ -38,8 +41,8 @@ class AdministradorsFixture extends TestFixture
                 'nome' => 'Lorem ipsum dolor sit amet',
                 'email' => 'Lorem ipsum dolor sit amet',
                 'fone' => 'Lorem ipsum dolor sit amet',
-                'created' => 1624164750,
-                'modified' => 1624164750,
+                'created' => 1624168032,
+                'modified' => 1624168032,
             ],
         ];
         parent::init();

@@ -1,5 +1,5 @@
 CREATE TABLE administradors (
-    id_administrador SERIAL NOT NULL,
+    id_administrador SERIAL PRIMARY KEY,
     nome VARCHAR,
     email VARCHAR,
     fone VARCHAR,

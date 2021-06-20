@@ -14,6 +14,8 @@ use Cake\ORM\Entity;
  * @property string|null $fone
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ *
+ * @property \App\Model\Entity\Endereco[] $enderecos
  */
 class Administrador extends Entity
 {
@@ -27,11 +29,11 @@ class Administrador extends Entity
      * @var array
      */
     protected $_accessible = [
-        'id_administrador' => true,
         'nome' => true,
         'email' => true,
         'fone' => true,
         'created' => true,
         'modified' => true,
+        'enderecos' => true,
     ];
 }
