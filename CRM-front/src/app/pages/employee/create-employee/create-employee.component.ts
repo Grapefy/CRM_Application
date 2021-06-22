@@ -39,18 +39,6 @@ export class CreateEmployeeComponent implements OnInit {
     });
   }
 
-  stepOneErrorMessage(status: NbComponentStatus) {
-    if (this.employeeForm.invalid){
-      this.toastrService.show('Digite o formulário completo', 'ATENCAO!', { status, preventDuplicates: true });
-    }
-  }
-
-  stepTwoErrorMessage(status: NbComponentStatus) {
-    if (this.adressForm.invalid){
-      this.toastrService.show('Digite o formulário completo', 'ATENCAO!', { status, preventDuplicates: true });
-    }
-  }
-
   // FUNCAO TESTE QUE ME BASEEI PRA VERIFICAR COMO OBTER OS PARAMETROS PRO BD (NAO APAGAR ELA)
   submit() {
     console.log(this.employeeForm.controls)

@@ -91,7 +91,7 @@
                         <button nbButton routerLink="../employee">Voltar</button>
                       </div>
                       <div class="col-2">
-                        <button nbButton nbStepperNext (click)="stepOneErrorMessage('warning')" status="primary">Avançar</button>
+                        <button nbButton nbStepperNext status="primary" [disabled]="!employeeForm.valid">Avançar</button>
                       </div>
                     </div>
                   </form>
@@ -169,7 +169,7 @@
                         <button nbButton nbStepperPrevious>Voltar</button>
                       </div>
                       <div class="col-2">
-                        <button nbButton nbStepperNext (click)="stepTwoErrorMessage('warning')" status="primary">Avançar</button>
+                        <button nbButton nbStepperNext status="primary" [disabled]="!adressForm.valid">Avançar</button>
                       </div>
                     </div>
                   </form>
