@@ -43,18 +43,6 @@ export class CreateCustomerComponent implements OnInit {
     });
   }
 
-  stepOneErrorMessage(status: NbComponentStatus) {
-    if (this.customerForm.invalid){
-      this.toastrService.show('Digite o formulário completo', 'ATENCAO!', { status, preventDuplicates: true });
-    }
-  }
-
-  stepTwoErrorMessage(status: NbComponentStatus) {
-    if (this.adressForm.invalid){
-      this.toastrService.show('Digite o formulário completo', 'ATENCAO!', { status, preventDuplicates: true });
-    }
-  }
-
   submitForm() {
     var CF = {}
     var AF = {}

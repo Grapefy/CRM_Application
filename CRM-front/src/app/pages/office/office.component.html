@@ -130,7 +130,7 @@
           <button nbButton (click)="ref.close()">Voltar</button>
         </div>
         <div class="col">
-          <button nbButton (click)="ref.close()" status="success">Cadastrar</button>
+          <button nbButton (click)="ref.close()" status="success" [disabled]="!officeForm.valid">Cadastrar</button>
         </div>  
       </div> 
     </nb-card-footer>
