@@ -1,3 +1,4 @@
+import { LoginComponent } from './pages/login/login.component';
 import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-employee.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,9 @@ import { SectorComponent } from './pages/sector/sector.component';
 import { CreateEmployeeComponent } from './pages/employee/create-employee/create-employee.component';
 
 const routes: Routes = [
+  { path: '', 
+    component: LoginComponent, 
+  },
   { path: 'customer', 
     component: CustomerComponent, 
   },
