@@ -14,15 +14,18 @@ export class EditCustomerComponent implements OnInit {
   onEdit = false; 
   customerEditForm!: FormGroup;
   addressEditForm!: FormGroup;
+  customerEditId!: number | string | null;
+  addressEditId!: number | string | null;
 
   constructor( private lastRoute: ActivatedRoute, private fb: FormBuilder, private toastrService: NbToastrService, private CustomerService: CustomerService ) { }
 
   ngOnInit(): void {
     const id = this.lastRoute.snapshot.paramMap.get('id')
+    this.customerEditId = id;
 
     this.CustomerService.readById(id).subscribe((cliente: any) => {
 
-      console.log(cliente.cliente)
+      this.addressEditId = cliente.cliente.enderecos[0].id_endereco;
 
       this.customerEditForm = this.fb.group({
         nome: [cliente.cliente.nome, Validators.required],
@@ -45,18 +48,7 @@ export class EditCustomerComponent implements OnInit {
       this.addressEditForm.disable();
       this.customerEditForm.disable();
 
-      // console.log(cliente.cliente)
     })
-
-    // this.customerEditForm = this.fb.group({
-    //   nome: ['Lucas', Validators.required],
-    //   email: ['lucas.firmianosg@gmail.com', [Validators.required, Validators.email]],
-    //   fone: ['(85) 99702-8392', Validators.required],
-    //   cpf: ['068.681.043-08'],
-    //   cnpj: ['-'],
-    //   dt_nascimento: [''],
-    // });
-
 
   }
 
@@ -70,6 +62,42 @@ export class EditCustomerComponent implements OnInit {
     this.onEdit = false;
     this.customerEditForm.disable();
     this.addressEditForm.disable();
+  }
+
+  submitForm() {
+    var CF = {}
+    var AF = {}
+    CF = this.generateArrayCliente(this.customerEditForm);
+    AF = this.generateArrayAdress(this.addressEditForm);
+
+    this.CustomerService.update(JSON.stringify([CF,AF,this.customerEditId,this.addressEditId]),this.customerEditId).subscribe((result) => {
+      console.log(result)
+    })
+  }
+
+  generateArrayCliente(fg: any) {
+    var retorno = {
+      'nome': fg.controls.nome.value, 
+      'email': fg.controls.email.value, 
+      'fone': fg.controls.fone.value, 
+      'dt_nascimento': fg.controls.dt_nascimento.value,
+      'cpf': fg.controls.cpf.value,
+      'cnpj': fg.controls.cnpj.value
+    };
+    return retorno;
+  }
+
+  generateArrayAdress(fg: any) {
+    var retorno = {
+      'bairro': fg.controls.bairro.value, 
+      'cep': fg.controls.cep.value, 
+      'logradouro': fg.controls.logradouro.value, 
+      'numero': fg.controls.numero.value,
+      'uf': fg.controls.uf.value
+    };
+
+    return retorno;
+
   }
 
 }

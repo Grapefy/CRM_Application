@@ -25,10 +25,10 @@ export class CustomerService {
     return this.http.post<JSON>(this.baseUrl + 'add', clientes)
   }
 
-//   update(clientes: Customer): Observable<Customer> {
-//     const url =`${this.baseUrl}edit/${clientes.id_cliente}`
-//     return this.http.put<Customer>(url,clientes)
-//   }
+  update(clientes: any, id_cliente:any): Observable<JSON> {
+    const url =`${this.baseUrl}edit/${id_cliente}`
+    return this.http.post<JSON>(url,clientes)
+  }
 
   delete(id: number): Observable<JSON> {
     const url =`${this.baseUrl}delete/${id}`

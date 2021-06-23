@@ -118,18 +118,21 @@ class AdministradorsController extends AppController
      */
     public function delete($id = null)
     {
-        $continuarExclusao = $this->Administradors->verifyExistingAdress($id);
+        // $continuarExclusao = $this->Administradors->verifyExistingAdress($id);
 
-        if ($continuarExclusao){
-            $administrador = $this->Administradors->get($id);
+        // if ($continuarExclusao){
+        $this->loadModel('Enderecos');
+        $administrador = $this->Administradors->get($id);
+        if ($this->Enderecos->deleteAll(['administrador_id' => $id])){
             if ($this->Administradors->delete($administrador)) {
                 $message = "Administrador Deletado com Sucesso!";
             } else {
                 $message = "Administrador Nao foi Deletado.";
             }
-        } else {
-            $message = "Existe um endereco atrelado a esse administrador";
         }
+        // } else {
+        //     $message = "Existe um endereco atrelado a esse administrador";
+        // }
 
         $this->set(compact('message'));
         $this->viewBuilder()->setOption('serialize', true);

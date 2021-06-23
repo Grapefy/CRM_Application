@@ -90,16 +90,34 @@ class ClientesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->loadModel('Enderecos');
+
+        $data_json = $this->request->input('json_decode');
+
         $cliente = $this->Clientes->get($id, [
             'contain' => [],
         ]);
 
-        $alteracao = ['nome' => 'LUCAS FIRMIANO SILVA GIRAO'];
+        $array_customer = $this->Clientes->genarateCustomerArray($data_json[0]);
 
-        $cliente = $this->Clientes->patchEntity($cliente, $alteracao);
+        $cliente = $this->Clientes->patchEntity($cliente, $array_customer);
 
         if ($this->Clientes->save($cliente)) {
-            $message = "Cliente Alterado com Sucesso!";
+
+            $endereco = $this->Enderecos->get($data_json[3], [
+                'contain' => [],
+            ]);
+
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$cliente->id_cliente,null);
+
+            $endereco = $this->Enderecos->patchEntity($endereco, $array_address);
+            
+            if ($this->Enderecos->save($endereco)) {
+                $message = "Cliente e Endereco Editados com Sucesso!";
+            } else {
+                $message = "Cliente Editado, mas o endereco nao pode ser cadastrado.";
+            }
+
         } else {
             $message = "Cliente Nao foi Alterado.";
         }
@@ -118,17 +136,16 @@ class ClientesController extends AppController
      */
     public function delete($id = null)
     {
-        $continuarExclusao = $this->Clientes->verifyExistingAdress($id);
+        // $continuarExclusao = $this->Clientes->verifyExistingAdress($id);
 
-        if ($continuarExclusao){
-            $cliente = $this->Clientes->get($id);
+        $this->loadModel('Enderecos');
+        $cliente = $this->Clientes->get($id);
+        if ($this->Enderecos->deleteAll(['cliente_id' => $id])){
             if ($this->Clientes->delete($cliente)) {
                 $message = "Cliente Deletado com Sucesso!";
             } else {
                 $message = "Cliente Nao foi Deletado.";
             }
-        } else {
-            $message = "Existe um endereco atrelado a esse cliente";
         }
 
         $this->set(compact('message'));
