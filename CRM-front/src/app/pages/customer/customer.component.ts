@@ -48,7 +48,6 @@ export class CustomerComponent implements OnInit {
   //INICIAR PÁGINAÇÃO E QTD DE ITENS
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    console.log(this.dataSource)
     this.dataSource.sort = this.sort;
   }
 

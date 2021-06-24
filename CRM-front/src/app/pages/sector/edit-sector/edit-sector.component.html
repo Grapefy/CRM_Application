@@ -24,43 +24,45 @@
         </nb-card-header>
 
         <nb-card-body>
-          <div class="row m-2">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="label">Nome do setor:</label>
-                <input type="text" nbInput class="form-control" value="TI" fullWidth [disabled]="!onEdit">
+          <form [formGroup]="sectorEditForm" *ngIf="sectorEditForm" class="step-container">
+            <div class="row m-2">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="label">Nome do setor:</label>
+                  <input type="text" nbInput class="form-control" formControlName="setor" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="label">Responsável:</label>
+                  <input type="text" nbInput class="form-control" formControlName="responsavel" fullWidth>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="label">Descrição:</label>
+                  <textarea nbInput fullWidth formControlName="descricao"></textarea>
+                </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label class="label">Responsável:</label>
-                <input type="text" nbInput class="form-control" value="Gabriel" fullWidth [disabled]="!onEdit">
+            <div *ngIf="onEdit">
+              <div class="row d-flex justify-content-center mt-4" >
+                <div class="col-2">
+                  <button nbButton (click)="offEditForm()">Cancelar</button>
+                </div>
+                <div class="col-2">
+                  <button nbButton status="success" (click)="submitForm()">Salvar Alterações</button>
+                </div>
               </div>
             </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="label">Descrição:</label>
-                <textarea nbInput fullWidth [disabled]="!onEdit">A área da TI é responsável pela a tecnologia da empressa</textarea>
+            <div *ngIf="onEdit === false">
+              <div class="row d-flex justify-content-center mt-4">
+                <div class="col-2">
+                  <button nbButton status="primary" (click)="onEditForm()">Editar</button>
+                </div>
               </div>
             </div>
-          </div>
-          <div *ngIf="onEdit">
-            <div class="row d-flex justify-content-center mt-4" >
-              <div class="col-2">
-                <button nbButton (click)="offEditForm()">Cancelar</button>
-              </div>
-              <div class="col-2">
-                <button nbButton status="success">Salvar Alterações</button>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="onEdit === false">
-            <div class="row d-flex justify-content-center mt-4">
-              <div class="col-2">
-                <button nbButton status="primary" (click)="onEditForm()">Editar</button>
-              </div>
-            </div>
-          </div>
+          </form>
         </nb-card-body>
       </nb-card>
 
