@@ -112,4 +112,14 @@ class ClientesTable extends Table
 
         return $array;
     }
+
+    public function verifyExistingAdress($id){
+        $total = $this->Enderecos->find('all',['conditions' => [ 'cliente_id' => $id ] ])->count();
+        $continuarExclusao = true;
+        if ($total != 0) {
+            $continuarExclusao = false;
+        }
+        return $continuarExclusao;
+    }
+
 }

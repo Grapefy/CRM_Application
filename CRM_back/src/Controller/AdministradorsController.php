@@ -2,15 +2,14 @@
 declare(strict_types=1);
 
 namespace App\Controller;
-use Cake\I18n\Date;
 
 /**
- * Clientes Controller
+ * Administradors Controller
  *
- * @property \App\Model\Table\ClientesTable $Clientes
- * @method \App\Model\Entity\Cliente[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @property \App\Model\Table\AdministradorsTable $Administradors
+ * @method \App\Model\Entity\Administrador[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class ClientesController extends AppController
+class AdministradorsController extends AppController
 {
     /**
      * Index method
@@ -19,11 +18,11 @@ class ClientesController extends AppController
      */
     public function index()
     {
-        $clientes = $this->Clientes->find('all',[
-            'order' => 'id_cliente'
+        $administradors = $this->Administradors->find('all',[
+            'order' => 'id_administrador'
         ]);
 
-        $this->set(compact('clientes'));
+        $this->set(compact('administradors'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
     }
@@ -31,17 +30,17 @@ class ClientesController extends AppController
     /**
      * View method
      *
-     * @param string|null $id Cliente id.
+     * @param string|null $id Administrador id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $cliente = $this->Clientes->get($id, [
+        $administrador = $this->Administradors->get($id, [
             'contain' => ['Enderecos'],
         ]);
 
-        $this->set(compact('cliente'));
+        $this->set(compact('administrador'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
     }
@@ -57,34 +56,35 @@ class ClientesController extends AppController
 
         $data_json = $this->request->input('json_decode');
 
-        $array_customer = $this->Clientes->genarateCustomerArray($data_json[0]);
+        $array_administrator = $this->Administradors->genarateAdministratorArray($data_json[0]);
 
-        $cliente = $this->Clientes->newEntity($array_customer);
+        $administrador = $this->Administradors->newEntity($array_administrator);
 
-        if ($this->Clientes->save($cliente)) {
+        if ($this->Administradors->save($administrador)) {
 
-            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$cliente->id_cliente,null);
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,$administrador->id_administrador);
 
             $endereco = $this->Enderecos->newEntity($array_address);
 
             if ($this->Enderecos->save($endereco)) {
-                $message = "Cliente e Endereco Cadastrados com Sucesso!";
+                $message = "Administrador e Endereco Cadastrados com Sucesso!";
             } else {
-                $message = "Cliente Cadastrado, mas o endereco nao pode ser cadastrado.";
+                $message = "Administrador Cadastrado, mas o endereco nao pode ser cadastrado.";
             }
         } else {
-            $message = "Cliente Nao foi cadastrado.";
+            $message = "Administrador Nao foi cadastrado.";
         }
 
         $this->set(compact('message'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
+
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Cliente id.
+     * @param string|null $id Administrador id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -94,32 +94,32 @@ class ClientesController extends AppController
 
         $data_json = $this->request->input('json_decode');
 
-        $cliente = $this->Clientes->get($id, [
+        $administrador = $this->Administradors->get($id, [
             'contain' => [],
         ]);
 
-        $array_customer = $this->Clientes->genarateCustomerArray($data_json[0]);
+        $array_administrator = $this->Administradors->genarateAdministratorArray($data_json[0]);
 
-        $cliente = $this->Clientes->patchEntity($cliente, $array_customer);
+        $administrador = $this->Administradors->patchEntity($administrador, $array_administrator);
 
-        if ($this->Clientes->save($cliente)) {
+        if ($this->Administradors->save($administrador)) {
 
             $endereco = $this->Enderecos->get($data_json[3], [
                 'contain' => [],
             ]);
 
-            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$cliente->id_cliente,null);
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,$administrador->id_administrador);
 
             $endereco = $this->Enderecos->patchEntity($endereco, $array_address);
-            
+
             if ($this->Enderecos->save($endereco)) {
-                $message = "Cliente e Endereco Editados com Sucesso!";
+                $message = "Administrador e Endereco Editados com Sucesso!";
             } else {
-                $message = "Cliente Editado, mas o endereco nao pode ser cadastrado.";
+                $message = "Administrador Editado, mas o endereco nao pode ser cadastrado.";
             }
 
         } else {
-            $message = "Cliente Nao foi Alterado.";
+            $message = "Administrador Nao foi Alterado.";
         }
 
         $this->set(compact('message'));
@@ -130,23 +130,27 @@ class ClientesController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id Cliente id.
+     * @param string|null $id Administrador id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
-        // $continuarExclusao = $this->Clientes->verifyExistingAdress($id);
+        // $continuarExclusao = $this->Administradors->verifyExistingAdress($id);
 
+        // if ($continuarExclusao){
         $this->loadModel('Enderecos');
-        $cliente = $this->Clientes->get($id);
-        if ($this->Enderecos->deleteAll(['cliente_id' => $id])){
-            if ($this->Clientes->delete($cliente)) {
-                $message = "Cliente Deletado com Sucesso!";
+        $administrador = $this->Administradors->get($id);
+        if ($this->Enderecos->deleteAll(['administrador_id' => $id])){
+            if ($this->Administradors->delete($administrador)) {
+                $message = "Administrador Deletado com Sucesso!";
             } else {
-                $message = "Cliente Nao foi Deletado.";
+                $message = "Administrador Nao foi Deletado.";
             }
         }
+        // } else {
+        //     $message = "Existe um endereco atrelado a esse administrador";
+        // }
 
         $this->set(compact('message'));
         $this->viewBuilder()->setOption('serialize', true);

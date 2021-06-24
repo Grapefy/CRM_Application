@@ -27,8 +27,10 @@ class EnderecosFixture extends TestFixture
         'cliente_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         'created' => ['type' => 'timestampfractional', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
         'modified' => ['type' => 'timestampfractional', 'length' => null, 'default' => null, 'null' => true, 'comment' => null, 'precision' => 6],
+        'administrador_id' => ['type' => 'integer', 'length' => 10, 'default' => null, 'null' => true, 'comment' => null, 'precision' => null, 'unsigned' => null, 'autoIncrement' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id_endereco'], 'length' => []],
+            'enderecos_administrador_id_fkey' => ['type' => 'foreign', 'columns' => ['administrador_id'], 'references' => ['administradors', 'id_administrador'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
             'enderecos_cliente_id_fkey' => ['type' => 'foreign', 'columns' => ['cliente_id'], 'references' => ['clientes', 'id_cliente'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
     ];
@@ -50,8 +52,9 @@ class EnderecosFixture extends TestFixture
                 'numero' => 1.5,
                 'complemento' => 'Lorem ipsum dolor sit amet',
                 'cliente_id' => 1,
-                'created' => 1623551802,
-                'modified' => 1623551802,
+                'created' => 1624168054,
+                'modified' => 1624168054,
+                'administrador_id' => 1,
             ],
         ];
         parent::init();

@@ -18,8 +18,10 @@ use Cake\ORM\Entity;
  * @property int|null $cliente_id
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property int|null $administrador_id
  *
  * @property \App\Model\Entity\Cliente $cliente
+ * @property \App\Model\Entity\Administrador $administrador
  */
 class Endereco extends Entity
 {
@@ -42,6 +44,8 @@ class Endereco extends Entity
         'cliente_id' => true,
         'created' => true,
         'modified' => true,
+        'administrador_id' => true,
         'cliente' => true,
+        'administrador' => true,
     ];
 }

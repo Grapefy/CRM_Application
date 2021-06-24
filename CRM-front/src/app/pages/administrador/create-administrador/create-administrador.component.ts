@@ -1,3 +1,4 @@
+import { AdministratorService } from './../../../services/administrator.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbComponentStatus, NbToastrService } from '@nebular/theme';
@@ -13,7 +14,7 @@ export class CreateAdministradorComponent implements OnInit {
   admForm!: FormGroup;
   adressForm!: FormGroup;
   
-  constructor(private fb: FormBuilder, private toastrService: NbToastrService) { }
+  constructor(private fb: FormBuilder, private toastrService: NbToastrService, private AdministratorService: AdministratorService) { }
 
   ngOnInit(): void {
     this.admForm = this.fb.group({
@@ -34,9 +35,38 @@ export class CreateAdministradorComponent implements OnInit {
   }
 
   // FUNCAO TESTE QUE ME BASEEI PRA VERIFICAR COMO OBTER OS PARAMETROS PRO BD (NAO APAGAR ELA)
-  submit() {
-    console.log(this.admForm.controls)
-    console.log(this.adressForm.controls)
+  submitForm() {
+    var CF = {}
+    var AF = {}
+    CF = this.generateArrayCliente(this.admForm);
+    AF = this.generateArrayAdress(this.adressForm);
+
+    this.AdministratorService.create(JSON.stringify([CF,AF])).subscribe((result) => {
+      console.log(result)
+    })
+    
+  }
+
+  generateArrayCliente(fg: any) {
+    var retorno = {
+      'nome': fg.controls.nome.value, 
+      'email': fg.controls.email.value, 
+      'fone': fg.controls.fone.value
+    };
+    return retorno;
+  }
+
+  generateArrayAdress(fg: any) {
+    var retorno = {
+      'bairro': fg.controls.bairro.value, 
+      'cep': fg.controls.cep.value, 
+      'logradouro': fg.controls.logradouro.value, 
+      'numero': fg.controls.numero.value,
+      'uf': fg.controls.uf.value
+    };
+
+    return retorno;
+
   }
 
 }

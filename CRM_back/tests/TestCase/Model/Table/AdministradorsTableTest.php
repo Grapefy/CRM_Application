@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\EnderecosTable;
+use App\Model\Table\AdministradorsTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\EnderecosTable Test Case
+ * App\Model\Table\AdministradorsTable Test Case
  */
-class EnderecosTableTest extends TestCase
+class AdministradorsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\EnderecosTable
+     * @var \App\Model\Table\AdministradorsTable
      */
-    protected $Enderecos;
+    protected $Administradors;
 
     /**
      * Fixtures
@@ -24,9 +24,8 @@ class EnderecosTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Enderecos',
-        'app.Clientes',
         'app.Administradors',
+        'app.Enderecos',
     ];
 
     /**
@@ -37,8 +36,8 @@ class EnderecosTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Enderecos') ? [] : ['className' => EnderecosTable::class];
-        $this->Enderecos = $this->getTableLocator()->get('Enderecos', $config);
+        $config = $this->getTableLocator()->exists('Administradors') ? [] : ['className' => AdministradorsTable::class];
+        $this->Administradors = $this->getTableLocator()->get('Administradors', $config);
     }
 
     /**
@@ -48,7 +47,7 @@ class EnderecosTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->Enderecos);
+        unset($this->Administradors);
 
         parent::tearDown();
     }
@@ -64,21 +63,11 @@ class EnderecosTableTest extends TestCase
     }
 
     /**
-     * Test buildRules method
+     * Test genarateAdministratorArray method
      *
      * @return void
      */
-    public function testBuildRules(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test genarateAdressArray method
-     *
-     * @return void
-     */
-    public function testGenarateAdressArray(): void
+    public function testGenarateAdministratorArray(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

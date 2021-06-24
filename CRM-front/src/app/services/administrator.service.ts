@@ -1,3 +1,4 @@
+import { Administrador } from './../models/administrador.model';
 import { Customer } from './../models/customer.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -6,14 +7,14 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
+export class AdministratorService {
     
-  baseUrl = 'http://localhost:8765/clientes/'
+  baseUrl = 'http://localhost:8765/administradors/'
 
   constructor(private http: HttpClient) { }
 
-  list(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(this.baseUrl)
+  list(): Observable<Administrador[]> {
+    return this.http.get<Administrador[]>(this.baseUrl)
   }
 
   readById(id: string | null): Observable<JSON> {
@@ -21,13 +22,13 @@ export class CustomerService {
     return this.http.get<JSON>(url)
   }
 
-  create(clientes: any): Observable<JSON>{
-    return this.http.post<JSON>(this.baseUrl + 'add', clientes)
+  create(administradores: any): Observable<JSON>{
+    return this.http.post<JSON>(this.baseUrl + 'add', administradores)
   }
 
-  update(clientes: any, id_cliente:any): Observable<JSON> {
-    const url =`${this.baseUrl}edit/${id_cliente}`
-    return this.http.post<JSON>(url,clientes)
+  update(administrador: any, id_administrador: any): Observable<JSON> {
+    const url =`${this.baseUrl}edit/${id_administrador}`
+    return this.http.post<JSON>(url,administrador)
   }
 
   delete(id: number): Observable<JSON> {

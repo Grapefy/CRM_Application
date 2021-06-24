@@ -7,6 +7,7 @@ CREATE TABLE enderecos (
     numero NUMERIC,
     complemento VARCHAR,
     cliente_id INTEGER,
+    administrador_id INTEGER,
     created TIMESTAMP,
     modified TIMESTAMP
 );
