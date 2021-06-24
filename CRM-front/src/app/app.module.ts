@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserComponent, NbUserModule, NbContextMenuModule, NbDialogModule, NbStepperModule, NbInputModule, NbDatepickerModule, NbRadioModule, NbToastrModule, NbSelectComponent, NbSelectModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserComponent, NbUserModule, NbContextMenuModule, NbDialogModule, NbStepperModule, NbInputModule, NbDatepickerModule, NbRadioModule, NbToastrModule, NbSelectComponent, NbSelectModule, NbCheckboxComponent, NbCheckboxModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MenuComponent } from './_components/_shared/menu/menu.component';
 import { HeaderComponent } from './_components/_shared/header/header.component';
@@ -29,6 +29,7 @@ import { NgxCurrencyModule } from 'ngx-currency';
 import { EmployeeComponent } from './pages/employee/employee.component';
 import { CreateEmployeeComponent } from './pages/employee/create-employee/create-employee.component';
 import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-employee.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-emplo
     EmployeeComponent,
     CreateEmployeeComponent,
     EditEmployeeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,8 @@ import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-emplo
       thousands: ".",
       nullable: true
     }),
-    HttpClientModule
+    HttpClientModule,
+    NbCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
