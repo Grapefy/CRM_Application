@@ -1,3 +1,4 @@
+import { SectorService } from './../../services/sector.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -19,7 +20,7 @@ export class SectorComponent implements OnInit {
   ];
 
   displayedColumns: string[] = ['id', 'setor', 'responsavel','actions'];
-  dataSource: MatTableDataSource<Sector>;
+  dataSource = new MatTableDataSource<Sector>();
   selectedSector: string = '';
   selectedId: number = 0;
   sectorForm!: FormGroup;
@@ -30,16 +31,20 @@ export class SectorComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
   
-  constructor(private dialogService: NbDialogService, private fb: FormBuilder, private toastrService: NbToastrService) { 
-    this.dataSource = new MatTableDataSource(this.sectors);
+  constructor(private dialogService: NbDialogService, private fb: FormBuilder, private toastrService: NbToastrService, private SectorService: SectorService) {
   }
 
   ngOnInit(): void {
+
+    this.SectorService.list().subscribe( (setores: any) => {
+      this.dataSource.data = setores.setors;
+    })
+
     this.sectorForm = this.fb.group({
-    setor: ['', Validators.required],
-    responsavel: ['',Validators.required],
-    descricao: [''],
-  });
+      setor: ['', Validators.required],
+      responsavel: ['',Validators.required],
+      descricao: [''],
+    });
   }
 
   //INICIAR PÁGINAÇÃO E QTD DE ITENS
@@ -66,6 +71,32 @@ export class SectorComponent implements OnInit {
 
   openRegister(dialogCreate: TemplateRef<any>) {
     this.dialogService.open(dialogCreate);
+  }
+
+  submitForm() {
+    var SF = {}
+    SF = this.generateArraySetor(this.sectorForm);
+
+    this.SectorService.create(JSON.stringify(SF)).subscribe((result) => {
+      console.log(result)
+    })
+  }
+
+  generateArraySetor(fg: any) {
+    var retorno = {
+      'setor': fg.controls.setor.value, 
+      'responsavel': fg.controls.responsavel.value, 
+      'descricao': fg.controls.descricao.value,
+    };
+    return retorno;
+  }
+
+  submitDelete(id: number) {
+    this.SectorService.delete(id).subscribe( (result: any) => {
+      window.location.reload();
+    }, error => {
+      window.location.reload();
+    })
   }
 
 }

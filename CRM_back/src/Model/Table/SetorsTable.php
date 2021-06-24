@@ -7,6 +7,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\I18n\Date;
 
 /**
  * Setors Model
@@ -76,7 +77,7 @@ class SetorsTable extends Table
     public function genarateSectorArray($setor){
         
         $array = [
-            'nome' => $setor->nome,
+            'nome' => $setor->setor,
             'responsavel'=> $setor->responsavel,
             'descricao'=> $setor->descricao,
             'created'=> Date::now(),

@@ -40,7 +40,7 @@ class SetorsController extends AppController
             'contain' => [],
         ]);
 
-        $this->set(compact('cliente'));
+        $this->set(compact('setor'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
     }
@@ -54,7 +54,7 @@ class SetorsController extends AppController
     {
         $data_json = $this->request->input('json_decode');
 
-        $array_setor = $this->Setors->genarateSectorArray($data_json[0]);
+        $array_setor = $this->Setors->genarateSectorArray($data_json);
 
         $setor = $this->Setors->newEntity($array_setor);
 
@@ -84,9 +84,9 @@ class SetorsController extends AppController
             'contain' => [],
         ]);
 
-        $array_setor = $this->Setors->genarateSectorArray($data_json[0]);
+        $array_setor = $this->Setors->genarateSectorArray($data_json);
 
-        $setor = $this->Setors->patchEntity($setor, $array_customer);
+        $setor = $this->Setors->patchEntity($setor, $array_setor);
     
         if ($this->Setors->save($setor)) {
             $message = "Setor Editados com Sucesso!";
