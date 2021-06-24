@@ -21,7 +21,7 @@
                     <div class="form-group">
                       <label class="label">Password:</label>
                       <input type="password" nbInput placeholder="Password" fullWidth>
-                      <a href="#"><p class="text-end caption mt-2" fullWidth>Esqueceu senha?</p></a>
+                      <a href ="#"><p class="text-end caption mt-2" (click)="openForgetPassword(dialog)" fullWidth>Esqueceu senha?</p></a>
                       <nb-checkbox (checkedChange)="toggle($event)">Lembre de mim</nb-checkbox>
                     </div>
                   </div>
@@ -35,3 +35,27 @@
           </nb-card>
     </nb-layout-column>
   </nb-layout>
+
+  <ng-template #dialog let-data let-ref="dialogRef" >
+    <nb-card>
+
+      <nb-card-header>
+        <button nbButton ghost status="primary" (click)="ref.close()"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+      </nb-card-header>
+
+      <nb-card-body class="text-center">
+        <h5>Esqueceu a senha?</h5>
+        <p>Por favor insira o seu endereço de e-mail para <br> receber um código de verificação</p>
+        <nb-form-field class="mt-4">
+          <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+          <input type="email" nbInput class="form-control" placeholder="E-mail">
+        </nb-form-field>
+      </nb-card-body>
+
+      <nb-card-footer class="text-center">
+          <button nbButton (click)="ref.close()" status="primary">Enviar</button>
+      </nb-card-footer>
+
+    </nb-card>
+  </ng-template>
+
