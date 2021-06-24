@@ -17,19 +17,19 @@ export class AdministratorService {
     return this.http.get<Administrador[]>(this.baseUrl)
   }
 
-//   readById(id: string | null): Observable<JSON> {
-//     const url =`${this.baseUrl}view/${id}`
-//     return this.http.get<JSON>(url)
-//   }
+  readById(id: string | null): Observable<JSON> {
+    const url =`${this.baseUrl}view/${id}`
+    return this.http.get<JSON>(url)
+  }
 
   create(administradores: any): Observable<JSON>{
     return this.http.post<JSON>(this.baseUrl + 'add', administradores)
   }
 
-//   update(clientes: Administrador): Observable<Administrador> {
-//     const url =`${this.baseUrl}edit/${clientes.id_cliente}`
-//     return this.http.put<Administrador>(url,clientes)
-//   }
+  update(administrador: any, id_administrador: any): Observable<JSON> {
+    const url =`${this.baseUrl}edit/${id_administrador}`
+    return this.http.post<JSON>(url,administrador)
+  }
 
   delete(id: number): Observable<JSON> {
     const url =`${this.baseUrl}delete/${id}`

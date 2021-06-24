@@ -37,7 +37,7 @@ class AdministradorsController extends AppController
     public function view($id = null)
     {
         $administrador = $this->Administradors->get($id, [
-            'contain' => [],
+            'contain' => ['Enderecos'],
         ]);
 
         $this->set(compact('administrador'));
@@ -90,16 +90,34 @@ class AdministradorsController extends AppController
      */
     public function edit($id = null)
     {
+        $this->loadModel('Enderecos');
+
+        $data_json = $this->request->input('json_decode');
+
         $administrador = $this->Administradors->get($id, [
             'contain' => [],
         ]);
 
-        $alteracao = ['nome' => 'LUCAS FIRMIANO SILVA GIRAO'];
+        $array_administrator = $this->Administradors->genarateAdministratorArray($data_json[0]);
 
-        $administrador = $this->Administradors->patchEntity($administrador, $alteracao);
+        $administrador = $this->Administradors->patchEntity($administrador, $array_administrator);
 
         if ($this->Administradors->save($administrador)) {
-            $message = "Administrador Alterado com Sucesso!";
+
+            $endereco = $this->Enderecos->get($data_json[3], [
+                'contain' => [],
+            ]);
+
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,$administrador->id_administrador);
+
+            $endereco = $this->Enderecos->patchEntity($endereco, $array_address);
+
+            if ($this->Enderecos->save($endereco)) {
+                $message = "Administrador e Endereco Editados com Sucesso!";
+            } else {
+                $message = "Administrador Editado, mas o endereco nao pode ser cadastrado.";
+            }
+
         } else {
             $message = "Administrador Nao foi Alterado.";
         }
