@@ -45,6 +45,10 @@ class SetorsTable extends Table
         $this->setPrimaryKey('id_setor');
 
         $this->addBehavior('Timestamp');
+
+        $this->hasMany('Cargos', [
+            'foreignKey' => 'setor_id',
+        ]);
     }
 
     /**
@@ -85,6 +89,18 @@ class SetorsTable extends Table
         ];
 
         return $array;
+    }
+
+    public function verifyExistingOffices($id){
+        $query = $this->Cargos->find('all',[
+            'conditions' => ['setor_id' => $id]
+        ])->count();
+
+        if ($query == 0){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
