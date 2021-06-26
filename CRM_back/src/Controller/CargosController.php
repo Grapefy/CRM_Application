@@ -88,7 +88,7 @@ class CargosController extends AppController
 
         $array_cargo = $this->Cargos->genarateOfficeArray($data_json);
 
-        $cargo = $this->Cargos->patchEntity($setor, $array_cargo);
+        $cargo = $this->Cargos->patchEntity($cargo, $array_cargo);
     
         if ($this->Cargos->save($cargo)) {
             $message = "Cargo Editados com Sucesso!";

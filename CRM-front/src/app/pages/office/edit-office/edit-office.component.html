@@ -24,51 +24,53 @@
         </nb-card-header>
 
         <nb-card-body>
-          <div class="row m-2">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="label">Cargo:</label>
-                <input type="text" nbInput class="form-control" value="Desenvolvedor Júnior" fullWidth [disabled]="!onEdit">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group" >
-                  <label class="label">Setor:</label>
-                  <nb-select placeholder="Setor" fullWidth [disabled]="!onEdit">
-                  <nb-option *ngFor="let sector of Sectors" [value]="sector.value">{{ sector.label }}</nb-option>
-                  </nb-select>
-              </div>
-            </div>
-            <div class="col-md-4">
+          <form [formGroup]="officeEditForm" *ngIf="officeEditForm" class="step-container">
+            <div class="row m-2">
+              <div class="col-md-4">
                 <div class="form-group">
-                <label class="label">Salário Bruto:</label>
-                <input type="text" currencyMask nbInput class="form-control" value="R$ 35000" fullWidth [disabled]="!onEdit">
+                  <label class="label">Cargo:</label>
+                  <input type="text" nbInput class="form-control" value="Desenvolvedor Júnior" formControlName="cargo" fullWidth>
                 </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <label class="label">Descrição:</label>
-                <textarea nbInput fullWidth [disabled]="!onEdit">O cargo de Desenvolvedor Júnior é responsável por ajudar no desenvolvimento de projetos</textarea>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group" >
+                    <label class="label">Setor:</label>
+                    <nb-select placeholder="Setor" formControlName="setor" fullWidth>
+                    <nb-option *ngFor="let sector of Sectors" [value]="sector.value">{{ sector.label }}</nb-option>
+                    </nb-select>
+                </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="form-group">
+                  <label class="label">Salário Bruto:</label>
+                  <input type="text" currencyMask nbInput class="form-control" value="R$ 35000" formControlName="salario_bruto" fullWidth>
+                  </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="label">Descrição:</label>
+                  <textarea nbInput formControlName="descricao" fullWidth></textarea>
+                </div>
               </div>
             </div>
-          </div>
-          <div *ngIf="onEdit">
-            <div class="row d-flex justify-content-center mt-4" >
-              <div class="col-2">
-                <button nbButton (click)="offEditForm()">Cancelar</button>
-              </div>
-              <div class="col-2">
-                <button nbButton status="success">Salvar Alterações</button>
-              </div>
-            </div>
-          </div>
-          <div *ngIf="onEdit === false">
-            <div class="row d-flex justify-content-center mt-4">
-              <div class="col-2">
-                <button nbButton status="primary" (click)="onEditForm()">Editar</button>
+            <div *ngIf="onEdit">
+              <div class="row d-flex justify-content-center mt-4" >
+                <div class="col-2">
+                  <button nbButton (click)="offEditForm()">Cancelar</button>
+                </div>
+                <div class="col-2">
+                  <button nbButton (click)="submitForm()" status="success">Salvar Alterações</button>
+                </div>
               </div>
             </div>
-          </div>
+            <div *ngIf="onEdit === false">
+              <div class="row d-flex justify-content-center mt-4">
+                <div class="col-2">
+                  <button nbButton status="primary" (click)="onEditForm()">Editar</button>
+                </div>
+              </div>
+            </div>
+          </form>
         
         </nb-card-body>
       </nb-card>
