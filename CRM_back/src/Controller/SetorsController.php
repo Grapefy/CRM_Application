@@ -108,12 +108,19 @@ class SetorsController extends AppController
      */
     public function delete($id = null)
     {
+        $id = 3;
         $setor = $this->Setors->get($id);
 
-        if ($this->Setors->delete($setor)) {
-            $message = "Setor Deletado com Sucesso!";
+        $continuarExclusao = $this->Setors->verifyExistingOffices($id);
+
+        if ($continuarExclusao){
+            if ($this->Setors->delete($setor)) {
+                $message = "Setor Deletado com Sucesso!";
+            } else {
+                $message = "Setor Nao foi Deletado.";
+            }
         } else {
-            $message = "Setor Nao foi Deletado.";
+            $message = "Existe um cargo atrelado a este setor.";
         }
 
         $this->set(compact('message'));
