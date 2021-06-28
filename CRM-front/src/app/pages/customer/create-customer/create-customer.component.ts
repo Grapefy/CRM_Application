@@ -1,3 +1,4 @@
+import { CustomerService } from './../../../services/customer.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbComponentStatus, NbToastrService } from '@nebular/theme';
@@ -18,7 +19,7 @@ export class CreateCustomerComponent implements OnInit {
   customerForm!: FormGroup;
   adressForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private toastrService: NbToastrService) { }
+  constructor(private fb: FormBuilder, private toastrService: NbToastrService, private CustomerService: CustomerService) { }
 
 
 
@@ -42,16 +43,43 @@ export class CreateCustomerComponent implements OnInit {
     });
   }
 
-  stepOneErrorMessage(status: NbComponentStatus) {
-    if (this.customerForm.invalid){
-      this.toastrService.show('Digite o formulário completo', 'ATENCAO!', { status, preventDuplicates: true });
-    }
+  submitForm() {
+    var CF = {}
+    var AF = {}
+    CF = this.generateArrayCliente(this.customerForm);
+    AF = this.generateArrayAdress(this.adressForm);
+
+    this.CustomerService.create(JSON.stringify([CF,AF])).subscribe((result) => {
+      console.log(result)
+    })
+
+    // console.log(CF);
+    // console.log(AF);
   }
 
-  stepTwoErrorMessage(status: NbComponentStatus) {
-    if (this.adressForm.invalid){
-      this.toastrService.show('Digite o formulário completo', 'ATENCAO!', { status, preventDuplicates: true });
-    }
+  generateArrayCliente(fg: any) {
+    var retorno = {
+      'nome': fg.controls.nome.value, 
+      'email': fg.controls.email.value, 
+      'fone': fg.controls.fone.value, 
+      'dt_nascimento': fg.controls.dt_nascimento.value,
+      'cpf': fg.controls.cpf.value,
+      'cnpj': fg.controls.cnpj.value
+    };
+    return retorno;
+  }
+
+  generateArrayAdress(fg: any) {
+    var retorno = {
+      'bairro': fg.controls.bairro.value, 
+      'cep': fg.controls.cep.value, 
+      'logradouro': fg.controls.logradouro.value, 
+      'numero': fg.controls.numero.value,
+      'uf': fg.controls.uf.value
+    };
+
+    return retorno;
+
   }
   
 }

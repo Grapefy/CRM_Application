@@ -1,3 +1,4 @@
+import { CustomerService } from './../../services/customer.service';
 import { Component, EventEmitter, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -12,19 +13,21 @@ import { Customer } from 'src/app/models/customer.model';
 })
 export class CustomerComponent implements OnInit {
 
-  customers: Customer[] = [
-    new Customer(1,'Gabriel', 'gabriel-feliciano@gmail.com'),
-    new Customer(2,'Lucas', 'lucas-firmiano@gmail.com'),
-    new Customer(3,'Inácio', 'gabriel-inácio@gmail.com'),
-    new Customer(4,'bot', 'server-bot@gmail.com'),
-    new Customer(5,'bot', 'server-bot@gmail.com'),
-    new Customer(6,'bot', 'server-bot@gmail.com'),
-    new Customer(7,'bot', 'server-bot@gmail.com'),
-    new Customer(8,'bot', 'server-bot@gmail.com'),
-  ];
+  // customers: Customer[] = []
+
+  // customers: Customer[] = [
+  //   new Customer(1,'Gabriel', 'gabriel-feliciano@gmail.com'),
+  //   new Customer(2,'Lucas', 'lucas-firmiano@gmail.com'),
+  //   new Customer(3,'Inácio', 'gabriel-inácio@gmail.com'),
+  //   new Customer(4,'bot', 'server-bot@gmail.com'),
+  //   new Customer(5,'bot', 'server-bot@gmail.com'),
+  //   new Customer(6,'bot', 'server-bot@gmail.com'),
+  //   new Customer(7,'bot', 'server-bot@gmail.com'),
+  //   new Customer(8,'bot', 'server-bot@gmail.com'),
+  // ];
   
   displayedColumns: string[] = ['id', 'nome', 'email','actions'];
-  dataSource: MatTableDataSource<Customer>;
+  dataSource =  new MatTableDataSource<Customer>();
   selectedName: string = '';
   selectedId: number = 0;
 
@@ -34,11 +37,14 @@ export class CustomerComponent implements OnInit {
   sort!: MatSort;
 
   ngOnInit(): void {
+    this.CustomerService.list().subscribe( (clientes: any) => {
+      this.dataSource.data = clientes.clientes;
+    })
   }
 
-  constructor(private dialogService: NbDialogService) {
-    this.dataSource = new MatTableDataSource(this.customers);
+  constructor(private dialogService: NbDialogService, private CustomerService: CustomerService) {
   }
+  
   //INICIAR PÁGINAÇÃO E QTD DE ITENS
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -59,6 +65,14 @@ export class CustomerComponent implements OnInit {
     this.selectedName = nome
     this.selectedId = id
     this.dialogService.open(dialog);
+  }
+
+  submitDelete(id: number) {
+    this.CustomerService.delete(id).subscribe( (result: any) => {
+      window.location.reload();
+    }, error => {
+      window.location.reload();
+    })
   }
 }
 

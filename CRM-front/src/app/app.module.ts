@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserComponent, NbUserModule, NbContextMenuModule, NbDialogModule, NbStepperModule, NbInputModule, NbDatepickerModule, NbRadioModule, NbToastrModule, NbSelectComponent, NbSelectModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserComponent, NbUserModule, NbContextMenuModule, NbDialogModule, NbStepperModule, NbInputModule, NbDatepickerModule, NbRadioModule, NbToastrModule, NbSelectComponent, NbSelectModule, NbCheckboxComponent, NbCheckboxModule, NbFormFieldModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MenuComponent } from './_components/_shared/menu/menu.component';
 import { HeaderComponent } from './_components/_shared/header/header.component';
@@ -20,9 +20,16 @@ import { AdministradorComponent } from './pages/administrador/administrador.comp
 import { CreateAdministradorComponent } from './pages/administrador/create-administrador/create-administrador.component';
 import { EditAdministradorComponent } from './pages/administrador/edit-administrador/edit-administrador.component';
 import { SectorComponent } from './pages/sector/sector.component';
+import { HttpClientModule } from '@angular/common/http';
 import { EditSectorComponent } from './pages/sector/edit-sector/edit-sector.component';
 import { OfficeComponent } from './pages/office/office.component';
 import { EditOfficeComponent } from './pages/office/edit-office/edit-office.component';
+import { NgxMaskModule } from 'ngx-mask';
+import { NgxCurrencyModule } from 'ngx-currency';
+import { EmployeeComponent } from './pages/employee/employee.component';
+import { CreateEmployeeComponent } from './pages/employee/create-employee/create-employee.component';
+import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-employee.component';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +46,10 @@ import { EditOfficeComponent } from './pages/office/edit-office/edit-office.comp
     EditSectorComponent,
     OfficeComponent,
     EditOfficeComponent,
+    EmployeeComponent,
+    CreateEmployeeComponent,
+    EditEmployeeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +78,24 @@ import { EditOfficeComponent } from './pages/office/edit-office/edit-office.comp
     NbRadioModule,
     ReactiveFormsModule,
     NbToastrModule.forRoot(),
-    NbSelectModule
+    NbSelectModule,
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
+    }),
+    NgxCurrencyModule.forRoot({
+      align: "left",
+      allowNegative: true,
+      allowZero: true,
+      decimal: ",",
+      precision: 2,
+      prefix: "R$ ",
+      suffix: "",
+      thousands: ".",
+      nullable: true
+    }),
+    HttpClientModule,
+    NbCheckboxModule,
+    NbFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

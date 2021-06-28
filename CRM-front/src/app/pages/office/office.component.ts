@@ -1,3 +1,5 @@
+import { SectorService } from './../../services/sector.service';
+import { OfficeService } from './../../services/office.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,10 +15,12 @@ import { Office } from 'src/app/models/office.model';
 })
 export class OfficeComponent implements OnInit {
 
-  Sectors = [
-    { value: 'TI', label: 'TI'},
-    { value: 'RH', label: 'RH' },
-  ];
+  // Sectors = [
+  //   { value: 'TI', label: 'TI'},
+  //   { value: 'RH', label: 'RH' },
+  // ];
+
+  Sectors: any = [];
 
 
   offices: Office[] = [
@@ -25,7 +29,7 @@ export class OfficeComponent implements OnInit {
   ];
 
   displayedColumns: string[] = ['id', 'cargo', 'setor','actions'];
-  dataSource: MatTableDataSource<Office>;
+  dataSource = new MatTableDataSource<Office>();
   selectedOffice: string = '';
   selectedId: number = 0;
   officeForm!: FormGroup;
@@ -35,10 +39,20 @@ export class OfficeComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
   
-  constructor(private dialogService: NbDialogService, private fb: FormBuilder, private toastrService: NbToastrService) { 
-    this.dataSource = new MatTableDataSource(this.offices);  }
+  constructor(private dialogService: NbDialogService, private fb: FormBuilder, private toastrService: NbToastrService, private OfficeService: OfficeService, private SectorService: SectorService) { }
 
   ngOnInit(): void {
+
+    this.OfficeService.list().subscribe( (cargos: any) => {
+      this.dataSource.data = cargos.cargos;
+    })
+
+    this.SectorService.list().subscribe( (setores: any) => {
+      setores.setors.forEach( (element: any) => {
+        this.Sectors.push({value: element.id_setor, label: element.nome})
+      });
+    })
+
     this.officeForm = this.fb.group({
       cargo:['', Validators.required],
       setor: ['', Validators.required],
@@ -71,6 +85,33 @@ export class OfficeComponent implements OnInit {
 
   openRegister(dialogCreate: TemplateRef<any>) {
     this.dialogService.open(dialogCreate);
+  }
+
+  submitForm() {
+    var OF = {}
+    OF = this.generateArrayCargo(this.officeForm);
+
+    this.OfficeService.create(JSON.stringify(OF)).subscribe((result) => {
+      console.log(result)
+    })
+  }
+
+  generateArrayCargo(fg: any) {
+    var retorno = {
+      'cargo': fg.controls.cargo.value, 
+      'descricao': fg.controls.descricao.value, 
+      'salario_bruto': fg.controls.salario_bruto.value,
+      'setor_id': fg.controls.setor.value
+    };
+    return retorno;
+  }
+
+  submitDelete(id: number) {
+    this.OfficeService.delete(id).subscribe( (result: any) => {
+      window.location.reload();
+    }, error => {
+      window.location.reload();
+    })
   }
 
 

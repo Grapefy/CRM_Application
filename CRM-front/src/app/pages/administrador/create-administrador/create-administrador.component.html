@@ -26,7 +26,6 @@
                   <form [formGroup]="admForm" class="step-container">
                     <ng-template #labelOne>Dados Pessoais</ng-template>
                     <div class="row">
-                      <!-- <form [formGroup]="formCustomer"> -->
                       <!-- Input Name -->
                       <div class="col-md-4">
                         <div class="form-group">
@@ -55,7 +54,7 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="label">Fone:</label>
-                          <input type="text" nbInput class="form-control" placeholder="Fone"
+                          <input type="text" nbInput class="form-control" placeholder="Fone" mask="(00) 00000-0000"
                           formControlName="fone" 
                           [ngClass]="{'status-danger':admForm.controls.fone.invalid && (admForm.controls.fone.dirty || admForm.controls.fone.touched),
                                       'status-success':admForm.controls.fone.valid}"
@@ -70,7 +69,7 @@
                         <button nbButton routerLink="../administrador">Voltar</button>
                       </div>
                       <div class="col-2">
-                        <button nbButton nbStepperNext (click)="stepOneErrorMessage('warning')" status="primary">Avançar</button>
+                        <button nbButton nbStepperNext status="primary" [disabled]="!admForm.valid">Avançar</button>
                       </div>
                     </div>
                   </form>
@@ -84,7 +83,7 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <label class="label">CEP:</label>
-                          <input type="text" nbInput class="form-control" placeholder="CEP"  
+                          <input type="text" nbInput class="form-control" placeholder="CEP"  mask="00000-00"
                           formControlName="cep"
                           [ngClass]="{'status-danger':adressForm.controls.cep.invalid && (adressForm.controls.cep.dirty || adressForm.controls.cep.touched),
                                       'status-success':adressForm.controls.cep.valid}"
@@ -148,7 +147,7 @@
                         <button nbButton nbStepperPrevious>Voltar</button>
                       </div>
                       <div class="col-2">
-                        <button nbButton nbStepperNext (click)="stepTwoErrorMessage('warning')" status="primary">Avançar</button>
+                        <button nbButton nbStepperNext status="primary" [disabled]="!adressForm.valid">Avançar</button>
                       </div>
                     </div>
                   </form>
@@ -162,7 +161,7 @@
                   </p>
                   <div class="row d-flex justify-content-center mt-4">
                     <div class="col-2">
-                      <button type="submit" nbButton nbStepperNext status="success" (click)="submit()" fullWidth>Finalizar</button>
+                      <button type="submit" nbButton nbStepperNext status="success" (click)="submitForm()" fullWidth>Finalizar</button>
                     </div>
                   </div>
                   

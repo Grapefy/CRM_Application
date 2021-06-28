@@ -36,31 +36,31 @@
               <!-- ID Column -->
               <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.id_cargo}} </td>
               </ng-container>
           
               
               <!-- Cargo Column -->
               <ng-container matColumnDef="cargo">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Cargo </th>
-                  <td mat-cell *matCellDef="let row"> {{row.cargo}} </td>
+                  <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
                 </ng-container>
                 
                 <!-- Setor Column -->
                 <ng-container matColumnDef="setor">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Setor </th>
-                  <td mat-cell *matCellDef="let row"> {{row.setor}} </td>
+                  <td mat-cell *matCellDef="let row"> {{row.setor.nome}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="actions">
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
                   <td mat-cell *matCellDef="let row"> 
                     <!-- Edit de cliente -->
-                    <button nbButton ghost status="primary" routerLink="../info-office/{{ row.id }}"> 
+                    <button nbButton ghost status="primary" routerLink="../info-office/{{ row.id_cargo }}"> 
                       <nb-icon icon="edit-outline"></nb-icon>
                     </button>  
                     <!-- Delete de cliente -->
-                    <button nbButton ghost status="danger" (click)="openDelete(dialog, row.cargo, row.id)" >
+                    <button nbButton ghost status="danger" (click)="openDelete(dialog, row.nome, row.id_cargo)" >
                       <nb-icon icon="trash-2-outline"></nb-icon>
                     </button>
                   </td>
@@ -113,7 +113,7 @@
         <!-- Input Salário Bruto -->
         <div class="form-group" >
           <label class="label">Salário Bruto:</label>
-          <input type="text" nbInput class="form-control" placeholder="Salário Bruto" fullWidth formControlName="salario_bruto"
+          <input currencyMask type="text" nbInput class="form-control" placeholder="Salário Bruto" fullWidth formControlName="salario_bruto"
           [ngClass]="{'status-danger':officeForm.controls.salario_bruto.invalid && (officeForm.controls.salario_bruto.dirty || officeForm.controls.salario_bruto.touched),
           'status-success':officeForm.controls.salario_bruto.valid}">
           <p class="caption status-danger" *ngIf="officeForm.controls.salario_bruto.invalid && (officeForm.controls.salario_bruto.dirty || officeForm.controls.salario_bruto.touched)">Salário é obrigatório</p>
@@ -130,7 +130,7 @@
           <button nbButton (click)="ref.close()">Voltar</button>
         </div>
         <div class="col">
-          <button nbButton (click)="ref.close()" status="success">Cadastrar</button>
+          <button nbButton (click)="submitForm()" status="success" [disabled]="!officeForm.valid">Cadastrar</button>
         </div>  
       </div> 
     </nb-card-footer>
@@ -149,7 +149,7 @@
             <button nbButton (click)="ref.close()">Voltar</button>
           </div>
           <div class="col">
-            <button nbButton (click)="ref.close()" status="danger">Excluir</button>
+            <button nbButton (click)="submitDelete(selectedId)" status="danger">Excluir</button>
           </div>  
         </div>  
       </nb-card-footer>

@@ -36,13 +36,13 @@
               <!-- ID Column -->
               <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.id_cliente}} </td>
               </ng-container>
           
               <!-- Name Column -->
               <ng-container matColumnDef="nome">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
-                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
               </ng-container>
 
                 <!-- Email Column -->
@@ -55,11 +55,11 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
                   <td mat-cell *matCellDef="let row"> 
                     <!-- Edit de cliente -->
-                    <button nbButton ghost status="primary" routerLink="../info-customer/{{ row.id }}">
+                    <button nbButton ghost status="primary" routerLink="../info-customer/{{ row.id_cliente }}">
                       <nb-icon icon="more-horizontal-outline"></nb-icon>
                     </button>  
                     <!-- Delete de cliente -->
-                    <button nbButton ghost status="danger" (click)="open(dialog, row.name, row.id)">
+                    <button nbButton ghost status="danger" (click)="open(dialog, row.nome, row.id_cliente)">
                       <nb-icon icon="trash-2-outline"></nb-icon>
                     </button>
                   </td>
@@ -95,7 +95,7 @@
             <button nbButton (click)="ref.close()">Voltar</button>
           </div>
           <div class="col">
-            <button nbButton (click)="ref.close()" status="danger">Excluir</button>
+            <button nbButton (click)="submitDelete(selectedId)" status="danger">Excluir</button>
           </div>  
         </div> 
       </nb-card-footer>
