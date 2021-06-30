@@ -1,7 +1,7 @@
+import { AlertsService } from './../../../services/shared/alerts.service';
 import { AdministratorService } from './../../../services/administrator.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NbComponentStatus, NbToastrService } from '@nebular/theme';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-administrador',
@@ -14,7 +14,7 @@ export class CreateAdministradorComponent implements OnInit {
   admForm!: FormGroup;
   adressForm!: FormGroup;
   
-  constructor(private fb: FormBuilder, private toastrService: NbToastrService, private AdministratorService: AdministratorService) { }
+  constructor(private fb: FormBuilder, private AdministratorService: AdministratorService, private alertService: AlertsService) { }
 
   ngOnInit(): void {
     this.admForm = this.fb.group({
@@ -44,6 +44,8 @@ export class CreateAdministradorComponent implements OnInit {
     this.AdministratorService.create(JSON.stringify([CF,AF])).subscribe((result) => {
       console.log(result)
     })
+    //adicionar o redirecionamento da página
+    this.alertService.showAlertSuccess('Verifique a tabela para mais informações','Administrador Cadastrado');
     
   }
 

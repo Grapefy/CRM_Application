@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogService} from '@nebular/theme';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +8,8 @@ import { NbDialogService } from '@nebular/theme';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private dialogService: NbDialogService) { }
+  constructor(private dialogService: NbDialogService) { 
+  }
 
   ngOnInit(): void {
   }
@@ -22,5 +23,4 @@ export class LoginComponent implements OnInit {
   openForgetPassword(dialog: TemplateRef<any>) {
     this.dialogService.open(dialog);
   }
-
 }
