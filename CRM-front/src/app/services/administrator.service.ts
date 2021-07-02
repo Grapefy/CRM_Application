@@ -1,5 +1,4 @@
 import { Administrador } from './../models/administrador.model';
-import { Customer } from './../models/customer.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
