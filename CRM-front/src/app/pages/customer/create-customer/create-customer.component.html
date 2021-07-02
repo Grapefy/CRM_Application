@@ -111,71 +111,9 @@
                 </nb-step>
                 
                 <!-- Part 2 -->
-                <nb-step [label]="labelTwo" [stepControl]="adressForm">
-                  <form [formGroup]="adressForm" class="step-container">
-                    <ng-template #labelTwo>Endereço</ng-template>
-                    <div class="row">
-                      <div class="col-md-2">
-                        <div class="form-group">
-                          <label class="label">CEP:</label>
-                          <input type="text" nbInput class="form-control" placeholder="CEP" fullWidth formControlName="cep" mask="00000-00"
-                          [ngClass]="{'status-danger':adressForm.controls.cep.invalid && (adressForm.controls.cep.dirty || adressForm.controls.cep.touched),
-                                      'status-success':adressForm.controls.cep.valid}">
-                          <p class="caption status-danger" *ngIf="adressForm.controls.cep.invalid && (adressForm.controls.cep.dirty || adressForm.controls.cep.touched)">CEP é obrigatório</p>
-                        </div>
-                      </div>
-                      <div class="col-md-8">
-                        <div class="form-group">
-                          <label class="label">Logradouro:</label>
-                          <input type="text" nbInput class="form-control" placeholder="Logradouro" fullWidth formControlName="logradouro"
-                          [ngClass]="{'status-danger':adressForm.controls.logradouro.invalid && (adressForm.controls.logradouro.dirty || adressForm.controls.logradouro.touched),
-                                      'status-success':adressForm.controls.logradouro.valid}">
-                          <p class="caption status-danger" *ngIf="adressForm.controls.logradouro.invalid && (adressForm.controls.logradouro.dirty || adressForm.controls.logradouro.touched)">Logradouro é obrigatório</p>
-                        </div>
-                      </div>
-                      <div class="col-md-2">
-                        <div class="form-group">
-                          <label class="label">UF:</label>
-                          <input type="text" nbInput class="form-control" placeholder="UF" fullWidth formControlName="uf"
-                          [ngClass]="{'status-danger':adressForm.controls.uf.invalid && (adressForm.controls.uf.dirty || adressForm.controls.uf.touched),
-                                      'status-success':adressForm.controls.uf.valid}">
-                          <p class="caption status-danger" *ngIf="adressForm.controls.uf.invalid && (adressForm.controls.uf.dirty || adressForm.controls.uf.touched)">UF é obrigatório</p>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group" >
-                          <label class="label">Bairro:</label>
-                          <input type="text" nbInput class="form-control" placeholder="Bairro" fullWidth formControlName="bairro"
-                          [ngClass]="{'status-danger':adressForm.controls.bairro.invalid && (adressForm.controls.bairro.dirty || adressForm.controls.bairro.touched),
-                                      'status-success':adressForm.controls.bairro.valid}">
-                          <p class="caption status-danger" *ngIf="adressForm.controls.bairro.invalid && (adressForm.controls.bairro.dirty || adressForm.controls.bairro.touched)">Bairro é obrigatório</p>
-                        </div>
-                      </div>
-                      <div class="col-md-2">
-                        <div class="form-group"> 
-                          <label class="label">Número:</label>
-                          <input type="text" nbInput class="form-control" placeholder="Número" fullWidth formControlName="numero"
-                          [ngClass]="{'status-danger':adressForm.controls.numero.invalid && (adressForm.controls.numero.dirty || adressForm.controls.numero.touched),
-                                      'status-success':adressForm.controls.numero.valid}">
-                          <p class="caption status-danger" *ngIf="adressForm.controls.numero.invalid && (adressForm.controls.numero.dirty || adressForm.controls.numero.touched)">Número é obrigatório</p>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group"> 
-                          <label class="label">Complemento:</label>
-                          <input type="text" nbInput class="form-control" placeholder="Complemento" fullWidth formControlName="complemento">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row d-flex justify-content-center mt-4">
-                      <div class="col-2">
-                        <button nbButton nbStepperPrevious>Voltar</button>
-                      </div>
-                      <div class="col-2">
-                        <button nbButton nbStepperNext status="primary" [disabled]="!adressForm.valid">Avançar</button>
-                      </div>
-                    </div>
-                  </form>
+                <nb-step [label]="labelTwo">
+                  <ng-template #labelTwo>Endereço</ng-template>
+                  <app-address-form></app-address-form>
                 </nb-step>
 
                 <!-- Part 3 -->

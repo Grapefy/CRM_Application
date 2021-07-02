@@ -12,7 +12,6 @@ export class CreateAdministradorComponent implements OnInit {
 
   linearMode = true;
   admForm!: FormGroup;
-  adressForm!: FormGroup;
   
   constructor(private fb: FormBuilder, private AdministratorService: AdministratorService, private alertService: AlertsService) { }
 
@@ -23,27 +22,18 @@ export class CreateAdministradorComponent implements OnInit {
       fone: ['', Validators.required],
     });
 
-    this.adressForm = this.fb.group({
-      cep: ['', Validators.required],
-      logradouro: ['', Validators.required],
-      uf: ['', Validators.required],
-      bairro: ['', Validators.required],
-      numero: ['', Validators.required],
-      complemento: [''],
-    });
-
   }
 
   // FUNCAO TESTE QUE ME BASEEI PRA VERIFICAR COMO OBTER OS PARAMETROS PRO BD (NAO APAGAR ELA)
   submitForm() {
-    var CF = {}
-    var AF = {}
-    CF = this.generateArrayCliente(this.admForm);
-    AF = this.generateArrayAdress(this.adressForm);
+    // var CF = {}
+    // var AF = {}
+    // CF = this.generateArrayCliente(this.admForm);
+    // AF = this.generateArrayAdress(this.adressForm);
 
-    this.AdministratorService.create(JSON.stringify([CF,AF])).subscribe((result) => {
-      console.log(result)
-    })
+    // this.AdministratorService.create(JSON.stringify([CF,AF])).subscribe((result) => {
+    //   console.log(result)
+    // })
     //adicionar o redirecionamento da página
     this.alertService.showAlertSuccess('Verifique a tabela para mais informações','Administrador Cadastrado');
     
@@ -58,17 +48,17 @@ export class CreateAdministradorComponent implements OnInit {
     return retorno;
   }
 
-  generateArrayAdress(fg: any) {
-    var retorno = {
-      'bairro': fg.controls.bairro.value, 
-      'cep': fg.controls.cep.value, 
-      'logradouro': fg.controls.logradouro.value, 
-      'numero': fg.controls.numero.value,
-      'uf': fg.controls.uf.value
-    };
+  // generateArrayAdress(fg: any) {
+  //   var retorno = {
+  //     'bairro': fg.controls.bairro.value, 
+  //     'cep': fg.controls.cep.value, 
+  //     'logradouro': fg.controls.logradouro.value, 
+  //     'numero': fg.controls.numero.value,
+  //     'uf': fg.controls.uf.value
+  //   };
 
-    return retorno;
+  //   return retorno;
 
-  }
+  // }
 
 }

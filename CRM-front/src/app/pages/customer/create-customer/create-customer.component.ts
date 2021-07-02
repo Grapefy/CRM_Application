@@ -1,7 +1,6 @@
 import { CustomerService } from './../../../services/customer.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NbComponentStatus, NbToastrService } from '@nebular/theme';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-customer',
@@ -17,9 +16,8 @@ export class CreateCustomerComponent implements OnInit {
   option: any;
   linearMode = true;
   customerForm!: FormGroup;
-  adressForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private toastrService: NbToastrService, private CustomerService: CustomerService) { }
+  constructor(private fb: FormBuilder, private CustomerService: CustomerService) { }
 
 
 
@@ -33,25 +31,18 @@ export class CreateCustomerComponent implements OnInit {
       dt_nascimento: [''],
     });
 
-    this.adressForm = this.fb.group({
-      cep: ['', Validators.required],
-      logradouro: ['', Validators.required],
-      uf: ['', Validators.required],
-      bairro: ['', Validators.required],
-      numero: ['', Validators.required],
-      complemento: [''],
-    });
+   
   }
 
   submitForm() {
-    var CF = {}
-    var AF = {}
-    CF = this.generateArrayCliente(this.customerForm);
-    AF = this.generateArrayAdress(this.adressForm);
+    // var CF = {}
+    // var AF = {}
+    // CF = this.generateArrayCliente(this.customerForm);
+    // AF = this.generateArrayAdress(this.adressForm);
 
-    this.CustomerService.create(JSON.stringify([CF,AF])).subscribe((result) => {
-      console.log(result)
-    })
+    // this.CustomerService.create(JSON.stringify([CF,AF])).subscribe((result) => {
+    //   console.log(result)
+    // })
 
     // console.log(CF);
     // console.log(AF);
@@ -69,17 +60,17 @@ export class CreateCustomerComponent implements OnInit {
     return retorno;
   }
 
-  generateArrayAdress(fg: any) {
-    var retorno = {
-      'bairro': fg.controls.bairro.value, 
-      'cep': fg.controls.cep.value, 
-      'logradouro': fg.controls.logradouro.value, 
-      'numero': fg.controls.numero.value,
-      'uf': fg.controls.uf.value
-    };
+  // generateArrayAdress(fg: any) {
+  //   var retorno = {
+  //     'bairro': fg.controls.bairro.value, 
+  //     'cep': fg.controls.cep.value, 
+  //     'logradouro': fg.controls.logradouro.value, 
+  //     'numero': fg.controls.numero.value,
+  //     'uf': fg.controls.uf.value
+  //   };
 
-    return retorno;
+  //   return retorno;
 
-  }
+  // }
   
 }
