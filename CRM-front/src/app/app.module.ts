@@ -30,6 +30,7 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { CreateEmployeeComponent } from './pages/employee/create-employee/create-employee.component';
 import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-employee.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AddressComponent } from './_components/_shared/address/address.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { LoginComponent } from './pages/login/login.component';
     CreateEmployeeComponent,
     EditEmployeeComponent,
     LoginComponent,
+    AddressComponent,
   ],
   imports: [
     BrowserModule,
