@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -8,7 +8,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AddressComponent implements OnInit {
 
+  
   adressForm!: FormGroup;
+
+  @Output()
+  formAddress = new EventEmitter(); 
   
   constructor(private fb: FormBuilder) { }
 
@@ -22,19 +26,11 @@ export class AddressComponent implements OnInit {
       numero: ['', Validators.required],
       complemento: [''],
     });
+
   }
-  
-  generateArrayAdress(fg: any) {
-    var retorno = {
-      'bairro': fg.controls.bairro.value, 
-      'cep': fg.controls.cep.value, 
-      'logradouro': fg.controls.logradouro.value, 
-      'numero': fg.controls.numero.value,
-      'uf': fg.controls.uf.value
-    };
 
-    return retorno;
-
+  sendForm(){
+    this.formAddress.emit(this.adressForm)
   }
 
 }

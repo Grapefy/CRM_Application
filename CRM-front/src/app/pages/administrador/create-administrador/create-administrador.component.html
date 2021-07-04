@@ -78,7 +78,7 @@
                 <!-- Part 2 -->
                 <nb-step [label]="labelTwo">
                   <ng-template #labelTwo>Endereço</ng-template>
-                  <app-address-form></app-address-form>
+                  <app-address-form (formAddress) = "getAddressForm($event)"></app-address-form>
                 </nb-step>
 
                 <!-- Part 3 -->
