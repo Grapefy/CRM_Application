@@ -1,3 +1,4 @@
+import { EmployeeService } from './../../services/employee.service';
 import { Employee } from './../../models/employee.model';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -22,7 +23,7 @@ export class EmployeeComponent implements OnInit {
   ];
 
   displayedColumns: string[] = ['id', 'nome', 'email','actions'];
-  dataSource: MatTableDataSource<Employee>;
+  dataSource = new MatTableDataSource<Employee>();
   selectedName: string = '';
   selectedId: number = 0;
 
@@ -31,13 +32,13 @@ export class EmployeeComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
     
-
-  constructor(private dialogService: NbDialogService) { 
-    this.dataSource = new MatTableDataSource(this.employees);
-  }
+  constructor(private dialogService: NbDialogService, private EmployeeService: EmployeeService) { }
 
 
   ngOnInit(): void {
+    this.EmployeeService.list().subscribe( (funcionarios: any) => {
+      this.dataSource.data = funcionarios.funcionarios;
+    })
   }
 
 
@@ -62,6 +63,15 @@ export class EmployeeComponent implements OnInit {
     this.selectedName = nome
     this.selectedId = id
     this.dialogService.open(dialog);
+  }
+
+  submitDelete(id: number) {
+    this.EmployeeService.delete(id).subscribe( (result: any) => {
+      console.log(result)
+      // window.location.reload();
+    }, error => {
+      window.location.reload();
+    })
   }
 
 }

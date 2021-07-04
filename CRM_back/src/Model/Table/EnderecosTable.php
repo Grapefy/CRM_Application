@@ -110,6 +110,7 @@ class EnderecosTable extends Table
     {
         $rules->add($rules->existsIn(['cliente_id'], 'Clientes'), ['errorField' => 'cliente_id']);
         $rules->add($rules->existsIn(['administrador_id'], 'Administradors'), ['errorField' => 'administrador_id']);
+        $rules->add($rules->existsIn(['funcionario_id'], 'Funcionarios'), ['errorField' => 'funcionario_id']);
 
         return $rules;
     }

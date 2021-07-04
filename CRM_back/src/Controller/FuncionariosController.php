@@ -137,6 +137,7 @@ class FuncionariosController extends AppController
     {
         $this->loadModel('Enderecos');
         $funcionario = $this->Funcionarios->get($id);
+        $message = $funcionario;
         if ($this->Enderecos->deleteAll(['funcionario_id' => $id])){
             if ($this->Funcionarios->delete($funcionario)) {
                 $message = "Funcionario Deletado com Sucesso!";
