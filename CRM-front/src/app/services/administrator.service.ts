@@ -35,4 +35,13 @@ export class AdministratorService {
     return this.http.delete<JSON>(url)
   }
 
+  generateArrayCliente(fg: any) {
+    var retorno = {
+      'nome': fg.controls.nome.value, 
+      'email': fg.controls.email.value, 
+      'fone': fg.controls.fone.value
+    };
+    return retorno;
+  }
+
 }

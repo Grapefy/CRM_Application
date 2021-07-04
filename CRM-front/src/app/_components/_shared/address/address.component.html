@@ -67,7 +67,7 @@
         <button nbButton nbStepperPrevious>Voltar</button>
       </div>
       <div class="col-2">
-        <button nbButton nbStepperNext status="primary" [disabled]="!adressForm.valid">Avançar</button>
+        <button nbButton nbStepperNext status="primary" (click)="sendForm()" [disabled]="!adressForm.valid">Avançar</button>
       </div>
     </div>
 </form>
