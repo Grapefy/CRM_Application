@@ -1,7 +1,8 @@
+import { AlertsService } from './../../../services/shared/alerts.service';
 import { CustomerService } from './../../../services/customer.service';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NbComponentStatus, NbToastrService } from '@nebular/theme';
+import { Component, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-customer',
@@ -17,11 +18,9 @@ export class CreateCustomerComponent implements OnInit {
   option: any;
   linearMode = true;
   customerForm!: FormGroup;
-  adressForm!: FormGroup;
+  addressForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private toastrService: NbToastrService, private CustomerService: CustomerService) { }
-
-
+  constructor(private fb: FormBuilder, private CustomerService: CustomerService, private AlertsService: AlertsService, private Router: Router) { }
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
@@ -32,54 +31,21 @@ export class CreateCustomerComponent implements OnInit {
       cnpj: [''],
       dt_nascimento: [''],
     });
+  }
 
-    this.adressForm = this.fb.group({
-      cep: ['', Validators.required],
-      logradouro: ['', Validators.required],
-      uf: ['', Validators.required],
-      bairro: ['', Validators.required],
-      numero: ['', Validators.required],
-      complemento: [''],
-    });
+  getAddressForm(event:any){
+    this.addressForm = event.value
   }
 
   submitForm() {
     var CF = {}
-    var AF = {}
-    CF = this.generateArrayCliente(this.customerForm);
-    AF = this.generateArrayAdress(this.adressForm);
+    CF = this.CustomerService.generateArrayCliente(this.customerForm);
 
-    this.CustomerService.create(JSON.stringify([CF,AF])).subscribe((result) => {
-      console.log(result)
+    this.CustomerService.create(JSON.stringify([CF,this.addressForm])).subscribe((result) => {
+      this.AlertsService.showAlertSuccess('Verifique a tabela e veja mais informacoes', 'Cliente Cadastrado!');
+      setTimeout(() => {
+        this.Router.navigate(['/customer']);
+      }, 2000);
     })
-
-    // console.log(CF);
-    // console.log(AF);
   }
-
-  generateArrayCliente(fg: any) {
-    var retorno = {
-      'nome': fg.controls.nome.value, 
-      'email': fg.controls.email.value, 
-      'fone': fg.controls.fone.value, 
-      'dt_nascimento': fg.controls.dt_nascimento.value,
-      'cpf': fg.controls.cpf.value,
-      'cnpj': fg.controls.cnpj.value
-    };
-    return retorno;
-  }
-
-  generateArrayAdress(fg: any) {
-    var retorno = {
-      'bairro': fg.controls.bairro.value, 
-      'cep': fg.controls.cep.value, 
-      'logradouro': fg.controls.logradouro.value, 
-      'numero': fg.controls.numero.value,
-      'uf': fg.controls.uf.value
-    };
-
-    return retorno;
-
-  }
-  
 }

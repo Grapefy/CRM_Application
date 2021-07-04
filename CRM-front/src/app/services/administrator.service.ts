@@ -1,5 +1,4 @@
 import { Administrador } from './../models/administrador.model';
-import { Customer } from './../models/customer.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -34,6 +33,15 @@ export class AdministratorService {
   delete(id: number): Observable<JSON> {
     const url =`${this.baseUrl}delete/${id}`
     return this.http.delete<JSON>(url)
+  }
+
+  generateArrayCliente(fg: any) {
+    var retorno = {
+      'nome': fg.controls.nome.value, 
+      'email': fg.controls.email.value, 
+      'fone': fg.controls.fone.value
+    };
+    return retorno;
   }
 
 }

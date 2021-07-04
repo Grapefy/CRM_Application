@@ -1,7 +1,8 @@
+import { Router } from '@angular/router';
+import { AlertsService } from './../../../services/shared/alerts.service';
 import { AdministratorService } from './../../../services/administrator.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NbComponentStatus, NbToastrService } from '@nebular/theme';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-administrador',
@@ -12,9 +13,9 @@ export class CreateAdministradorComponent implements OnInit {
 
   linearMode = true;
   admForm!: FormGroup;
-  adressForm!: FormGroup;
+  addressForm!: FormGroup;
   
-  constructor(private fb: FormBuilder, private toastrService: NbToastrService, private AdministratorService: AdministratorService) { }
+  constructor(private fb: FormBuilder, private AdministratorService: AdministratorService, private alertService: AlertsService, private Router: Router) { }
 
   ngOnInit(): void {
     this.admForm = this.fb.group({
@@ -23,50 +24,23 @@ export class CreateAdministradorComponent implements OnInit {
       fone: ['', Validators.required],
     });
 
-    this.adressForm = this.fb.group({
-      cep: ['', Validators.required],
-      logradouro: ['', Validators.required],
-      uf: ['', Validators.required],
-      bairro: ['', Validators.required],
-      numero: ['', Validators.required],
-      complemento: [''],
-    });
+  }
 
+  getAddressForm(event:any){
+    this.addressForm = event.value
   }
 
   // FUNCAO TESTE QUE ME BASEEI PRA VERIFICAR COMO OBTER OS PARAMETROS PRO BD (NAO APAGAR ELA)
   submitForm() {
     var CF = {}
-    var AF = {}
-    CF = this.generateArrayCliente(this.admForm);
-    AF = this.generateArrayAdress(this.adressForm);
+    CF = this.AdministratorService.generateArrayCliente(this.admForm);
 
-    this.AdministratorService.create(JSON.stringify([CF,AF])).subscribe((result) => {
-      console.log(result)
+    this.AdministratorService.create(JSON.stringify([CF,this.addressForm])).subscribe((result) => {
+      this.alertService.showAlertSuccess('Verifique a tabela para mais informações','Administrador Cadastrado');
+      setTimeout(() => {
+        this.Router.navigate(['/administrador']);
+      }, 2000);
     })
-    
-  }
-
-  generateArrayCliente(fg: any) {
-    var retorno = {
-      'nome': fg.controls.nome.value, 
-      'email': fg.controls.email.value, 
-      'fone': fg.controls.fone.value
-    };
-    return retorno;
-  }
-
-  generateArrayAdress(fg: any) {
-    var retorno = {
-      'bairro': fg.controls.bairro.value, 
-      'cep': fg.controls.cep.value, 
-      'logradouro': fg.controls.logradouro.value, 
-      'numero': fg.controls.numero.value,
-      'uf': fg.controls.uf.value
-    };
-
-    return retorno;
-
   }
 
 }
