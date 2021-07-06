@@ -1,3 +1,4 @@
+import { UserComponent } from './pages/user/user.component';
 import { LoginComponent } from './pages/login/login.component';
 import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-employee.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
@@ -68,6 +69,10 @@ const routes: Routes = [
   {
     path: 'info-employee/:id',
     component: EditEmployeeComponent
+  },
+  {
+    path: 'user',
+    component: UserComponent
   },
 
 ];

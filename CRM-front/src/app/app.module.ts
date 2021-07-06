@@ -31,6 +31,7 @@ import { CreateEmployeeComponent } from './pages/employee/create-employee/create
 import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-employee.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AddressComponent } from './_components/_shared/address/address.component';
+import { UserComponent } from './pages/user/user.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AddressComponent } from './_components/_shared/address/address.componen
     EditEmployeeComponent,
     LoginComponent,
     AddressComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
