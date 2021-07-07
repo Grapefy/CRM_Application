@@ -15,11 +15,6 @@ import { Office } from 'src/app/models/office.model';
 })
 export class OfficeComponent implements OnInit {
 
-  // Sectors = [
-  //   { value: 'TI', label: 'TI'},
-  //   { value: 'RH', label: 'RH' },
-  // ];
-
   Sectors: any = [];
 
 
