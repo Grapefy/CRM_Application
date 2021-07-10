@@ -44,11 +44,11 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
                   <td mat-cell *matCellDef="let row"> 
                     <!-- Edit de cliente -->
-                    <!-- <button nbButton ghost status="primary" routerLink="../info-office/{{ row.id_cargo }}"> 
+                    <button nbButton ghost status="primary" (click)="openEdit(dialogEdit, row.email, row.id, row.permissao)"> 
                       <nb-icon icon="edit-outline"></nb-icon>
-                    </button>   -->
+                    </button>  
                     <!-- Delete de cliente -->
-                    <button nbButton ghost status="danger" (click)="openDelete(dialog, row.email, row.id)" >
+                    <button nbButton ghost status="danger" (click)="openDelete(dialog, row.email)" >
                       <nb-icon icon="trash-2-outline"></nb-icon>
                     </button>
                   </td>
@@ -90,3 +90,52 @@
       </nb-card-footer>
     </nb-card>
   </ng-template>
+
+  <!-- Modal Cadastro -->
+<ng-template #dialogEdit let-data let-ref="dialogRef" >
+  <nb-card>
+  <nb-card-header class="text-center"><h5>Editar Usuário</h5></nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="userForm" class="step-container">
+        <input type="hidden" name="" [value]="selectedId">
+        <!-- Input Email -->
+        <div class="form-group" >
+          <label class="label">Email:</label>
+          <input type="text" nbInput class="form-control" [placeholder]="selectedUser" fullWidth formControlName="email"
+          [ngClass]="{'status-danger':userForm.controls.email.invalid && (userForm.controls.email.dirty || userForm.controls.email.touched),
+                                      'status-success':userForm.controls.email.valid}">
+          <p class="caption status-danger" *ngIf="userForm.controls.email.invalid && (userForm.controls.email.dirty || userForm.controls.email.touched)">E-mail é obrigatório</p>
+        </div>
+        <!-- Input Permissão -->
+        <div class="form-group" >
+          <label class="label">Permissão:</label>
+          <nb-select [placeholder]="selectedPermissao" fullWidth formControlName="permissao"
+          [ngClass]="{'status-danger':userForm.controls.permissao.invalid && (userForm.controls.permissao.dirty || userForm.controls.permissao.touched),
+                      'status-success':userForm.controls.permissao.valid}">
+            <nb-option *ngFor="let permissoes of permissao" [value]="permissoes">{{ permissoes }}</nb-option>
+          </nb-select>
+          <p class="caption status-danger" *ngIf="userForm.controls.permissao.invalid && (userForm.controls.permissao.dirty || userForm.controls.permissao.touched)">permissao é obrigatório</p>
+        </div>
+         <!-- Input Senha -->
+         <div class="form-group" >
+          <label class="label">Senha:</label>
+          <input type="password" nbInput class="form-control" value="123456" fullWidth formControlName="senha"
+          [ngClass]="{'status-danger':userForm.controls.senha.invalid && (userForm.controls.senha.dirty || userForm.controls.senha.touched),
+                                      'status-success':userForm.controls.senha.valid}">
+          <p class="caption status-danger" *ngIf="userForm.controls.senha.invalid && (userForm.controls.senha.dirty || userForm.controls.senha.touched)">Senha é obrigatória</p>
+        </div>
+      </form>
+    </nb-card-body>
+
+    <nb-card-footer class="text-center">
+      <div class="row">
+        <div class="col">
+          <button nbButton (click)="ref.close()">Voltar</button>
+        </div>
+        <div class="col">
+          <button nbButton (click)="ref.close()" status="primary" [disabled]="!userForm.valid">Editar</button>
+        </div>  
+      </div> 
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
