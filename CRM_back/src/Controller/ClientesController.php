@@ -63,7 +63,7 @@ class ClientesController extends AppController
 
         if ($this->Clientes->save($cliente)) {
 
-            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$cliente->id_cliente,null);
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$cliente->id_cliente,null,null);
 
             $endereco = $this->Enderecos->newEntity($array_address);
 
@@ -108,7 +108,7 @@ class ClientesController extends AppController
                 'contain' => [],
             ]);
 
-            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$cliente->id_cliente,null);
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],$cliente->id_cliente,null,null);
 
             $endereco = $this->Enderecos->patchEntity($endereco, $array_address);
             

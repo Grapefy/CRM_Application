@@ -108,7 +108,6 @@ class SetorsController extends AppController
      */
     public function delete($id = null)
     {
-        $id = 3;
         $setor = $this->Setors->get($id);
 
         $continuarExclusao = $this->Setors->verifyExistingOffices($id);
