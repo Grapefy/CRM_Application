@@ -26,6 +26,7 @@ export class MenuComponent implements OnInit {
     {
       title: 'Nossos Serviços',
       icon:'shopping-bag-outline',
+      link:'/service'
     },
     {
       title: 'Contratos',

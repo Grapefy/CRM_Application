@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserComponent, NbUserModule, NbContextMenuModule, NbDialogModule, NbStepperModule, NbInputModule, NbDatepickerModule, NbRadioModule, NbToastrModule, NbSelectComponent, NbSelectModule, NbCheckboxComponent, NbCheckboxModule, NbFormFieldModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserComponent, NbUserModule, NbContextMenuModule, NbDialogModule, NbStepperModule, NbInputModule, NbDatepickerModule, NbRadioModule, NbToastrModule, NbSelectComponent, NbSelectModule, NbCheckboxComponent, NbCheckboxModule, NbFormFieldModule, NbAccordionModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MenuComponent } from './_components/_shared/menu/menu.component';
 import { HeaderComponent } from './_components/_shared/header/header.component';
@@ -32,6 +32,7 @@ import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-emplo
 import { LoginComponent } from './pages/login/login.component';
 import { AddressComponent } from './_components/_shared/address/address.component';
 import { UserComponent } from './pages/user/user.component';
+import { ServicoComponent } from './pages/servico/servico.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { UserComponent } from './pages/user/user.component';
     LoginComponent,
     AddressComponent,
     UserComponent,
+    ServicoComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,7 +101,8 @@ import { UserComponent } from './pages/user/user.component';
     }),
     HttpClientModule,
     NbCheckboxModule,
-    NbFormFieldModule
+    NbFormFieldModule,
+    NbAccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
