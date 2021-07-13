@@ -17,7 +17,7 @@
             </div>
             <div class="col-md-1">
               <!-- Cadastro de Serviço -->
-              <button nbButton hero status="success" ><nb-icon icon="plus-outline"></nb-icon></button>            
+              <button nbButton hero status="success" routerLink="../create-service"><nb-icon icon="plus-outline"></nb-icon></button>            
             </div>
         </div>
         <nb-accordion multi>
@@ -34,7 +34,7 @@
                     <br><br>
                     <div class="row">
                         <button nbButton outline status="primary" class="mb-2"><nb-icon icon="edit-outline"></nb-icon></button>  
-                        <button nbButton outline status="danger"><nb-icon icon="trash-2-outline"></nb-icon></button>
+                        <button nbButton outline status="danger" (click)="openDelete(dialog, servico.nome)"><nb-icon icon="trash-2-outline"></nb-icon></button>
                     </div>
                 </nb-accordion-item-body>
                 </nb-accordion-item>
@@ -42,3 +42,21 @@
     </nb-layout-column>
   
   </nb-layout>
+
+  <!-- Modal Delete -->
+  <ng-template #dialog let-data let-ref="dialogRef" >
+    <nb-card>
+      <nb-card-header>Excluir Serviço</nb-card-header>
+      <nb-card-body>Deseja excluir o Serviço: <strong> {{ selectedService }}</strong>? </nb-card-body>
+      <nb-card-footer>
+        <div class="row">
+          <div class="col">
+            <button nbButton (click)="ref.close()">Voltar</button>
+          </div>
+          <div class="col">
+            <button nbButton (click)="ref.close()" status="danger">Excluir</button>
+          </div>  
+        </div>  
+      </nb-card-footer>
+    </nb-card>
+  </ng-template>

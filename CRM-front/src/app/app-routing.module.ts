@@ -1,3 +1,4 @@
+import { CreateServicoComponent } from './pages/servico/create-servico/create-servico.component';
 import { ServicoComponent } from './pages/servico/servico.component';
 import { UserComponent } from './pages/user/user.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -78,6 +79,10 @@ const routes: Routes = [
   {
     path: 'service',
     component: ServicoComponent
+  },
+  {
+    path: 'create-service',
+    component: CreateServicoComponent
   },
 
 ];

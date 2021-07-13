@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
 import { Service } from 'src/app/models/service.model';
 
 @Component({
@@ -20,9 +21,17 @@ export class ServicoComponent implements OnInit {
       3000),
   ];
 
-  constructor() { }
+  selectedService: string = '';
+
+  constructor(private dialogService: NbDialogService) { }
 
   ngOnInit(): void {
+  }
+
+  
+  openDelete(dialog: TemplateRef<any>, servico: string) {
+    this.selectedService = servico
+    this.dialogService.open(dialog);
   }
 
 }
