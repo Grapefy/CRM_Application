@@ -20,7 +20,7 @@ class ClientesController extends AppController
     public function index()
     {
         $clientes = $this->Clientes->find('all',[
-            'order' => 'id_cliente'
+            'order' => ['id_cliente' => 'DESC']
         ]);
 
         $this->set(compact('clientes'));
