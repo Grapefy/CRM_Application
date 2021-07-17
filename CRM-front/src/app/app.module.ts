@@ -34,6 +34,7 @@ import { AddressComponent } from './_components/_shared/address/address.componen
 import { UserComponent } from './pages/user/user.component';
 import { ServicoComponent } from './pages/servico/servico.component';
 import { CreateServicoComponent } from './pages/servico/create-servico/create-servico.component';
+import { EditServicoComponent } from './pages/servico/edit-servico/edit-servico.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { CreateServicoComponent } from './pages/servico/create-servico/create-se
     UserComponent,
     ServicoComponent,
     CreateServicoComponent,
+    EditServicoComponent,
   ],
   imports: [
     BrowserModule,

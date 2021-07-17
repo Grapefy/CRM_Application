@@ -17,6 +17,7 @@ import { OfficeComponent } from './pages/office/office.component';
 import { EditSectorComponent } from './pages/sector/edit-sector/edit-sector.component';
 import { SectorComponent } from './pages/sector/sector.component';
 import { CreateEmployeeComponent } from './pages/employee/create-employee/create-employee.component';
+import { EditServicoComponent } from './pages/servico/edit-servico/edit-servico.component';
 
 const routes: Routes = [
   { path: '', 
@@ -83,6 +84,10 @@ const routes: Routes = [
   {
     path: 'create-service',
     component: CreateServicoComponent
+  },
+  {
+    path: 'edit-service',
+    component: EditServicoComponent
   },
 
 ];
