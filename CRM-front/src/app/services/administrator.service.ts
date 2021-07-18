@@ -35,7 +35,7 @@ export class AdministratorService {
     return this.http.delete<JSON>(url)
   }
 
-  generateArrayCliente(fg: any) {
+  generateArrayAdm(fg: any) {
     var retorno = {
       'nome': fg.controls.nome.value, 
       'email': fg.controls.email.value, 

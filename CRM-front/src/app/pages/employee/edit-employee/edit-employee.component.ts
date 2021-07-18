@@ -43,7 +43,7 @@ export class EditEmployeeComponent implements OnInit {
         uf: [funcionario.funcionario.enderecos[0].uf, Validators.required],
         bairro: [funcionario.funcionario.enderecos[0].bairro, Validators.required],
         numero: [funcionario.funcionario.enderecos[0].numero, Validators.required],
-        complemento: ['CASA A'],
+        complemento: [funcionario.funcionario.enderecos[0].complemento],
       });
 
       this.employeeEditForm.disable();
