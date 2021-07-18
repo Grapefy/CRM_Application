@@ -19,7 +19,7 @@ class SetorsController extends AppController
     public function index()
     {
         $setors = $this->Setors->find('all',[
-            'order' => 'id_setor'
+            'order' => ['id_setor' => 'DESC']
         ]);
 
         $this->set(compact('setors'));

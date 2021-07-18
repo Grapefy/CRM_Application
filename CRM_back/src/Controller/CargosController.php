@@ -20,7 +20,7 @@ class CargosController extends AppController
     {
         $cargos = $this->Cargos->find('all',[
             'contain' => ['Setors'],
-            'order' => 'id_cargo'
+            'order' => ['id_cargo' => 'DESC']
         ]);
 
         $this->set(compact('cargos'));

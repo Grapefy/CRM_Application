@@ -19,7 +19,7 @@ class FuncionariosController extends AppController
     public function index()
     {
         $funcionarios = $this->Funcionarios->find('all',[
-            'order' => 'id_funcionario'
+            'order' => ['id_funcionario' => 'DESC']
         ]);
 
         $this->set(compact('funcionarios'));

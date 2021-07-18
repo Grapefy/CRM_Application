@@ -19,7 +19,7 @@ class AdministradorsController extends AppController
     public function index()
     {
         $administradors = $this->Administradors->find('all',[
-            'order' => 'id_administrador'
+            'order' => ['id_administrador' => 'DESC']
         ]);
 
         $this->set(compact('administradors'));

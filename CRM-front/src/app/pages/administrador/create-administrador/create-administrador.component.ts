@@ -33,7 +33,7 @@ export class CreateAdministradorComponent implements OnInit {
   // FUNCAO TESTE QUE ME BASEEI PRA VERIFICAR COMO OBTER OS PARAMETROS PRO BD (NAO APAGAR ELA)
   submitForm() {
     var CF = {}
-    CF = this.AdministratorService.generateArrayCliente(this.admForm);
+    CF = this.AdministratorService.generateArrayAdm(this.admForm);
 
     this.AdministratorService.create(JSON.stringify([CF,this.addressForm])).subscribe((result) => {
       this.alertService.showAlertSuccess('Verifique a tabela para mais informações','Administrador Cadastrado');

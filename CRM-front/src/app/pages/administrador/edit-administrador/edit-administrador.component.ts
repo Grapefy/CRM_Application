@@ -38,7 +38,7 @@ export class EditAdministradorComponent implements OnInit {
         uf: [administrador.administrador.enderecos[0].uf, Validators.required],
         bairro: [administrador.administrador.enderecos[0].bairro, Validators.required],
         numero: [administrador.administrador.enderecos[0].numero, Validators.required],
-        complemento: ['CASA A'],
+        complemento: [administrador.administrador.enderecos[0].complemento],
       });
   
       this.administradorEditForm.disable();

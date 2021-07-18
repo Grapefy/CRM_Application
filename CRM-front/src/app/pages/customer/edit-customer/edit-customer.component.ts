@@ -42,7 +42,7 @@ export class EditCustomerComponent implements OnInit {
         uf: [cliente.cliente.enderecos[0].uf, Validators.required],
         bairro: [cliente.cliente.enderecos[0].bairro, Validators.required],
         numero: [cliente.cliente.enderecos[0].numero, Validators.required],
-        complemento: ['CASA A'],
+        complemento: [cliente.cliente.enderecos[0].complemento],
       });
 
       this.addressEditForm.disable();

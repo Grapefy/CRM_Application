@@ -123,7 +123,7 @@ class EnderecosTable extends Table
             'bairro' => $address->bairro,
             'uf' => $address->uf,
             'numero' => $address->numero,
-            'complemento' => 'AAA',
+            'complemento' => $address->complemento,
             'cliente_id' => $id,
             'administrador_id' => null,
             'funcionario_id' => null,
