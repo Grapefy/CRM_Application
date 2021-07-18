@@ -35,4 +35,16 @@ export class CustomerService {
     return this.http.delete<JSON>(url)
   }
 
+  generateArrayCliente(fg: any) {
+    var retorno = {
+      'nome': fg.controls.nome.value, 
+      'email': fg.controls.email.value, 
+      'fone': fg.controls.fone.value, 
+      'dt_nascimento': fg.controls.dt_nascimento.value,
+      'cpf': fg.controls.cpf.value,
+      'cnpj': fg.controls.cnpj.value
+    };
+    return retorno;
+  }
+
 }

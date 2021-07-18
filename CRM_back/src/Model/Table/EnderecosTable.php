@@ -55,6 +55,9 @@ class EnderecosTable extends Table
         $this->belongsTo('Administradors', [
             'foreignKey' => 'administrador_id',
         ]);
+        $this->belongsTo('Funcionarios', [
+            'foreignKey' => 'funcionario_id',
+        ]);
     }
 
     /**
@@ -107,11 +110,12 @@ class EnderecosTable extends Table
     {
         $rules->add($rules->existsIn(['cliente_id'], 'Clientes'), ['errorField' => 'cliente_id']);
         $rules->add($rules->existsIn(['administrador_id'], 'Administradors'), ['errorField' => 'administrador_id']);
+        $rules->add($rules->existsIn(['funcionario_id'], 'Funcionarios'), ['errorField' => 'funcionario_id']);
 
         return $rules;
     }
 
-    public function genarateAdressArray($address,$id,$id_adm){
+    public function genarateAdressArray($address,$id,$id_adm,$id_func){
 
         $array = [
             'cep' => $address->cep,
@@ -119,9 +123,10 @@ class EnderecosTable extends Table
             'bairro' => $address->bairro,
             'uf' => $address->uf,
             'numero' => $address->numero,
-            'complemento' => 'AAA',
+            'complemento' => $address->complemento,
             'cliente_id' => $id,
             'administrador_id' => null,
+            'funcionario_id' => null,
             'created'=> Date::now(),
             'modified'=> Date::now()
         ];
@@ -129,6 +134,10 @@ class EnderecosTable extends Table
         if ($id_adm != null) {
             $array['cliente_id'] = null;
             $array['administrador_id'] = $id_adm;
+        } else if ($id_func != null) {
+            $array['cliente_id'] = null;
+            $array['administrador_id'] = null;
+            $array['funcionario_id'] = $id_func;
         }
 
         return $array;

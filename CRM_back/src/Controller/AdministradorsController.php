@@ -19,7 +19,7 @@ class AdministradorsController extends AppController
     public function index()
     {
         $administradors = $this->Administradors->find('all',[
-            'order' => 'id_administrador'
+            'order' => ['id_administrador' => 'DESC']
         ]);
 
         $this->set(compact('administradors'));
@@ -62,7 +62,7 @@ class AdministradorsController extends AppController
 
         if ($this->Administradors->save($administrador)) {
 
-            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,$administrador->id_administrador);
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,$administrador->id_administrador,null);
 
             $endereco = $this->Enderecos->newEntity($array_address);
 
@@ -108,7 +108,7 @@ class AdministradorsController extends AppController
                 'contain' => [],
             ]);
 
-            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,$administrador->id_administrador);
+            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,$administrador->id_administrador,null);
 
             $endereco = $this->Enderecos->patchEntity($endereco, $array_address);
 

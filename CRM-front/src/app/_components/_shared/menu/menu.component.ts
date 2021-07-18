@@ -26,6 +26,7 @@ export class MenuComponent implements OnInit {
     {
       title: 'Nossos Serviços',
       icon:'shopping-bag-outline',
+      link:'/service'
     },
     {
       title: 'Contratos',
@@ -53,6 +54,10 @@ export class MenuComponent implements OnInit {
         },
         {
           title: 'Nossos Planos',
+        },
+        {
+          title: 'Usuários',
+          link: '/user',
         },
         {
           title: 'Administradores',

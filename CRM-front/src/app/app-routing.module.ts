@@ -1,3 +1,6 @@
+import { CreateServicoComponent } from './pages/servico/create-servico/create-servico.component';
+import { ServicoComponent } from './pages/servico/servico.component';
+import { UserComponent } from './pages/user/user.component';
 import { LoginComponent } from './pages/login/login.component';
 import { EditEmployeeComponent } from './pages/employee/edit-employee/edit-employee.component';
 import { EmployeeComponent } from './pages/employee/employee.component';
@@ -14,6 +17,7 @@ import { OfficeComponent } from './pages/office/office.component';
 import { EditSectorComponent } from './pages/sector/edit-sector/edit-sector.component';
 import { SectorComponent } from './pages/sector/sector.component';
 import { CreateEmployeeComponent } from './pages/employee/create-employee/create-employee.component';
+import { EditServicoComponent } from './pages/servico/edit-servico/edit-servico.component';
 
 const routes: Routes = [
   { path: '', 
@@ -68,6 +72,22 @@ const routes: Routes = [
   {
     path: 'info-employee/:id',
     component: EditEmployeeComponent
+  },
+  {
+    path: 'user',
+    component: UserComponent
+  },
+  {
+    path: 'service',
+    component: ServicoComponent
+  },
+  {
+    path: 'create-service',
+    component: CreateServicoComponent
+  },
+  {
+    path: 'edit-service',
+    component: EditServicoComponent
   },
 
 ];

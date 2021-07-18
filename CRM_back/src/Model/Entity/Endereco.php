@@ -45,7 +45,9 @@ class Endereco extends Entity
         'created' => true,
         'modified' => true,
         'administrador_id' => true,
+        'funcionario_id' => true,
         'cliente' => true,
         'administrador' => true,
+        'funcionario' => true,
     ];
 }

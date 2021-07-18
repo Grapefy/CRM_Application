@@ -19,7 +19,7 @@ class SetorsController extends AppController
     public function index()
     {
         $setors = $this->Setors->find('all',[
-            'order' => 'id_setor'
+            'order' => ['id_setor' => 'DESC']
         ]);
 
         $this->set(compact('setors'));
@@ -108,7 +108,6 @@ class SetorsController extends AppController
      */
     public function delete($id = null)
     {
-        $id = 3;
         $setor = $this->Setors->get($id);
 
         $continuarExclusao = $this->Setors->verifyExistingOffices($id);
