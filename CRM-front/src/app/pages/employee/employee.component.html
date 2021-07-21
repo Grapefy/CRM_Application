@@ -83,19 +83,15 @@
   </nb-layout>
 
 <!-- Modal Delete -->
-  <ng-template #dialog let-data let-ref="dialogRef" >
-    <nb-card>
-      <nb-card-header>Excluir Funcionário</nb-card-header>
-      <nb-card-body>Deseja excluir o funcionário: <strong> {{ selectedName }} ({{ selectedId }})</strong>? </nb-card-body>
-      <nb-card-footer>
-        <div class="row">
-          <div class="col">
-            <button nbButton (click)="ref.close()">Voltar</button>
-          </div>
-          <div class="col">
-            <button nbButton (click)="submitDelete(selectedId)" status="danger">Excluir</button>
-          </div>  
-        </div>  
-      </nb-card-footer>
-    </nb-card>
-  </ng-template>
+<ng-template #dialog let-data let-ref="dialogRef" >
+  <app-modal-delete [componentSelected]="selectedName" [idSelected]="selectedId" nameComponent="Funcionário">
+    <div class="col">
+      <button nbButton (click)="ref.close()">Voltar</button>
+    </div>
+    <div class="col">
+      <button nbButton (click)="submitDelete(selectedId)" status="danger">Excluir</button>
+    </div>     
+  </app-modal-delete>
+</ng-template>
+  
+  

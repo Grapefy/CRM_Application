@@ -22,6 +22,7 @@ export class ServicoComponent implements OnInit {
   ];
 
   selectedService: string = '';
+  selectedId!: number ;
 
   constructor(private dialogService: NbDialogService) { }
 
@@ -29,8 +30,9 @@ export class ServicoComponent implements OnInit {
   }
 
   
-  openDelete(dialog: TemplateRef<any>, servico: string) {
-    this.selectedService = servico
+  openDelete(dialog: TemplateRef<any>, servico: string, id: number) {
+    this.selectedService = servico,
+    this.selectedId = id,
     this.dialogService.open(dialog);
   }
 

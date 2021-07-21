@@ -48,7 +48,7 @@
                       <nb-icon icon="edit-outline"></nb-icon>
                     </button>  
                     <!-- Delete de cliente -->
-                    <button nbButton ghost status="danger" (click)="openDelete(dialog, row.email)" >
+                    <button nbButton ghost status="danger" (click)="openDelete(dialog, row.email, row.id)" >
                       <nb-icon icon="trash-2-outline"></nb-icon>
                     </button>
                   </td>
@@ -75,21 +75,16 @@
 
   <!-- Modal Delete -->
   <ng-template #dialog let-data let-ref="dialogRef" >
-    <nb-card>
-      <nb-card-header>Excluir Funcionário</nb-card-header>
-      <nb-card-body>Deseja excluir o Usuário: <strong> {{ selectedUser }}</strong>? </nb-card-body>
-      <nb-card-footer>
-        <div class="row">
-          <div class="col">
-            <button nbButton (click)="ref.close()">Voltar</button>
-          </div>
-          <div class="col">
-            <button nbButton (click)="ref.close()" status="danger">Excluir</button>
-          </div>  
-        </div>  
-      </nb-card-footer>
-    </nb-card>
+    <app-modal-delete [componentSelected]="selectedUser" [idSelected]="selectedId" nameComponent="Usuário">
+      <div class="col">
+        <button nbButton (click)="ref.close()">Voltar</button>
+      </div>
+      <div class="col">
+        <button nbButton (click)="ref.close()" status="danger">Excluir</button>
+      </div>     
+    </app-modal-delete>
   </ng-template>
+
 
   <!-- Modal Cadastro -->
 <ng-template #dialogEdit let-data let-ref="dialogRef" >
