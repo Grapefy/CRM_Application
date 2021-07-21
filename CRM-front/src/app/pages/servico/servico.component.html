@@ -34,7 +34,7 @@
                     <br><br>
                     <div class="row">
                         <button nbButton outline status="primary" routerLink="../edit-service" class="mb-2"><nb-icon icon="edit-outline"></nb-icon></button>  
-                        <button nbButton outline status="danger" (click)="openDelete(dialog, servico.nome)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+                        <button nbButton outline status="danger" (click)="openDelete(dialog, servico.nome, servico.id)"><nb-icon icon="trash-2-outline"></nb-icon></button>
                     </div>
                 </nb-accordion-item-body>
                 </nb-accordion-item>
@@ -44,19 +44,14 @@
   </nb-layout>
 
   <!-- Modal Delete -->
-  <ng-template #dialog let-data let-ref="dialogRef" >
-    <nb-card>
-      <nb-card-header>Excluir Serviço</nb-card-header>
-      <nb-card-body>Deseja excluir o Serviço: <strong> {{ selectedService }}</strong>? </nb-card-body>
-      <nb-card-footer>
-        <div class="row">
-          <div class="col">
-            <button nbButton (click)="ref.close()">Voltar</button>
-          </div>
-          <div class="col">
-            <button nbButton (click)="ref.close()" status="danger">Excluir</button>
-          </div>  
-        </div>  
-      </nb-card-footer>
-    </nb-card>
-  </ng-template>
+<ng-template #dialog let-data let-ref="dialogRef" >
+  <app-modal-delete [componentSelected]="selectedService" [idSelected]="selectedId" nameComponent="Serviço">
+    <div class="col">
+      <button nbButton (click)="ref.close()">Voltar</button>
+    </div>
+    <div class="col">
+      <button nbButton (click)="ref.close()" status="danger">Excluir</button>
+    </div>     
+  </app-modal-delete>
+</ng-template>
+      

@@ -55,8 +55,10 @@ export class UserComponent implements OnInit {
     }
   }
 
-  openDelete(dialog: TemplateRef<any>, email: string) {
-    this.selectedUser = email
+  openDelete(dialog: TemplateRef<any>, email: string,
+    id: number) {
+    this.selectedUser = email,
+    this.selectedId = id,
     this.dialogService.open(dialog);
   }
 
