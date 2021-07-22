@@ -24,7 +24,7 @@
               <!-- ID Column -->
               <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.id_usuario}} </td>
               </ng-container>
           
               
@@ -44,11 +44,11 @@
                   <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
                   <td mat-cell *matCellDef="let row"> 
                     <!-- Edit de cliente -->
-                    <button nbButton ghost status="primary" (click)="openEdit(dialogEdit, row.email, row.id, row.permissao)"> 
+                    <button nbButton ghost status="primary" (click)="openEdit(dialogEdit, row.email, row.id_usuario, row.permissao)"> 
                       <nb-icon icon="edit-outline"></nb-icon>
                     </button>  
                     <!-- Delete de cliente -->
-                    <button nbButton ghost status="danger" (click)="openDelete(dialog, row.email, row.id)" >
+                    <button nbButton ghost status="danger" (click)="openDelete(dialog, row.email, row.id_usuario)" >
                       <nb-icon icon="trash-2-outline"></nb-icon>
                     </button>
                   </td>
@@ -80,7 +80,7 @@
         <button nbButton (click)="ref.close()">Voltar</button>
       </div>
       <div class="col">
-        <button nbButton (click)="ref.close()" status="danger">Excluir</button>
+        <button nbButton (click)="submitDelete(selectedId)" status="danger">Excluir</button>
       </div>     
     </app-modal-delete>
   </ng-template>
@@ -91,7 +91,7 @@
   <nb-card>
   <nb-card-header class="text-center"><h5>Editar Usuário</h5></nb-card-header>
     <nb-card-body>
-      <form [formGroup]="userForm" class="step-container">
+      <form [formGroup]="userForm" *ngIf="userForm" class="step-container">
         <input type="hidden" name="" [value]="selectedId">
         <!-- Input Email -->
         <div class="form-group" >
@@ -107,7 +107,7 @@
           <nb-select [placeholder]="selectedPermissao" fullWidth formControlName="permissao"
           [ngClass]="{'status-danger':userForm.controls.permissao.invalid && (userForm.controls.permissao.dirty || userForm.controls.permissao.touched),
                       'status-success':userForm.controls.permissao.valid}">
-            <nb-option *ngFor="let permissoes of permissao" [value]="permissoes">{{ permissoes }}</nb-option>
+            <nb-option *ngFor="let permissoes of permissao" [value]="permissoes.value">{{ permissoes.label }}</nb-option>
           </nb-select>
           <p class="caption status-danger" *ngIf="userForm.controls.permissao.invalid && (userForm.controls.permissao.dirty || userForm.controls.permissao.touched)">permissao é obrigatório</p>
         </div>
@@ -128,7 +128,7 @@
           <button nbButton (click)="ref.close()">Voltar</button>
         </div>
         <div class="col">
-          <button nbButton (click)="ref.close()" status="primary" [disabled]="!userForm.valid">Editar</button>
+          <button nbButton (click)="submitEdit()" status="primary" [disabled]="!userForm.valid">Editar</button>
         </div>  
       </div> 
     </nb-card-footer>

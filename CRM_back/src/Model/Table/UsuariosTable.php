@@ -74,14 +74,12 @@ class UsuariosTable extends Table
         return $validator;
     }
 
-    public function genarateUserArray($setor){
+    public function genarateUserArray($user){
         
         $array = [
-            'email' => $setor->email,
-            'senha'=> $setor->senha,
-            'permissao'=> $setor->permissao,
-            'created'=> Date::now(),
-            'modified'=> Date::now()
+            'email' => $user->email,
+            'senha'=> $user->senha,
+            'permissao'=> $user->permissao
         ];
 
         return $array;
