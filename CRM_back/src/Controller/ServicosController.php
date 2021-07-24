@@ -86,7 +86,7 @@ class ServicosController extends AppController
             'contain' => [],
         ]);
 
-        $array_servico = $this->Servicos->genarateOfficeArray($data_json);
+        $array_servico = $this->Servicos->genarateServiceArray($data_json);
 
         $servico = $this->Servicos->patchEntity($servico, $array_servico);
     

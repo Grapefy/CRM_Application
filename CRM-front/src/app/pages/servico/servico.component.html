@@ -28,13 +28,13 @@
                 <nb-accordion-item-body>
                     {{ servico.descricao }}
                     <br><br>
-                    <strong>Setor:</strong> {{ servico.setorId }}
+                    <strong>Setor:</strong> {{ servico.setor.nome }}
                     <br>
                     <strong>Valor:</strong> R${{ servico.valor }}
                     <br><br>
                     <div class="row">
-                        <button nbButton outline status="primary" routerLink="../edit-service" class="mb-2"><nb-icon icon="edit-outline"></nb-icon></button>  
-                        <button nbButton outline status="danger" (click)="openDelete(dialog, servico.nome, servico.id)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+                        <button nbButton outline status="primary" routerLink="../edit-service/{{ servico.id_servico }}" class="mb-2"><nb-icon icon="edit-outline"></nb-icon></button>  
+                        <button nbButton outline status="danger" (click)="openDelete(dialog, servico.nome, servico.id_servico)"><nb-icon icon="trash-2-outline"></nb-icon></button>
                     </div>
                 </nb-accordion-item-body>
                 </nb-accordion-item>
@@ -50,7 +50,7 @@
       <button nbButton (click)="ref.close()">Voltar</button>
     </div>
     <div class="col">
-      <button nbButton (click)="ref.close()" status="danger">Excluir</button>
+      <button nbButton (click)="submitDelete(selectedId)" status="danger">Excluir</button>
     </div>     
   </app-modal-delete>
 </ng-template>

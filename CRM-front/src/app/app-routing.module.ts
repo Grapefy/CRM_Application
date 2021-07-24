@@ -86,7 +86,7 @@ const routes: Routes = [
     component: CreateServicoComponent
   },
   {
-    path: 'edit-service',
+    path: 'edit-service/:id',
     component: EditServicoComponent
   },
 
