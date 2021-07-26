@@ -70,7 +70,7 @@
                     <button nbButton routerLink="../service">Voltar</button>
                     </div>
                     <div class="col-2">
-                    <button nbButton status="success" [disabled]="!serviceForm.valid">Cadastrar</button>
+                    <button nbButton status="success" (click)="submitForm()" [disabled]="!serviceForm.valid">Cadastrar</button>
                     </div>
                 </div>
                 </form>

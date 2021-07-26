@@ -57,10 +57,10 @@
             </div>
             <div class="row d-flex justify-content-center mt-4">
                 <div class="col-2">
-                <button nbButton routerLink="../service">Voltar</button>
+                <button nbButton routerLink="/service">Voltar</button>
                 </div>
                 <div class="col-2">
-                <button nbButton status="success" [disabled]="!serviceEditForm.valid">Editar</button>
+                <button nbButton status="success" (click)="submitForm()" [disabled]="!serviceEditForm.valid">Editar</button>
                 </div>
             </div>
             </form>

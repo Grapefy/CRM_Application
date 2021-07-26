@@ -1,3 +1,4 @@
+import { ServiceService } from './../../services/service.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { Service } from 'src/app/models/service.model';
@@ -9,24 +10,17 @@ import { Service } from 'src/app/models/service.model';
 })
 export class ServicoComponent implements OnInit {
 
-  services: Service[] = [
-    new Service(1,'Desenvolvimento de site', 
-      'Desenvolver sites com modelos bem fáceis e bonitos para o usuário',
-      'TI',
-      2000),
-
-    new Service(2,'Desenvolvimento de sistema', 
-      'Desenvolver sistemas com alta perfomace e com um bom UI',
-      'TI',
-      3000),
-  ];
+  services: any = [];
 
   selectedService: string = '';
   selectedId!: number ;
 
-  constructor(private dialogService: NbDialogService) { }
+  constructor(private dialogService: NbDialogService, private ServiceService: ServiceService) { }
 
   ngOnInit(): void {
+    this.ServiceService.list().subscribe( (servicos: any) => {
+      this.services = servicos.servicos;
+    })
   }
 
   
@@ -34,6 +28,14 @@ export class ServicoComponent implements OnInit {
     this.selectedService = servico,
     this.selectedId = id,
     this.dialogService.open(dialog);
+  }
+
+  submitDelete(id: number) {
+    this.ServiceService.delete(id).subscribe( (result: any) => {
+      window.location.reload();
+    }, error => {
+      window.location.reload();
+    })
   }
 
 }
