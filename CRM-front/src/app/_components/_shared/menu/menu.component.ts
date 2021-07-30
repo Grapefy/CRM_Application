@@ -54,6 +54,7 @@ export class MenuComponent implements OnInit {
         },
         {
           title: 'Nossos Planos',
+          link:'/plans',
         },
         {
           title: 'Usuários',
