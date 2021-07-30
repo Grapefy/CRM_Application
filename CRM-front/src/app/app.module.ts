@@ -36,6 +36,7 @@ import { ServicoComponent } from './pages/servico/servico.component';
 import { CreateServicoComponent } from './pages/servico/create-servico/create-servico.component';
 import { EditServicoComponent } from './pages/servico/edit-servico/edit-servico.component';
 import { ModalDeleteComponent } from './_components/_shared/modals/modal-delete/modal-delete.component';
+import { PlansBusinessComponent } from './pages/plans-business/plans-business.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ModalDeleteComponent } from './_components/_shared/modals/modal-delete/
     CreateServicoComponent,
     EditServicoComponent,
     ModalDeleteComponent,
+    PlansBusinessComponent,
   ],
   imports: [
     BrowserModule,

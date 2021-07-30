@@ -1,3 +1,4 @@
+import { PlansBusinessComponent } from './pages/plans-business/plans-business.component';
 import { CreateServicoComponent } from './pages/servico/create-servico/create-servico.component';
 import { ServicoComponent } from './pages/servico/servico.component';
 import { UserComponent } from './pages/user/user.component';
@@ -88,6 +89,10 @@ const routes: Routes = [
   {
     path: 'edit-service/:id',
     component: EditServicoComponent
+  },
+  {
+    path: 'plans',
+    component: PlansBusinessComponent
   },
 
 ];
