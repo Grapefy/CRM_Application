@@ -8,6 +8,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\I18n\Date;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Usuarios Model
@@ -84,4 +85,45 @@ class UsuariosTable extends Table
 
         return $array;
     }
+
+    public function genarateUserArrayOnCreate($user,$permissao){
+        if ($permissao == 0)
+            $senha = "defaultadm123";
+        else if ($permissao == 1)
+            $senha = "defaultfunc123";
+
+        $array = [
+            'email' => $user->email,
+            'senha'=> $this->_hashPassword($senha),
+            'permissao'=> $permissao
+        ];
+
+        return $array;
+    }
+
+    public function _checkEmail($user,$permissao) {
+        $query = $this->find('all',[
+            'conditions' => ['email' => $user->email, 'permissao' => $permissao]
+        ]);
+        
+        if ($query->toArray() != [])
+            return true;
+        else
+            return false;
+    }
+
+    public function _hashPassword($password)
+    {
+        if (strlen($password) > 0) {
+            return (new DefaultPasswordHasher)->hash($password);
+        }
+    }
+
+    // public function checkPassword($passedPassword, $actualPassword) {
+    //     if ((new DefaultPasswordHasher)->check($passedPassword, $actualPassword)) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 }

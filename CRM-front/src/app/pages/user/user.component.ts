@@ -14,7 +14,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class UserComponent implements OnInit {
 
-  permissao: any = [{value: 0, label:'Administrador'},{value: 1, label:'Funcionario'},{value: 1, label:'Cliente'}];
+  permissao: any = [{value: 0, label:'Administrador'},{value: 1, label:'Funcionario'},{value: 2, label:'Cliente'}];
 
   users: User[] = [
     new User(1,'gabriel@grapefy.com', 'Administrador'),

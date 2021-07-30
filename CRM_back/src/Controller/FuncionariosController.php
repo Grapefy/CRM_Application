@@ -53,26 +53,36 @@ class FuncionariosController extends AppController
     public function add()
     {
         $this->loadModel('Enderecos');
+        $this->loadModel('Usuarios');
 
-        $data_json = $this->request->input('json_decode');
+        $data_json       = $this->request->input('json_decode');
+        $emailCadastrado = $this->Usuarios->_checkEmail($data_json[0], 1);
 
-        $array_employee = $this->Funcionarios->genarateEmployeeArray($data_json[0]);
+            if (!$emailCadastrado){
 
-        $funcionario = $this->Funcionarios->newEntity($array_employee);
+            $array_employee = $this->Funcionarios->genarateEmployeeArray($data_json[0]);
+            $funcionario    = $this->Funcionarios->newEntity($array_employee);
 
-        if ($this->Funcionarios->save($funcionario)) {
+            if ($this->Funcionarios->save($funcionario)) {
 
-            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,null,$funcionario->id_funcionario);
+                $array_user = $this->Usuarios->genarateUserArrayOnCreate($data_json[0], 1);
+                $usuario    = $this->Usuarios->newEntity($array_user);
 
-            $endereco = $this->Enderecos->newEntity($array_address);
+                $this->Usuarios->save($usuario);
 
-            if ($this->Enderecos->save($endereco)) {
-                $message = "Funcionario e Endereco Cadastrados com Sucesso!";
+                $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,null,$funcionario->id_funcionario);
+                $endereco      = $this->Enderecos->newEntity($array_address);
+
+                if ($this->Enderecos->save($endereco)) {
+                    $message = "Funcionario e Endereco Cadastrados com Sucesso!";
+                } else {
+                    $message = "Funcionario Cadastrado, mas o endereco nao pode ser cadastrado.";
+                }
             } else {
-                $message = "Funcionario Cadastrado, mas o endereco nao pode ser cadastrado.";
+                $message = "Funcionario Nao foi cadastrado.";
             }
         } else {
-            $message = "Funcionario Nao foi cadastrado.";
+            $message = "Este email ja foi cadastrado.";
         }
 
         $this->set(compact('message'));

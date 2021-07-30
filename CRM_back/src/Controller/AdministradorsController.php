@@ -53,26 +53,36 @@ class AdministradorsController extends AppController
     public function add()
     {
         $this->loadModel('Enderecos');
+        $this->loadModel('Usuarios');
 
-        $data_json = $this->request->input('json_decode');
+        $data_json       = $this->request->input('json_decode');
+        $emailCadastrado = $this->Usuarios->_checkEmail($data_json[0], 0);
 
-        $array_administrator = $this->Administradors->genarateAdministratorArray($data_json[0]);
+        if (!$emailCadastrado){
 
-        $administrador = $this->Administradors->newEntity($array_administrator);
+            $array_administrator = $this->Administradors->genarateAdministratorArray($data_json[0]);
+            $administrador       = $this->Administradors->newEntity($array_administrator);
 
-        if ($this->Administradors->save($administrador)) {
+            if ($this->Administradors->save($administrador)) {
 
-            $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,$administrador->id_administrador,null);
+                $array_user = $this->Usuarios->genarateUserArrayOnCreate($data_json[0], 0);
+                $usuario    = $this->Usuarios->newEntity($array_user);
 
-            $endereco = $this->Enderecos->newEntity($array_address);
+                $this->Usuarios->save($usuario);
 
-            if ($this->Enderecos->save($endereco)) {
-                $message = "Administrador e Endereco Cadastrados com Sucesso!";
+                $array_address = $this->Enderecos->genarateAdressArray($data_json[1],null,$administrador->id_administrador,null);
+                $endereco      = $this->Enderecos->newEntity($array_address);
+
+                if ($this->Enderecos->save($endereco)) {
+                    $message = "Administrador e Endereco Cadastrados com Sucesso!";
+                } else {
+                    $message = "Administrador Cadastrado, mas o endereco nao pode ser cadastrado.";
+                }
             } else {
-                $message = "Administrador Cadastrado, mas o endereco nao pode ser cadastrado.";
+                $message = "Administrador Nao foi cadastrado.";
             }
         } else {
-            $message = "Administrador Nao foi cadastrado.";
+            $message = "Este email ja foi cadastrado.";
         }
 
         $this->set(compact('message'));
