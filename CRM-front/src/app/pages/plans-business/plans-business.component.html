@@ -14,80 +14,52 @@
         <div class="card-row">
             <div class="card-col">
                 <nb-card size="medium">
-                <nb-card-header>Planos para sites</nb-card-header>
+                <nb-card-header>Sites</nb-card-header>
                 <nb-card-body>
                     <nb-accordion multi>
-                        <nb-accordion-item>
+                        <nb-accordion-item  *ngFor="let pSite of planosSite" >
                             <nb-accordion-item-header>
-                                Plano A
+                                {{ pSite.nome }}
                             </nb-accordion-item-header>
                             <nb-accordion-item-body>
-                                <p>
-                                -Modelagem = 3 dias 
-                                -Mockups de telas = 7 dias
-                                -Definir estruturas = 4 dias
-                                -Criação de telas (front) = 2 dias / 5 tela
-                                -Criação de banco = 7 dias
-                                -Requisições do banco (back) = 3 dias / CRUD
-                                -Integração geral = 5 dias
-                                -Erros/Bugs = 
-                                -Teste = 15 dias
-                                }
-
-                                ~ 21 telas : 3.000$ + Manutenção 6 meses
-                                ~ 42 telas : 5.000$ + Manutenção 6 meses
-                                ~ 60 telas : 8.000$ + Manutenção 12 meses
+                            <p>
+                                <strong>Recorrencia:</strong> {{ pSite.recorrencia }}   
+                            </p>
+                            <p>
+                                <strong>Valor:</strong> R$ {{ pSite.valor }}
+                            </p>
+                            <p>
+                            <strong>Detalhes:</strong>
+                            <br>
+                            {{pSite.detalhes}}    
                             </p>
                             </nb-accordion-item-body>
-                            </nb-accordion-item>
+                        </nb-accordion-item>
                     </nb-accordion>
                 </nb-card-body>
                 </nb-card>
             </div>
             <div class="card-col">
                 <nb-card size="medium">
-                <nb-card-header>Planos para sistemas</nb-card-header>
+                <nb-card-header>Sistemas</nb-card-header>
                 <nb-card-body>
                     <nb-accordion multi>
-                        <nb-accordion-item>
+                        <nb-accordion-item  *ngFor="let pSistema of planosSistema" >
                             <nb-accordion-item-header>
-                                Plano B
+                                {{ pSistema.nome }}
                             </nb-accordion-item-header>
                             <nb-accordion-item-body>
-                                <p>
-                                    -Hostinger (Simples)
-                                    Site: 600$ 
-                                    Design + Criação: 200$
-                                    Hospedagem + Email: Mensal (40$) - Anual(240$)
-                                    Domínio: Anual(60$)
-                                    SEO:
-                                    Segurança: 30$(Mensal) - 200$(Anual)
-                                    
-                                    -Site Completo: 800$
-                                    -Site Completo + Hospedagem + Segurança: 900$(Mensal)
-                                    -Site Completo + tudo: 1500$ (Anual)
-                                    
-                                    -Hostnet (B2B)
-                                    --------------------------------------------------------------------------------------------------------------------------
-                                    Manutenção básica:
-                                    100$ - 1000$ (12 meses)
-                                    (Direito a 3 atualizações + 1 implementação )/mes
-                                    +5 atualizações: 75$
-                                    +1 p/dia : 350$
-                                    + implementação (2): 75$
-                                    + implementação (5): 150$
-                                    
-                                    Manutenção avançada:
-                                    200$ - 2000$ (12 meses)
-                                    (Direito a 10 atualizações + 2 implementação )/mes
-                                    +5 atualizações: 60$
-                                    +1 p/dia : 300$
-                                    + implementação (2): 60$
-                                    + implementação (5): 120$
-                                    
-                                    implementação individual: 50$
-                                    atualizações individuais: 20$
-                                </p>
+                            <p>
+                                <strong>Recorrencia:</strong> {{ pSistema.recorrencia }}   
+                            </p>
+                            <p>
+                                <strong>Valor:</strong> R$ {{ pSistema.valor }}
+                            </p>
+                            <p>
+                            <strong>Detalhes:</strong>
+                            <br>
+                            {{pSistema.detalhes}}    
+                            </p>
                             </nb-accordion-item-body>
                         </nb-accordion-item>
                     </nb-accordion>
