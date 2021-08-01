@@ -19,6 +19,7 @@ import { EditSectorComponent } from './pages/sector/edit-sector/edit-sector.comp
 import { SectorComponent } from './pages/sector/sector.component';
 import { CreateEmployeeComponent } from './pages/employee/create-employee/create-employee.component';
 import { EditServicoComponent } from './pages/servico/edit-servico/edit-servico.component';
+import { PlansEditBusinessComponent } from './pages/plans-business/plans-edit-business/plans-edit-business.component';
 
 const routes: Routes = [
   { path: '', 
@@ -93,6 +94,10 @@ const routes: Routes = [
   {
     path: 'plans',
     component: PlansBusinessComponent
+  },
+  {
+    path: 'edit-plans/:id',
+    component: PlansEditBusinessComponent
   },
 
 ];
