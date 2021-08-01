@@ -13,7 +13,7 @@
         </h4>
         <div class="card-row">
             <div class="card-col">
-                <nb-card size="medium">
+                <nb-card>
                 <nb-card-header>Sites</nb-card-header>
                 <nb-card-body>
                     <nb-accordion multi>
@@ -33,6 +33,10 @@
                             <br>
                             {{pSite.detalhes}}    
                             </p>
+                            <div class="row">
+                                <button nbButton outline status="primary" routerLink="../edit-plans/{{ pSite.id }}" class="mb-2"><nb-icon icon="edit-outline"></nb-icon></button>  
+                                <button nbButton outline status="danger" (click)="openDelete(dialog, pSite.nome, pSite.id)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+                            </div>
                             </nb-accordion-item-body>
                         </nb-accordion-item>
                     </nb-accordion>
@@ -40,7 +44,7 @@
                 </nb-card>
             </div>
             <div class="card-col">
-                <nb-card size="medium">
+                <nb-card>
                 <nb-card-header>Sistemas</nb-card-header>
                 <nb-card-body>
                     <nb-accordion multi>
@@ -60,6 +64,10 @@
                             <br>
                             {{pSistema.detalhes}}    
                             </p>
+                            <div class="row">
+                                 <button nbButton outline status="primary" routerLink="../edit-plans/{{ pSistema.id }}" class="mb-2"><nb-icon icon="edit-outline"></nb-icon></button>  
+                                <button nbButton outline status="danger" (click)="openDelete(dialog, pSistema.nome, pSistema.id)"><nb-icon icon="trash-2-outline"></nb-icon></button>
+                            </div>
                             </nb-accordion-item-body>
                         </nb-accordion-item>
                     </nb-accordion>
@@ -70,3 +78,16 @@
     </nb-layout-column>
   
 </nb-layout>
+
+
+<ng-template #dialog let-data let-ref="dialogRef" >
+    <app-modal-delete [componentSelected]="selectedPlan" [idSelected]="selectedId" nameComponent="Plano">
+      <div class="col">
+        <button nbButton (click)="ref.close()">Voltar</button>
+      </div>
+      <div class="col">
+        <button nbButton (click)="submitDelete(selectedId)" status="danger">Excluir</button>
+      </div>     
+    </app-modal-delete>
+</ng-template>
+        

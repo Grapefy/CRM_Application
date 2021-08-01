@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { NbDialogService } from '@nebular/theme';
 import {  PlansSite, PlansSystem } from 'src/app/models/plans.model';
 
 @Component({
@@ -17,9 +18,27 @@ export class PlansBusinessComponent implements OnInit {
     new PlansSite(1,'Plano C','Semestral',5000.00,'Details here',2),
     new PlansSite(2,'Plano D','Mensal',700.00,'Details here')
   ]
-  constructor() { }
+
+  selectedPlan: string = '';
+  selectedId!: number ;
+  
+  constructor(private dialogService: NbDialogService,) { }
 
   ngOnInit(): void {
   }
 
+
+  openDelete(dialog: TemplateRef<any>, servico: string, id: number) {
+    this.selectedPlan = servico,
+    this.selectedId = id,
+    this.dialogService.open(dialog);
+  }
+
+  submitDelete(id: number) {
+    // this.ServiceService.delete(id).subscribe( (result: any) => {
+    //   window.location.reload();
+    // }, error => {
+    //   window.location.reload();
+    // })
+  }
 }
