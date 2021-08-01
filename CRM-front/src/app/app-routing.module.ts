@@ -1,3 +1,4 @@
+import { AuthGuard } from './services/shared/auth.guard';
 import { CreateServicoComponent } from './pages/servico/create-servico/create-servico.component';
 import { ServicoComponent } from './pages/servico/servico.component';
 import { UserComponent } from './pages/user/user.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   },
   { path: 'customer', 
     component: CustomerComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-customer', 

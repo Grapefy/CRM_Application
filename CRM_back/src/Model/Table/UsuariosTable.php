@@ -119,11 +119,25 @@ class UsuariosTable extends Table
         }
     }
 
-    // public function checkPassword($passedPassword, $actualPassword) {
-    //     if ((new DefaultPasswordHasher)->check($passedPassword, $actualPassword)) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+    public function _checkCredentials($typed)
+    {
+        $realData = $this->find('all', [
+            'conditions' => ['email' => $typed->email, 'permissao' => $typed->permissao]
+        ]);
+
+        if ($realData->toArray() != []) {
+            $passwToCheck = $realData->first()->senha;
+            return $this->_checkPassword($typed->senha, $passwToCheck);
+        } else {
+            return False;
+        }
+    }
+
+    public function _checkPassword($passedPassword, $actualPassword) {
+        if ((new DefaultPasswordHasher)->check($passedPassword, $actualPassword)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
