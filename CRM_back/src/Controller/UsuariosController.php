@@ -121,4 +121,27 @@ class UsuariosController extends AppController
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
     }
+
+    public function login() {
+        $data_json = $this->request->input('json_decode');
+
+        // $data_json = (object) [
+        //     'email' => 'lucas.firmianosg@gmail.com',
+        //     'senha' => 'defaultadm123',
+        //     'permissao' => 0
+        // ];
+
+        $message = $this->Usuarios->_checkCredentials($data_json);
+
+        // if ($userCanLogin) {
+        //     // DO THINGS HERE
+        //     $message = true;
+        // } else {
+        //     $message = false;
+        // }
+        
+        $this->set(compact('message'));
+        $this->viewBuilder()->setOption('serialize', true);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
 }
