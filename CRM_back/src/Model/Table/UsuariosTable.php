@@ -121,6 +121,7 @@ class UsuariosTable extends Table
 
     public function _checkCredentials($typed)
     {
+        $typed->permissao = 0;
         $realData = $this->find('all', [
             'conditions' => ['email' => $typed->email, 'permissao' => $typed->permissao]
         ]);

@@ -123,22 +123,22 @@ class UsuariosController extends AppController
     }
 
     public function login() {
-        // $data_json = $this->request->input('json_decode');
+        $data_json = $this->request->input('json_decode');
 
-        $data_json = (object) [
-            'email' => 'lucas.firmianosg@gmail.com',
-            'senha' => 'defaultadm123',
-            'permissao' => 0
-        ];
+        // $data_json = (object) [
+        //     'email' => 'lucas.firmianosg@gmail.com',
+        //     'senha' => 'defaultadm123',
+        //     'permissao' => 0
+        // ];
 
-        $userCanLogin = $this->Usuarios->_checkCredentials($data_json);
+        $message = $this->Usuarios->_checkCredentials($data_json);
 
-        if ($userCanLogin) {
-            // DO THINGS HERE
-            $message = 'Credenciais corretas';
-        } else {
-            $message = 'Credenciais incorretas';
-        }
+        // if ($userCanLogin) {
+        //     // DO THINGS HERE
+        //     $message = true;
+        // } else {
+        //     $message = false;
+        // }
         
         $this->set(compact('message'));
         $this->viewBuilder()->setOption('serialize', true);

@@ -31,65 +31,81 @@ const routes: Routes = [
   {
     path: 'create-customer', 
     component: CreateCustomerComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path: 'info-customer/:id',
     component: EditCustomerComponent, 
+    canActivate: [AuthGuard]
   },
   { path: 'administrador', 
     component: AdministradorComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-administrador',
-    component: CreateAdministradorComponent
+    component: CreateAdministradorComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'info-administrador/:id',
-    component: EditAdministradorComponent
+    component: EditAdministradorComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'sector',
-    component: SectorComponent
+    component: SectorComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'info-sector/:id',
     component: EditSectorComponent, 
+    canActivate: [AuthGuard]
   },
   {
     path: 'office',
-    component: OfficeComponent
+    component: OfficeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'info-office/:id',
-    component: EditOfficeComponent
+    component: EditOfficeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'employee',
-    component: EmployeeComponent
+    component: EmployeeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-employee',
-    component: CreateEmployeeComponent
+    component: CreateEmployeeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'info-employee/:id',
-    component: EditEmployeeComponent
+    component: EditEmployeeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'user',
-    component: UserComponent
+    component: UserComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'service',
-    component: ServicoComponent
+    component: ServicoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create-service',
-    component: CreateServicoComponent
+    component: CreateServicoComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'edit-service/:id',
-    component: EditServicoComponent
+    component: EditServicoComponent,
+    canActivate: [AuthGuard]
   },
 
 ];
