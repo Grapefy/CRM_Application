@@ -8,9 +8,17 @@
     </nb-sidebar>
   
     <nb-layout-column>
-        <h4 class="text-center mb-4">
-            Planos para clientes
-        </h4>
+        <div class="row mb-4">
+            <div class="col-md-10 offset-md-1">
+                <h4 class="text-center">
+                    Planos para clientes
+                </h4>
+            </div>
+            <div class="col-md-1">
+              <!-- Cadastro de Serviço -->
+              <button nbButton hero status="success" routerLink="../create-plan-business"><nb-icon icon="plus-outline"></nb-icon></button>            
+            </div>
+        </div>
         <div class="card-row">
             <div class="card-col">
                 <nb-card>

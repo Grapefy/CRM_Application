@@ -20,6 +20,7 @@ import { SectorComponent } from './pages/sector/sector.component';
 import { CreateEmployeeComponent } from './pages/employee/create-employee/create-employee.component';
 import { EditServicoComponent } from './pages/servico/edit-servico/edit-servico.component';
 import { PlansEditBusinessComponent } from './pages/plans-business/plans-edit-business/plans-edit-business.component';
+import { CreatePlansBusinessComponent } from './pages/plans-business/create-plans-business/create-plans-business.component';
 
 const routes: Routes = [
   { path: '', 
@@ -94,6 +95,10 @@ const routes: Routes = [
   {
     path: 'plans',
     component: PlansBusinessComponent
+  },
+  {
+    path: 'create-plan-business',
+    component: CreatePlansBusinessComponent
   },
   {
     path: 'edit-plans/:id',

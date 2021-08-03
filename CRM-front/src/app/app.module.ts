@@ -38,6 +38,7 @@ import { EditServicoComponent } from './pages/servico/edit-servico/edit-servico.
 import { ModalDeleteComponent } from './_components/_shared/modals/modal-delete/modal-delete.component';
 import { PlansBusinessComponent } from './pages/plans-business/plans-business.component';
 import { PlansEditBusinessComponent } from './pages/plans-business/plans-edit-business/plans-edit-business.component';
+import { CreatePlansBusinessComponent } from './pages/plans-business/create-plans-business/create-plans-business.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { PlansEditBusinessComponent } from './pages/plans-business/plans-edit-bu
     ModalDeleteComponent,
     PlansBusinessComponent,
     PlansEditBusinessComponent,
+    CreatePlansBusinessComponent,
   ],
   imports: [
     BrowserModule,
