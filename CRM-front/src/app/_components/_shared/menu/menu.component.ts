@@ -29,18 +29,6 @@ export class MenuComponent implements OnInit {
       link:'/service'
     },
     {
-      title: 'Contratos',
-      icon: 'file-text-outline',
-      children: [
-        {
-          title: 'Serviços',
-        },
-        {
-          title: 'Planos',
-        },
-      ],
-    },
-    {
       title: 'Configurações Avançadas',
       icon: 'settings-outline',
       children: [
