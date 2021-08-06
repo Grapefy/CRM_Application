@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace App\Controller;
 
 /**
- * Setors Controller
+ * Usuarios Controller
  *
- * @property \App\Model\Table\SetorsTable $Setors
- * @method \App\Model\Entity\Setor[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @property \App\Model\Table\UsuariosTable $Usuarios
+ * @method \App\Model\Entity\Usuario[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class SetorsController extends AppController
+class UsuariosController extends AppController
 {
     /**
      * Index method
@@ -18,11 +18,11 @@ class SetorsController extends AppController
      */
     public function index()
     {
-        $setors = $this->Setors->find('all',[
-            'order' => ['id_setor' => 'DESC']
+        $usuarios = $this->Usuarios->find('all',[
+            'order' => ['id_usuario' => 'DESC']
         ]);
 
-        $this->set(compact('setors'));
+        $this->set(compact('usuarios'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
     }
@@ -30,17 +30,17 @@ class SetorsController extends AppController
     /**
      * View method
      *
-     * @param string|null $id Setor id.
+     * @param string|null $id Usuario id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $setor = $this->Setors->get($id, [
+        $usuario = $this->Usuarios->get($id, [
             'contain' => [],
         ]);
 
-        $this->set(compact('setor'));
+        $this->set(compact('usuario'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
     }
@@ -54,25 +54,26 @@ class SetorsController extends AppController
     {
         $data_json = $this->request->input('json_decode');
 
-        $array_setor = $this->Setors->genarateSectorArray($data_json);
+        $array_usuario = $this->Usuarios->genarateUserArray($data_json);
 
-        $setor = $this->Setors->newEntity($array_setor);
+        $usuario = $this->Usuarios->newEntity($array_usuario);
 
-        if ($this->Setors->save($setor)) {
-            $message = "Setor Cadastrado com Sucesso!";
+        if ($this->Usuarios->save($usuario)) {
+            $message = "Usuario Cadastrado com Sucesso!";
         } else {
-            $message = "Setor Nao foi cadastrado.";
+            $message = "Usuario Nao foi cadastrado.";
         }
 
         $this->set(compact('message'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
+
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Setor id.
+     * @param string|null $id Usuario id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -80,18 +81,18 @@ class SetorsController extends AppController
     {
         $data_json = $this->request->input('json_decode');
 
-        $setor = $this->Setors->get($id, [
+        $usuario = $this->Usuarios->get($id, [
             'contain' => [],
         ]);
 
-        $array_setor = $this->Setors->genarateSectorArray($data_json);
+        $array_usuario = $this->Usuarios->genarateUserArray($data_json);
 
-        $setor = $this->Setors->patchEntity($setor, $array_setor);
+        $usuario = $this->Usuarios->patchEntity($usuario, $array_usuario);
     
-        if ($this->Setors->save($setor)) {
-            $message = "Setor Editados com Sucesso!";
+        if ($this->Usuarios->save($usuario)) {
+            $message = "Usuario Editados com Sucesso!";
         } else {
-            $message = "Setor Nao foi Alterado.";
+            $message = "Usuario Nao foi Alterado.";
         }
 
         $this->set(compact('message'));
@@ -102,26 +103,43 @@ class SetorsController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id Setor id.
+     * @param string|null $id Usuario id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
-        $setor = $this->Setors->get($id);
+        $usuario = $this->Usuarios->get($id);
 
-        $continuarExclusao = $this->Setors->verifyExistingRelations($id);
-
-        if ($continuarExclusao){
-            if ($this->Setors->delete($setor)) {
-                $message = "Setor Deletado com Sucesso!";
-            } else {
-                $message = "Setor Nao foi Deletado.";
-            }
+        if ($this->Usuarios->delete($usuario)) {
+            $message = "Usuario Deletado com Sucesso!";
         } else {
-            $message = "Existe um cargo atrelado a este setor.";
+            $message = "Usuario Nao foi Deletado.";
         }
 
+        $this->set(compact('message'));
+        $this->viewBuilder()->setOption('serialize', true);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
+
+    public function login() {
+        $data_json = $this->request->input('json_decode');
+
+        // $data_json = (object) [
+        //     'email' => 'lucas.firmianosg@gmail.com',
+        //     'senha' => 'defaultadm123',
+        //     'permissao' => 0
+        // ];
+
+        $message = $this->Usuarios->_checkCredentials($data_json);
+
+        // if ($userCanLogin) {
+        //     // DO THINGS HERE
+        //     $message = true;
+        // } else {
+        //     $message = false;
+        // }
+        
         $this->set(compact('message'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');

@@ -139,21 +139,16 @@
 
 
 <!-- Modal Delete -->
-  <ng-template #dialog let-data let-ref="dialogRef" >
-    <nb-card>
-      <nb-card-header>Excluir Cargo</nb-card-header>
-      <nb-card-body>Deseja excluir o cargo: <strong> {{ selectedOffice }} ({{ selectedId }})</strong>? </nb-card-body>
-      <nb-card-footer>
-        <div class="row">
-          <div class="col">
-            <button nbButton (click)="ref.close()">Voltar</button>
-          </div>
-          <div class="col">
-            <button nbButton (click)="submitDelete(selectedId)" status="danger">Excluir</button>
-          </div>  
-        </div>  
-      </nb-card-footer>
-    </nb-card>
-  </ng-template>
+<ng-template #dialog let-data let-ref="dialogRef" >
+  <app-modal-delete [componentSelected]="selectedOffice" [idSelected]="selectedId" nameComponent="Cargo">
+    <div class="col">
+      <button nbButton (click)="ref.close()">Voltar</button>
+    </div>
+    <div class="col">
+      <button nbButton (click)="submitDelete(selectedId)" status="danger">Excluir</button>
+    </div>     
+  </app-modal-delete>
+</ng-template>
+  
 
   

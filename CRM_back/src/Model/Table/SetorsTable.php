@@ -49,6 +49,10 @@ class SetorsTable extends Table
         $this->hasMany('Cargos', [
             'foreignKey' => 'setor_id',
         ]);
+
+        $this->hasMany('Servicos', [
+            'foreignKey' => 'setor_id',
+        ]);
     }
 
     /**
@@ -91,12 +95,16 @@ class SetorsTable extends Table
         return $array;
     }
 
-    public function verifyExistingOffices($id){
-        $query = $this->Cargos->find('all',[
+    public function verifyExistingRelations($id){
+        $queryCargo = $this->Cargos->find('all',[
             'conditions' => ['setor_id' => $id]
         ])->count();
 
-        if ($query == 0){
+        $queryServicos = $this->Servicos->find('all',[
+            'conditions' => ['setor_id' => $id]
+        ])->count();
+
+        if ($queryCargo == 0 || $queryServicos == 0){
             return true;
         } else {
             return false;

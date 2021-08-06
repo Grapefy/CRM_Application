@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace App\Controller;
 
 /**
- * Setors Controller
+ * Servicos Controller
  *
- * @property \App\Model\Table\SetorsTable $Setors
- * @method \App\Model\Entity\Setor[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @property \App\Model\Table\ServicosTable $Servicos
+ * @method \App\Model\Entity\Servico[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class SetorsController extends AppController
+class ServicosController extends AppController
 {
     /**
      * Index method
@@ -18,11 +18,12 @@ class SetorsController extends AppController
      */
     public function index()
     {
-        $setors = $this->Setors->find('all',[
-            'order' => ['id_setor' => 'DESC']
+        $servicos = $this->Servicos->find('all',[
+            'contain' => ['Setors'],
+            'order' => ['id_servico' => 'DESC']
         ]);
 
-        $this->set(compact('setors'));
+        $this->set(compact('servicos'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
     }
@@ -30,19 +31,20 @@ class SetorsController extends AppController
     /**
      * View method
      *
-     * @param string|null $id Setor id.
+     * @param string|null $id Servico id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $setor = $this->Setors->get($id, [
-            'contain' => [],
+        $servico = $this->Servicos->get($id, [
+            'contain' => ['Setors'],
         ]);
 
-        $this->set(compact('setor'));
+        $this->set(compact('servico'));
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
+
     }
 
     /**
@@ -54,14 +56,14 @@ class SetorsController extends AppController
     {
         $data_json = $this->request->input('json_decode');
 
-        $array_setor = $this->Setors->genarateSectorArray($data_json);
+        $array_servico = $this->Servicos->genarateServiceArray($data_json);
 
-        $setor = $this->Setors->newEntity($array_setor);
+        $servico = $this->Servicos->newEntity($array_servico);
 
-        if ($this->Setors->save($setor)) {
-            $message = "Setor Cadastrado com Sucesso!";
+        if ($this->Servicos->save($servico)) {
+            $message = "Servico Cadastrado com Sucesso!";
         } else {
-            $message = "Setor Nao foi cadastrado.";
+            $message = "Servico Nao foi cadastrado.";
         }
 
         $this->set(compact('message'));
@@ -72,7 +74,7 @@ class SetorsController extends AppController
     /**
      * Edit method
      *
-     * @param string|null $id Setor id.
+     * @param string|null $id Servico id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
@@ -80,18 +82,18 @@ class SetorsController extends AppController
     {
         $data_json = $this->request->input('json_decode');
 
-        $setor = $this->Setors->get($id, [
+        $servico = $this->Servicos->get($id, [
             'contain' => [],
         ]);
 
-        $array_setor = $this->Setors->genarateSectorArray($data_json);
+        $array_servico = $this->Servicos->genarateServiceArray($data_json);
 
-        $setor = $this->Setors->patchEntity($setor, $array_setor);
+        $servico = $this->Servicos->patchEntity($servico, $array_servico);
     
-        if ($this->Setors->save($setor)) {
-            $message = "Setor Editados com Sucesso!";
+        if ($this->Servicos->save($servico)) {
+            $message = "Servico Editados com Sucesso!";
         } else {
-            $message = "Setor Nao foi Alterado.";
+            $message = "Servico Nao foi Alterado.";
         }
 
         $this->set(compact('message'));
@@ -102,24 +104,18 @@ class SetorsController extends AppController
     /**
      * Delete method
      *
-     * @param string|null $id Setor id.
+     * @param string|null $id Servico id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
-        $setor = $this->Setors->get($id);
+        $servico = $this->Servicos->get($id);
 
-        $continuarExclusao = $this->Setors->verifyExistingRelations($id);
-
-        if ($continuarExclusao){
-            if ($this->Setors->delete($setor)) {
-                $message = "Setor Deletado com Sucesso!";
-            } else {
-                $message = "Setor Nao foi Deletado.";
-            }
+        if ($this->Servicos->delete($servico)) {
+            $message = "Servico Deletado com Sucesso!";
         } else {
-            $message = "Existe um cargo atrelado a este setor.";
+            $message = "Servico Nao foi Deletado.";
         }
 
         $this->set(compact('message'));

@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -13,7 +14,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class UserComponent implements OnInit {
 
-  permissao: string[] = ['Administrador', 'Funcionario', 'Cliente'];
+  permissao: any = [{value: 0, label:'Administrador'},{value: 1, label:'Funcionario'},{value: 2, label:'Cliente'}];
 
   users: User[] = [
     new User(1,'gabriel@grapefy.com', 'Administrador'),
@@ -32,17 +33,25 @@ export class UserComponent implements OnInit {
   @ViewChild(MatSort)
   sort!: MatSort;
   
-  constructor(private dialogService: NbDialogService, private fb: FormBuilder) { 
-    this.dataSource = new MatTableDataSource(this.users);
+  constructor(private dialogService: NbDialogService, private fb: FormBuilder, private UserService: UserService) {
   }
 
   ngOnInit(): void {
 
-    this.userForm = this.fb.group({
-      email:['', [Validators.required, Validators.email]],
-      permissao: ['', Validators.required],
-      senha: ['',Validators.required],
-    });
+    this.UserService.list().subscribe( (users: any) => {
+
+      users.usuarios.forEach( (element: any) => {
+        if (element.permissao == 0){
+          element.permissao = 'Administrador';
+        } else if (element.permissao == 1){
+          element.permissao = 'Funcionario';
+        } else {
+          element.permissao = 'Cliente';
+        }
+      });
+
+      this.dataSource.data = users.usuarios;
+    })
 
   }
 
@@ -55,16 +64,46 @@ export class UserComponent implements OnInit {
     }
   }
 
-  openDelete(dialog: TemplateRef<any>, email: string) {
-    this.selectedUser = email
+  openDelete(dialog: TemplateRef<any>, email: string,
+    id: number) {
+    this.selectedUser = email,
+    this.selectedId = id,
     this.dialogService.open(dialog);
   }
 
   openEdit(dialogEdit: TemplateRef<any>, email: string, id: number, permissao: string) {
-    this.dialogService.open(dialogEdit);
-    this.selectedUser = email
-    this.selectedId = id
-    this.selectedPermissao = permissao
+
+    this.UserService.readById(id).subscribe((user: any) => {
+      
+      this.userForm = this.fb.group({
+        email:[user.usuario.email, [Validators.required, Validators.email]],
+        permissao: [user.usuario.permissao, Validators.required],
+        senha: [user.usuario.senha,Validators.required],
+      });
+
+      this.dialogService.open(dialogEdit);
+      this.selectedUser = email
+      this.selectedId = id
+      this.selectedPermissao = permissao
+    
+    })
+  }
+
+  submitDelete(id: number) {
+    this.UserService.delete(id).subscribe( (result: any) => {
+      window.location.reload();
+    }, error => {
+      window.location.reload();
+    })
+  }
+
+  submitEdit() {
+    var submitForm = this.UserService.generateArrayUser(this.userForm);
+    this.UserService.update(JSON.stringify(submitForm), this.selectedId).subscribe( (result: any) => {
+      window.location.reload();
+    }, error => {
+      window.location.reload();
+    })
   }
 
 
