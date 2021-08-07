@@ -111,14 +111,6 @@
           </nb-select>
           <p class="caption status-danger" *ngIf="userForm.controls.permissao.invalid && (userForm.controls.permissao.dirty || userForm.controls.permissao.touched)">permissao é obrigatório</p>
         </div>
-         <!-- Input Senha -->
-         <div class="form-group" >
-          <label class="label">Senha:</label>
-          <input type="password" nbInput class="form-control" value="123456" fullWidth formControlName="senha"
-          [ngClass]="{'status-danger':userForm.controls.senha.invalid && (userForm.controls.senha.dirty || userForm.controls.senha.touched),
-                                      'status-success':userForm.controls.senha.valid}">
-          <p class="caption status-danger" *ngIf="userForm.controls.senha.invalid && (userForm.controls.senha.dirty || userForm.controls.senha.touched)">Senha é obrigatória</p>
-        </div>
       </form>
     </nb-card-body>
 

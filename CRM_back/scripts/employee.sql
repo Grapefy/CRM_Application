@@ -4,11 +4,11 @@ CREATE TABLE funcionarios (
     dt_nascimento DATE,
     email VARCHAR,
     fone VARCHAR,
-    salario_id INTEGER,
     created TIMESTAMP,
     modified TIMESTAMP
 )
 
 -- TEM CARGO?
 
-ALTER TABLE "funcionarios" ADD FOREIGN KEY ("salario_id") REFERENCES "salarios" ("id_salario");
+--salario_id INTEGER,
+-- ALTER TABLE "funcionarios" ADD FOREIGN KEY ("salario_id") REFERENCES "salarios" ("id_salario");
