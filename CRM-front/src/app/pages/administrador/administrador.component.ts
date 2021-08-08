@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { LoginService } from './../../services/shared/login.service';
 import { AdministratorService } from './../../services/administrator.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -35,15 +37,20 @@ export class AdministradorComponent implements OnInit {
   sort!: MatSort;
     
 
-  constructor(private dialogService: NbDialogService, private AdministratorService: AdministratorService) { 
+  constructor(private dialogService: NbDialogService, private AdministratorService: AdministratorService, private LoginService: LoginService, private Router: Router) { 
     // this.dataSource = new MatTableDataSource(this.administradores);
   }
 
 
   ngOnInit(): void {
+    this.LoginService.canAccess('administradores').subscribe((userCanAccess: any) => {
+      // console.log(userCanAccess)
+      if (!userCanAccess.message) {
+        this.Router.navigate(['customer'])
+      }
+    })
     this.AdministratorService.list().subscribe( (administradors: any) => {
       this.dataSource.data = administradors.administradors;
-      console.log(this.dataSource.data)
     })
   }
 

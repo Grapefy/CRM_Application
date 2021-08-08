@@ -128,9 +128,14 @@ class UsuariosTable extends Table
 
         if ($realData->toArray() != []) {
             $passwToCheck = $realData->first()->senha;
-            return $this->_checkPassword($typed->senha, $passwToCheck);
+            $permission   = $realData->first()->permissao;
+            $verify       =  $this->_checkPassword($typed->senha, $passwToCheck);
+            if ($verify)
+                return [true,$permission];
+            else
+                return [false, null];
         } else {
-            return False;
+            return [false, null];
         }
     }
 
