@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -7,13 +8,13 @@ import { Injectable } from '@angular/core';
 })
 export class LoginService {
 
-  baseUrl = 'http://localhost:8765/usuarios/login/'
+  baseUrl = 'http://localhost:8765/usuarios/'
   
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,  private Router: Router) {
   }
 
   login (userData: any): Observable<JSON>{
-    return this.http.post<JSON>(this.baseUrl, userData)
+    return this.http.post<JSON>(this.baseUrl + 'login/', userData)
   }
 
   generateLoginArray (fg: any) {
@@ -23,4 +24,13 @@ export class LoginService {
     };
     return retorno;
   }
+
+  canAccess (route: string): Observable<JSON>{
+    var permission = window.localStorage.getItem('__permission__');
+    if (!permission) {
+      permission = null
+    }
+    return this.http.post<JSON>(this.baseUrl + 'checkRoute/', JSON.stringify({route: route, permission: permission}))
+  }
+
 }
