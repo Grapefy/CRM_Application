@@ -16,11 +16,6 @@ export class UserComponent implements OnInit {
 
   permissao: any = [{value: 0, label:'Administrador'},{value: 1, label:'Funcionario'},{value: 2, label:'Cliente'}];
 
-  users: User[] = [
-    new User(1,'gabriel@grapefy.com', 'Administrador'),
-    new User(2,'inacio@grapefy.com', 'Funcionário'),
-  ];
-
   displayedColumns: string[] = ['id', 'email', 'permissao','actions'];
   dataSource = new MatTableDataSource<User>();
   selectedUser: string = '';

@@ -37,8 +37,9 @@ export class LoginComponent implements OnInit {
     var LF;
     LF = this.LoginService.generateLoginArray(this.loginForm)
     this.LoginService.login(JSON.stringify(LF)).subscribe((result: any) => {
-      if (result.message == true) {
+      if (result.message[0] == true) {
         window.localStorage.setItem('token', 'token-teste')
+        window.localStorage.setItem('__permission__', result.message[1])
         this.Router.navigate(['/customer'])
       } else {
         window.location.reload()

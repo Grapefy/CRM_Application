@@ -144,4 +144,24 @@ class UsuariosController extends AppController
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
     }
+
+    public function checkRoute() {
+        $_GlobalPermissions = [
+            'administradores' => [0]
+        ];
+
+        $message = $this->request->input('json_decode');
+        $R       = $message->route;
+        $P       = $message->permission;
+
+        if (in_array(intval($P),$_GlobalPermissions[$R])) {
+            $message = true;
+        } else {
+            $message = false;
+        }
+
+        $this->set(compact('message'));
+        $this->viewBuilder()->setOption('serialize', true);
+        $this->RequestHandler->renderAs($this, 'json');
+    }
 }
