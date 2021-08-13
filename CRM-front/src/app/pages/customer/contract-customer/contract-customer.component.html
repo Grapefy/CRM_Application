@@ -1,0 +1,83 @@
+<nb-layout>
+
+    <nb-layout-header fixed>
+      <app-header></app-header>
+    </nb-layout-header>
+  
+    <nb-sidebar>
+      <app-menu></app-menu>
+    </nb-sidebar>
+  
+    <nb-layout-column>
+        <div class="row my-2">
+            <div class="col-md-1">
+              <button nbButton ghost status="primary" routerLink="../../customer"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+            </div>
+            <div class="col-md-10">
+              <h4 class="text-center">Contratos</h4>
+            </div>
+            <div class="col-md-1">
+              <button nbButton status="success" routerLink="../../customer"><nb-icon icon="plus-outline"></nb-icon></button>
+            </div>
+          </div>
+          <div class="row my-4">
+            <p><strong>Cliente:</strong> Cliente 1</p>
+          </div>
+
+          <div class="row">
+            <nb-card>
+                <nb-card-body>
+                  <nb-tabset fullWidth>
+
+                    <nb-tab tabTitle="Serviços">
+                        <div class="row">
+                            <div class="col">
+                                <p class="title-tabs"><strong>Serviço Utilizado:</strong></p>
+                                <p class="text-tabs text-primary"><strong>Serviço A</strong> </p>
+                                <!-- <button nbButton ghost status="primary" size="small"><nb-icon icon="info"></nb-icon></button> -->
+                                <br>
+                                <p class="title-tabs"><strong>Data de adesão:</strong></p>
+                                <p class="text-tabs text-primary"><strong>12/12/2020</strong></p>
+                            </div>
+                            <div class="col">
+                                <p class="title-tabs"><strong>Previsão para entrega:</strong></p>
+                                <p class="text-tabs text-primary"><strong>30/02/2022</strong></p>
+                                <br>
+                                <p class="title-tabs"><strong>Valor Estimado:</strong></p>
+                                <p class="text-tabs text-primary"><strong>R$ 5.000,00</strong></p>
+                            </div>
+                        </div>
+                        <button nbButton outline status="primary" class="px-5"><nb-icon icon="edit-outline"></nb-icon></button>
+                        <button nbButton outline status="warning" class="px-5 mx-3" (click)="open(dialog)"><nb-icon icon="inbox-outline"></nb-icon></button>
+                    </nb-tab>
+
+                    <nb-tab tabTitle="Planos">
+                      <p>List of <strong>orders</strong>.</p>
+                    </nb-tab>
+                  </nb-tabset>
+                </nb-card-body>
+              </nb-card>
+          </div>
+    </nb-layout-column>
+  
+</nb-layout>
+
+<!-- Modal Arquivar -->
+<ng-template #dialog let-data let-ref="dialogRef" >
+  <nb-card>
+    <nb-card-header>Arquivar Serviço</nb-card-header>
+    <nb-card-body>Deseja arquivar o serviço: <strong> Serviço A</strong>? </nb-card-body>
+    <nb-card-footer class="text-center">
+      <div class="row">
+        <div class="col">
+          <button nbButton (click)="ref.close()">Voltar</button>
+        </div>
+        <div class="col">
+          <button nbButton status="warning">Excluir</button>
+        </div>    
+      </div>  
+    </nb-card-footer>
+  </nb-card>
+</ng-template>
+
+

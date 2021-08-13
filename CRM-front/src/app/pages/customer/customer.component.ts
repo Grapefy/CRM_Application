@@ -12,19 +12,6 @@ import { Customer } from 'src/app/models/customer.model';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit {
-
-  // customers: Customer[] = []
-
-  // customers: Customer[] = [
-  //   new Customer(1,'Gabriel', 'gabriel-feliciano@gmail.com'),
-  //   new Customer(2,'Lucas', 'lucas-firmiano@gmail.com'),
-  //   new Customer(3,'Inácio', 'gabriel-inácio@gmail.com'),
-  //   new Customer(4,'bot', 'server-bot@gmail.com'),
-  //   new Customer(5,'bot', 'server-bot@gmail.com'),
-  //   new Customer(6,'bot', 'server-bot@gmail.com'),
-  //   new Customer(7,'bot', 'server-bot@gmail.com'),
-  //   new Customer(8,'bot', 'server-bot@gmail.com'),
-  // ];
   
   displayedColumns: string[] = ['id', 'nome', 'email','actions'];
   dataSource =  new MatTableDataSource<Customer>();

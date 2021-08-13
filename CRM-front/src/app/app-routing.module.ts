@@ -22,6 +22,7 @@ import { CreateEmployeeComponent } from './pages/employee/create-employee/create
 import { EditServicoComponent } from './pages/servico/edit-servico/edit-servico.component';
 import { PlansEditBusinessComponent } from './pages/plans-business/plans-edit-business/plans-edit-business.component';
 import { CreatePlansBusinessComponent } from './pages/plans-business/create-plans-business/create-plans-business.component';
+import { ContractCustomerComponent } from './pages/customer/contract-customer/contract-customer.component';
 
 const routes: Routes = [
   { path: '', 
@@ -88,6 +89,11 @@ const routes: Routes = [
   {
     path: 'info-employee/:id',
     component: EditEmployeeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'contract-customer/:id',
+    component: ContractCustomerComponent,
     canActivate: [AuthGuard]
   },
   {
