@@ -16,12 +16,9 @@
             <div class="col-md-10">
               <h4 class="text-center">Contratos</h4>
             </div>
-            <div class="col-md-1">
-              <button nbButton status="success" routerLink="../../customer"><nb-icon icon="plus-outline"></nb-icon></button>
-            </div>
           </div>
           <div class="row my-4">
-            <p><strong>Cliente:</strong> Cliente 1</p>
+            <p><strong>Cliente:</strong> {{ nameCustomer }}</p>
           </div>
 
           <div class="row">
@@ -30,25 +27,30 @@
                   <nb-tabset fullWidth>
 
                     <nb-tab tabTitle="Serviços">
-                        <div class="row">
+                      <a nbButton outline status="success" class="px-5" routerLink="../{{ customerEditId }}/new-service"><nb-icon icon="plus-outline"></nb-icon></a>
+                      <div *ngFor="let servico of servicesContract">  
+                        <div class="row mt-4">
+                          <hr>  
                             <div class="col">
                                 <p class="title-tabs"><strong>Serviço Utilizado:</strong></p>
-                                <p class="text-tabs text-primary"><strong>Serviço A</strong> </p>
+                                <p class="text-tabs text-primary"><strong>{{ servico.servico }}</strong> </p>
                                 <!-- <button nbButton ghost status="primary" size="small"><nb-icon icon="info"></nb-icon></button> -->
                                 <br>
                                 <p class="title-tabs"><strong>Data de adesão:</strong></p>
-                                <p class="text-tabs text-primary"><strong>12/12/2020</strong></p>
+                                <p class="text-tabs text-primary"><strong>{{ servico.dt_adesao }}</strong></p>
                             </div>
                             <div class="col">
                                 <p class="title-tabs"><strong>Previsão para entrega:</strong></p>
-                                <p class="text-tabs text-primary"><strong>30/02/2022</strong></p>
+                                <p class="text-tabs text-primary"><strong>{{ servico.dt_entrega }}</strong></p>
                                 <br>
                                 <p class="title-tabs"><strong>Valor Estimado:</strong></p>
-                                <p class="text-tabs text-primary"><strong>R$ 5.000,00</strong></p>
+                                <p class="text-tabs text-primary"><strong>R$ {{ servico.valor_final }}</strong></p>
                             </div>
                         </div>
                         <button nbButton outline status="primary" class="px-5"><nb-icon icon="edit-outline"></nb-icon></button>
                         <button nbButton outline status="warning" class="px-5 mx-3" (click)="open(dialog)"><nb-icon icon="inbox-outline"></nb-icon></button>
+                        
+                      </div>
                     </nb-tab>
 
                     <nb-tab tabTitle="Planos">

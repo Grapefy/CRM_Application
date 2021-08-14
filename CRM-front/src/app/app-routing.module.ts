@@ -23,6 +23,7 @@ import { EditServicoComponent } from './pages/servico/edit-servico/edit-servico.
 import { PlansEditBusinessComponent } from './pages/plans-business/plans-edit-business/plans-edit-business.component';
 import { CreatePlansBusinessComponent } from './pages/plans-business/create-plans-business/create-plans-business.component';
 import { ContractCustomerComponent } from './pages/customer/contract-customer/contract-customer.component';
+import { CreateServiceCustomerComponent } from './pages/customer/contract-customer/create-service-customer/create-service-customer.component';
 
 const routes: Routes = [
   { path: '', 
@@ -94,6 +95,11 @@ const routes: Routes = [
   {
     path: 'contract-customer/:id',
     component: ContractCustomerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'contract-customer/:id/new-service',
+    component: CreateServiceCustomerComponent,
     canActivate: [AuthGuard]
   },
   {

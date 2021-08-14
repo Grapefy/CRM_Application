@@ -41,6 +41,7 @@ import { PlansBusinessComponent } from './pages/plans-business/plans-business.co
 import { PlansEditBusinessComponent } from './pages/plans-business/plans-edit-business/plans-edit-business.component';
 import { CreatePlansBusinessComponent } from './pages/plans-business/create-plans-business/create-plans-business.component';
 import { ContractCustomerComponent } from './pages/customer/contract-customer/contract-customer.component';
+import { CreateServiceCustomerComponent } from './pages/customer/contract-customer/create-service-customer/create-service-customer.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ContractCustomerComponent } from './pages/customer/contract-customer/co
     PlansEditBusinessComponent,
     CreatePlansBusinessComponent,
     ContractCustomerComponent,
+    CreateServiceCustomerComponent,
   ],
   imports: [
     BrowserModule,
