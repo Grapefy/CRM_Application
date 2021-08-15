@@ -105,7 +105,7 @@ class PlanosTable extends Table
             'recorrencia'=> $plano->recorrencia,
             'valor'=> $plano->valor,
             'detalhes'=> $plano->detalhes,
-            'tipoplano_id'=> $plano->tipoplano_id,
+            'tipoplano_id'=> $plano->tipoplano,
             'created'=> Date::now(),
             'modified'=> Date::now()
         ];

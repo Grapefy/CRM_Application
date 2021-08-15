@@ -47,10 +47,20 @@
                     <input type="text" nbInput class="form-control" value="R$ 800,00" formControlName="valor" fullWidth>
                 </div>
                 </div>
+                <div class="col-md-9">
                 <!-- Input descricao -->
                 <div class="form-group">
                     <label class="label">Detalhes:</label>
                     <textarea nbInput fullWidth placeholder="Descreva sobre o cargo." formControlName="detalhes"></textarea>
+                </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group" >
+                    <label class="label">Tipo de Plano:</label>
+                    <nb-select placeholder="Setor" formControlName="tipoplano" fullWidth>
+                      <nb-option *ngFor="let type of PlansType" [value]="type.value">{{ type.label }}</nb-option>
+                    </nb-select>
+                  </div>
                 </div>
             </div>
             <div class="row d-flex justify-content-center mt-4">
@@ -59,7 +69,7 @@
                 </div>
                 <div class="col-2">
                     <!-- (click)="submitForm()" -->
-                <button nbButton status="success"  [disabled]="!plansEditForm.valid">Editar</button>
+                <button nbButton status="success" (click)="submitForm()" [disabled]="!plansEditForm.valid">Editar</button>
                 </div>
             </div>
             </form>
