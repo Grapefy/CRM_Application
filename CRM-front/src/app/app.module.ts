@@ -8,7 +8,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 
-import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserModule, NbContextMenuModule, NbDialogModule, NbStepperModule, NbInputModule, NbDatepickerModule, NbRadioModule, NbToastrModule,  NbSelectModule,  NbCheckboxModule, NbFormFieldModule, NbAccordionModule, NbTabsetModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbButtonModule, NbSidebarModule, NbMenuModule, NbCardModule, NbIconModule, NbActionsModule, NbUserModule, NbContextMenuModule, NbDialogModule, NbStepperModule, NbInputModule, NbDatepickerModule, NbRadioModule, NbToastrModule,  NbSelectModule,  NbCheckboxModule, NbFormFieldModule, NbAccordionModule, NbTabsetModule, NbToggleModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxCurrencyModule } from 'ngx-currency';
@@ -42,6 +42,7 @@ import { PlansEditBusinessComponent } from './pages/plans-business/plans-edit-bu
 import { CreatePlansBusinessComponent } from './pages/plans-business/create-plans-business/create-plans-business.component';
 import { ContractCustomerComponent } from './pages/customer/contract-customer/contract-customer.component';
 import { CreateServiceCustomerComponent } from './pages/customer/contract-customer/create-service-customer/create-service-customer.component';
+import { EditServiceCustomerComponent } from './pages/customer/contract-customer/edit-service-customer/edit-service-customer.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { CreateServiceCustomerComponent } from './pages/customer/contract-custom
     CreatePlansBusinessComponent,
     ContractCustomerComponent,
     CreateServiceCustomerComponent,
+    EditServiceCustomerComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +92,7 @@ import { CreateServiceCustomerComponent } from './pages/customer/contract-custom
     NbActionsModule,
     NbUserModule,
     NbTabsetModule,
+    NbToggleModule,
     NbContextMenuModule,
     MatTableModule,
     MatFormFieldModule,

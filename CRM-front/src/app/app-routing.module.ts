@@ -24,6 +24,7 @@ import { PlansEditBusinessComponent } from './pages/plans-business/plans-edit-bu
 import { CreatePlansBusinessComponent } from './pages/plans-business/create-plans-business/create-plans-business.component';
 import { ContractCustomerComponent } from './pages/customer/contract-customer/contract-customer.component';
 import { CreateServiceCustomerComponent } from './pages/customer/contract-customer/create-service-customer/create-service-customer.component';
+import { EditServiceCustomerComponent } from './pages/customer/contract-customer/edit-service-customer/edit-service-customer.component';
 
 const routes: Routes = [
   { path: '', 
@@ -100,6 +101,11 @@ const routes: Routes = [
   {
     path: 'contract-customer/:id/new-service',
     component: CreateServiceCustomerComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'contract-customer/:id/edit-service',
+    component: EditServiceCustomerComponent,
     canActivate: [AuthGuard]
   },
   {

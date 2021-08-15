@@ -40,14 +40,14 @@
                                 <p class="text-tabs text-primary"><strong>{{ servico.dt_adesao }}</strong></p>
                             </div>
                             <div class="col">
-                                <p class="title-tabs"><strong>Previsão para entrega:</strong></p>
+                                <p class="title-tabs"><strong>Data entrega:</strong></p>
                                 <p class="text-tabs text-primary"><strong>{{ servico.dt_entrega }}</strong></p>
                                 <br>
                                 <p class="title-tabs"><strong>Valor Estimado:</strong></p>
                                 <p class="text-tabs text-primary"><strong>R$ {{ servico.valor_final }}</strong></p>
                             </div>
                         </div>
-                        <button nbButton outline status="primary" class="px-5"><nb-icon icon="edit-outline"></nb-icon></button>
+                        <button nbButton outline status="primary" class="px-5" routerLink="../{{ customerEditId }}/edit-service" ><nb-icon icon="edit-outline"></nb-icon></button>
                         <button nbButton outline status="warning" class="px-5 mx-3" (click)="open(dialog)"><nb-icon icon="inbox-outline"></nb-icon></button>
                         
                       </div>

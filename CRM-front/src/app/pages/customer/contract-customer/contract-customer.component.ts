@@ -16,9 +16,9 @@ export class ContractCustomerComponent implements OnInit {
   nameCustomer!: string;
 
   servicesContract: ContractService[] = [
-    new ContractService(1,'Serviço A', this.nameCustomer, '12/12/2020', '30/02/2022', 0, 0, 5000),
-    new ContractService(2,'Serviço A', this.nameCustomer, '12/12/2020', '30/02/2022', 0, 0, 5000),
-    new ContractService(3,'Serviço A', this.nameCustomer, '12/12/2020', '30/02/2022', 0, 0, 5000),
+    new ContractService(1,'Serviço A', this.nameCustomer, '12/12/2020', '30/12/2022', 0, 0, 5000),
+    new ContractService(2,'Serviço B', this.nameCustomer, '01/10/2020', '10/05/2022', 0, 0, 5000),
+    new ContractService(3,'Serviço C', this.nameCustomer, '20/05/2020', '30/02/2022', 0, 0, 5000),
   ];
 
   
