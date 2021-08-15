@@ -62,6 +62,10 @@
                     <button nbButton ghost status="danger" (click)="open(dialog, row.nome, row.id_cliente)">
                       <nb-icon icon="trash-2-outline"></nb-icon>
                     </button>
+                    <!-- Contrato de cliente -->
+                    <button nbButton ghost status="primary" routerLink="../contract-customer/{{ row.id_cliente }}">
+                      <nb-icon icon="file-text-outline"></nb-icon>
+                    </button>
                   </td>
                 </ng-container>
           
