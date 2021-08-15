@@ -2,6 +2,10 @@
 declare(strict_types=1);
 
 namespace App\Controller;
+use Cake\Event\Event;
+use Cake\Network\Exception\UnauthorizedException;
+use Cake\Utility\Security;
+use Firebase\JWT\JWT;
 
 /**
  * Usuarios Controller
@@ -11,6 +15,11 @@ namespace App\Controller;
  */
 class UsuariosController extends AppController
 {
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->Auth->allow(['add', 'token']);
+    }
     /**
      * Index method
      *
@@ -52,14 +61,25 @@ class UsuariosController extends AppController
      */
     public function add()
     {
-        $data_json = $this->request->input('json_decode');
+        // $data_json = $this->request->input('json_decode');
+        $data_json = (object) [
+            'email' => 'lucas.firmianosg@gmail.com',
+            'senha' => '123',
+            'permissao' => 0
+        ];
 
         $array_usuario = $this->Usuarios->genarateUserArray($data_json);
 
         $usuario = $this->Usuarios->newEntity($array_usuario);
 
         if ($this->Usuarios->save($usuario)) {
-            $message = "Usuario Cadastrado com Sucesso!";
+            $token = JWT::encode(
+                [
+                    'sub' => $usuario->id_usuario,
+                    'exp' => time() + 604800
+                ], Security::hash('CakePHP Framework', 'sha1', true)
+            );
+            $message = ["Usuario Cadastrado com Sucesso!", $token];
         } else {
             $message = "Usuario Nao foi cadastrado.";
         }
@@ -164,4 +184,37 @@ class UsuariosController extends AppController
         $this->viewBuilder()->setOption('serialize', true);
         $this->RequestHandler->renderAs($this, 'json');
     }
+
+    public function token()
+{
+    $user = $this->Auth->identify();
+    debug($user);exit;
+    // if (!$user) {
+    //     $user = 'AAAAA';
+    // }
+
+    $this->set([
+        'success' => true,
+        'data' => [
+            'token' => JWT::encode([
+                'sub' => $user['id_usuario'],
+                'exp' =>  time() + 604800
+            ],
+            Security::salt())
+        ],
+        '_serialize' => ['success', 'data']
+    ]);
+
+    // $this->set([
+    //     'success' => true,
+    //     'data' => [
+    //         'token' => JWT::encode([
+    //             'sub' => $user['id'],
+    //             'exp' =>  time() + 604800
+    //         ],
+    //         Security::salt())
+    //     ],
+    //     '_serialize' => ['success', 'data']
+    // ]);
+}
 }
