@@ -1,5 +1,4 @@
 import { CustomerService } from './../../../services/customer.service';
-import { NbToastrService } from '@nebular/theme';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -17,7 +16,7 @@ export class EditCustomerComponent implements OnInit {
   customerEditId!: number | string | null;
   addressEditId!: number | string | null;
 
-  constructor( private lastRoute: ActivatedRoute, private fb: FormBuilder, private toastrService: NbToastrService, private CustomerService: CustomerService ) { }
+  constructor( private lastRoute: ActivatedRoute, private fb: FormBuilder, private CustomerService: CustomerService ) { }
 
   ngOnInit(): void {
     const id = this.lastRoute.snapshot.paramMap.get('id')
