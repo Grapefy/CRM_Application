@@ -47,7 +47,7 @@
                     </div>
                     </div>
                      <!-- Input Valor -->
-                     <div class="col-md-4">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="label">Valor:</label>
                             <input type="text" nbInput class="form-control" placeholder="R$ 0,00"
@@ -57,12 +57,23 @@
                             fullWidth>
                             <p class="caption status-danger" *ngIf="plansForm.controls.valor.invalid && (plansForm.controls.valor.dirty || plansForm.controls.valor.touched)">Valor Inválido</p>
                         </div>
+                    </div>
+                    <div class="col-md-9">
+                        <!-- Input descricao -->
+                        <div class="form-group">
+                            <label class="label">Detalhes:</label>
+                            <input type="text" nbInput class="form-control" placeholder="Detalhes aqui..."
+                            formControlName="detalhes" fullWidth>
                         </div>
-                    <!-- Input descricao -->
-                    <div class="form-group">
-                        <label class="label">Detalhes:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Detalhes aqui..."
-                        formControlName="detalhes" fullWidth>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="label">Tipo de Plano:</label>
+                        <nb-select placeholder="Tipo de Plano" fullWidth formControlName="tipoplano"
+                        [ngClass]="{'status-danger':plansForm.controls.tipoplano.invalid && (plansForm.controls.tipoplano.dirty || plansForm.controls.tipoplano.touched),
+                                    'status-success':plansForm.controls.tipoplano.valid}">
+                            <nb-option *ngFor="let type of PlansType" [value]="type.value">{{ type.label }}</nb-option>
+                        </nb-select>
+                        <p class="caption status-danger" *ngIf="plansForm.controls.tipoplano.invalid && (plansForm.controls.tipoplano.dirty || plansForm.controls.tipoplano.touched)">Tipo de Plano é obrigatório</p>
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center mt-4">
