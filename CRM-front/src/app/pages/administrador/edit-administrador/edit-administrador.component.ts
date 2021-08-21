@@ -90,7 +90,6 @@ export class EditAdministradorComponent implements OnInit {
     };
 
     return retorno;
-
   }
 
 }

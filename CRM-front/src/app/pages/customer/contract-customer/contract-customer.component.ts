@@ -21,8 +21,6 @@ export class ContractCustomerComponent implements OnInit {
     new ContractService(3,'Serviço C', this.nameCustomer, '20/05/2020', '30/02/2022', 0, 0, 5000),
   ];
 
-  
-
   constructor(private lastRoute: ActivatedRoute, private CustomerService: CustomerService, private dialogService: NbDialogService) { }
 
   ngOnInit(): void {
@@ -32,7 +30,6 @@ export class ContractCustomerComponent implements OnInit {
     this.CustomerService.readById(id).subscribe((cliente: any) => {
       this.nameCustomer = cliente.cliente.nome
     })
-
   }
 
   open(dialog: TemplateRef<any>) {

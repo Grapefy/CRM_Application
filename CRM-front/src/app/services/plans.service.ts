@@ -35,7 +35,6 @@ export class PlanService {
   }
 
     generateArrayPlan(fg: any) {
-        // console.log(fg)
         var retorno = {
             'nome': fg.controls.nome.value, 
             'recorrencia': fg.controls.recorrencia.value, 

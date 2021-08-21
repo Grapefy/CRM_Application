@@ -11,7 +11,6 @@ import { Service } from 'src/app/models/service.model';
 export class ServicoComponent implements OnInit {
 
   services: any = [];
-
   selectedService: string = '';
   selectedId!: number ;
 
@@ -22,7 +21,6 @@ export class ServicoComponent implements OnInit {
       this.services = servicos.servicos;
     })
   }
-
   
   openDelete(dialog: TemplateRef<any>, servico: string, id: number) {
     this.selectedService = servico,

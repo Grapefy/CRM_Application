@@ -15,7 +15,6 @@ import { User } from 'src/app/models/user.model';
 export class UserComponent implements OnInit {
 
   permissao: any = [{value: 0, label:'Administrador'},{value: 1, label:'Funcionario'},{value: 2, label:'Cliente'}];
-
   displayedColumns: string[] = ['id', 'email', 'permissao','actions'];
   dataSource = new MatTableDataSource<User>();
   selectedUser: string = '';
@@ -32,9 +31,7 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.UserService.list().subscribe( (users: any) => {
-
       users.usuarios.forEach( (element: any) => {
         if (element.permissao == 0){
           element.permissao = 'Administrador';
@@ -44,7 +41,6 @@ export class UserComponent implements OnInit {
           element.permissao = 'Cliente';
         }
       });
-
       this.dataSource.data = users.usuarios;
     })
 
@@ -53,7 +49,6 @@ export class UserComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
@@ -67,20 +62,16 @@ export class UserComponent implements OnInit {
   }
 
   openEdit(dialogEdit: TemplateRef<any>, email: string, id: number, permissao: string) {
-
     this.UserService.readById(id).subscribe((user: any) => {
-      
       this.userForm = this.fb.group({
         email:[user.usuario.email, [Validators.required, Validators.email]],
         permissao: [user.usuario.permissao, Validators.required],
         senha: [user.usuario.senha,Validators.required],
       });
-
       this.dialogService.open(dialogEdit);
       this.selectedUser = email
       this.selectedId = id
       this.selectedPermissao = permissao
-    
     })
   }
 
@@ -100,6 +91,5 @@ export class UserComponent implements OnInit {
       window.location.reload();
     })
   }
-
 
 }

@@ -14,17 +14,11 @@ import { Sector } from 'src/app/models/sector.model';
 })
 export class SectorComponent implements OnInit {
 
-  sectors: Sector[] = [
-    new Sector(1,'TI', 'Gabriel'),
-    new Sector(2,'RH', 'Lucas'),
-  ];
-
   displayedColumns: string[] = ['id', 'setor', 'responsavel','actions'];
   dataSource = new MatTableDataSource<Sector>();
   selectedSector: string = '';
   selectedId: number = 0;
   sectorForm!: FormGroup;
-  
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -35,11 +29,9 @@ export class SectorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.SectorService.list().subscribe( (setores: any) => {
       this.dataSource.data = setores.setors;
     })
-
     this.sectorForm = this.fb.group({
       setor: ['', Validators.required],
       responsavel: ['',Validators.required],
@@ -47,17 +39,14 @@ export class SectorComponent implements OnInit {
     });
   }
 
-  //INICIAR PÁGINAÇÃO E QTD DE ITENS
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  //FILTRO
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
@@ -76,7 +65,6 @@ export class SectorComponent implements OnInit {
   submitForm() {
     var SF = {}
     SF = this.generateArraySetor(this.sectorForm);
-
     this.SectorService.create(JSON.stringify(SF)).subscribe((result) => {
       console.log(result)
     })
