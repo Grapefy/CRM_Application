@@ -1,128 +1,110 @@
-<nb-layout>
+<nb-card>
+  <nb-card-header>
+    <div class="row my-2">
+      <div class="col-md-1">
+        <button nbButton ghost status="primary" routerLink="/employee"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+      </div>
+      <div class="col-md-10">
+        <h4 class="text-center">Informações de Funcionários</h4>
+      </div>
+    </div>
+  </nb-card-header>
 
-    <nb-layout-header fixed>
-      <app-header></app-header>
-    </nb-layout-header>
-  
-    <nb-sidebar>
-      <app-menu></app-menu>
-    </nb-sidebar>
-  
-    <nb-layout-column>
-
-      <nb-card>
-        <nb-card-header>
-          <div class="row my-2">
-            <div class="col-md-1">
-              <button nbButton ghost status="primary" routerLink="/employee"><nb-icon icon="arrow-back-outline"></nb-icon></button>
-            </div>
-            <div class="col-md-10">
-              <h4 class="text-center">Informações de Funcionários</h4>
-            </div>
+  <nb-card-body>
+    <form [formGroup]="employeeEditForm" *ngIf="employeeEditForm">
+      <div class="row m-2">
+        <h6 class="text-center my-2">Dados Pessoais</h6>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="label">Nome:</label>
+            <input type="text" nbInput class="form-control" value="Gabriel" fullWidth formControlName="nome" >
           </div>
-          
-        </nb-card-header>
-
-        <nb-card-body>
-          <form [formGroup]="employeeEditForm" *ngIf="employeeEditForm">
-            <div class="row m-2">
-              <h6 class="text-center my-2">Dados Pessoais</h6>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="label">Nome:</label>
-                  <input type="text" nbInput class="form-control" value="Gabriel" fullWidth formControlName="nome" >
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="label">E-mail:</label>
-                  <input type="email" nbInput class="form-control" value="gabriel.feliciano@gmail.com" formControlName="email" fullWidth >
-                </div>
-              </div>
-              <!-- <div class="col-md-4">
-                <div class="form-group" >
-                    <label class="label">Cargo:</label>
-                    <nb-select placeholder="Cargo" fullWidth formControlName="cargo" >
-                    <nb-option *ngFor="let office of Offices" [value]="office.value">{{ office.label }}</nb-option>
-                    </nb-select>
-                </div>
-              </div> -->
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="label">Fone:</label>
-                  <input type="text" nbInput class="form-control"  mask="(00) 00000-0000" value="(85)997912500" formControlName="fone" fullWidth >
-                </div>
-              </div>
-              <div class="col-md-4">
-                <label class="label">Data de Nascimento:</label>
-                <input nbInput [nbDatepicker]="dateTimePicker" formControlName="dt_nascimento" fullWidth >
-                <nb-datepicker #dateTimePicker></nb-datepicker>
-              </div>
-            </div>
-          </form>
-
-          <form [formGroup]="addressEditForm" *ngIf="addressEditForm" class="step-container">
-            <div class="row m-2">
-              <h6 class="text-center my-2">Endereço</h6>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label class="label">CEP:</label>
-                  <input type="text" nbInput class="form-control" formControlName="cep" mask="00000-00" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-8">
-                <div class="form-group">
-                  <label class="label">Logradouro:</label>
-                  <input type="text" nbInput class="form-control" formControlName="logradouro" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label class="label">UF:</label>
-                  <input type="text" nbInput class="form-control" formControlName="uf" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group" >
-                  <label class="label">Bairro:</label>
-                  <input type="text" nbInput class="form-control" formControlName="bairro" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group"> 
-                  <label class="label">Número:</label>
-                  <input type="text" nbInput class="form-control" formControlName="numero" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group"> 
-                  <label class="label">Complemento:</label>
-                  <input type="text" nbInput class="form-control" formControlName="complemento" fullWidth>
-                </div>
-              </div>
-            </div>
-          </form>
-
-          <div *ngIf="onEdit">
-            <div class="row d-flex justify-content-center mt-4" >
-              <div class="col-2">
-                <button nbButton (click)="offEditForm()">Cancelar</button>
-              </div>
-              <div class="col-2">
-                <button nbButton (click)="submitForm()" status="success">Salvar Alterações</button>
-              </div>
-            </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="label">E-mail:</label>
+            <input type="email" nbInput class="form-control" value="gabriel.feliciano@gmail.com" formControlName="email" fullWidth >
           </div>
-          <div *ngIf="onEdit === false">
-            <div class="row d-flex justify-content-center mt-4">
-              <div class="col-2">
-                <button nbButton status="primary" (click)="onEditForm()">Editar</button>
-              </div>
-            </div>
+        </div>
+        <!-- <div class="col-md-4">
+          <div class="form-group" >
+              <label class="label">Cargo:</label>
+              <nb-select placeholder="Cargo" fullWidth formControlName="cargo" >
+              <nb-option *ngFor="let office of Offices" [value]="office.value">{{ office.label }}</nb-option>
+              </nb-select>
           </div>
-        </nb-card-body>
-      </nb-card>
+        </div> -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label class="label">Fone:</label>
+            <input type="text" nbInput class="form-control"  mask="(00) 00000-0000" value="(85)997912500" formControlName="fone" fullWidth >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label class="label">Data de Nascimento:</label>
+          <input nbInput [nbDatepicker]="dateTimePicker" formControlName="dt_nascimento" fullWidth >
+          <nb-datepicker #dateTimePicker></nb-datepicker>
+        </div>
+      </div>
+    </form>
 
-    </nb-layout-column>
-  
-</nb-layout>
+    <form [formGroup]="addressEditForm" *ngIf="addressEditForm" class="step-container">
+      <div class="row m-2">
+        <h6 class="text-center my-2">Endereço</h6>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label class="label">CEP:</label>
+            <input type="text" nbInput class="form-control" formControlName="cep" mask="00000-00" fullWidth>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="form-group">
+            <label class="label">Logradouro:</label>
+            <input type="text" nbInput class="form-control" formControlName="logradouro" fullWidth>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label class="label">UF:</label>
+            <input type="text" nbInput class="form-control" formControlName="uf" fullWidth>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group" >
+            <label class="label">Bairro:</label>
+            <input type="text" nbInput class="form-control" formControlName="bairro" fullWidth>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group"> 
+            <label class="label">Número:</label>
+            <input type="text" nbInput class="form-control" formControlName="numero" fullWidth>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group"> 
+            <label class="label">Complemento:</label>
+            <input type="text" nbInput class="form-control" formControlName="complemento" fullWidth>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div *ngIf="onEdit">
+      <div class="row d-flex justify-content-center mt-4" >
+        <div class="col-2 text-center">
+          <button nbButton (click)="offEditForm()">Cancelar</button>
+        </div>
+        <div class="col-2 text-center">
+          <button nbButton (click)="submitForm()" status="success">Salvar Alterações</button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="onEdit === false">
+      <div class="row d-flex justify-content-center mt-4">
+        <div class="col-2 text-center">
+          <button nbButton status="primary" (click)="onEditForm()">Editar</button>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,102 +1,81 @@
-<nb-layout>
-    <nb-layout-header fixed>
-        <app-header></app-header>
-    </nb-layout-header>
-
-    <nb-sidebar>
-        <app-menu></app-menu>
-    </nb-sidebar>
-
-    <nb-layout-column>
-        <nb-card>
-            <nb-card-header>
-              <div class="row my-2">
-                <div class="col-md-1">
-                  <button nbButton ghost status="primary" routerLink="../administrador"><nb-icon icon="arrow-back-outline"></nb-icon></button>
-                </div>
-                <div class="col-md-10">
-                  <h4 class="text-center">Cadastro de Administrador</h4>
-                </div>
+<nb-card>
+  <nb-card-header>
+    <div class="row my-2">
+      <div class="col-md-1">
+        <button nbButton ghost status="primary" routerLink="../administrador"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+      </div>
+      <div class="col-md-10">
+        <h4 class="text-center">Cadastro de Administrador</h4>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body class="mx-4">
+    <nb-stepper orientation="horizontal" [linear]="linearMode">
+      <nb-step [label]="labelOne" [stepControl]="admForm">
+        <form [formGroup]="admForm" class="step-container">
+          <ng-template #labelOne>Dados Pessoais</ng-template>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="label">Nome:</label>
+                <input type="text" nbInput class="form-control" placeholder="Nome"
+                formControlName="nome" 
+                [ngClass]="{'status-danger': admForm.controls.nome.invalid && (admForm.controls.nome.dirty || admForm.controls.nome.touched),
+                            'status-success':admForm.controls.nome.valid}"
+                fullWidth>
+                <p class="caption status-danger" *ngIf="admForm.controls.nome.invalid && (admForm.controls.nome.dirty || admForm.controls.nome.touched)">Nome é obrigatório</p>
               </div>
-            </nb-card-header>
-            <nb-card-body class="mx-4">
-              <nb-stepper orientation="horizontal" [linear]="linearMode">
-                <!-- Part 1 -->
-                <nb-step [label]="labelOne" [stepControl]="admForm">
-                  <form [formGroup]="admForm" class="step-container">
-                    <ng-template #labelOne>Dados Pessoais</ng-template>
-                    <div class="row">
-                      <!-- Input Name -->
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="label">Nome:</label>
-                          <input type="text" nbInput class="form-control" placeholder="Nome"
-                          formControlName="nome" 
-                          [ngClass]="{'status-danger': admForm.controls.nome.invalid && (admForm.controls.nome.dirty || admForm.controls.nome.touched),
-                                      'status-success':admForm.controls.nome.valid}"
-                          fullWidth>
-                          <p class="caption status-danger" *ngIf="admForm.controls.nome.invalid && (admForm.controls.nome.dirty || admForm.controls.nome.touched)">Nome é obrigatório</p>
-                        </div>
-                      </div>
-                      <!-- Input Email -->
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="label">E-mail:</label>
-                          <input type="email" nbInput class="form-control" placeholder="E-mail"
-                          formControlName="email"
-                          [ngClass]="{'status-danger':admForm.controls.email.invalid && (admForm.controls.email.dirty || admForm.controls.email.touched),
-                                      'status-success':admForm.controls.email.valid}"
-                          fullWidth>
-                          <p class="caption status-danger" *ngIf="admForm.controls.email.invalid && (admForm.controls.email.dirty || admForm.controls.email.touched)">Email Inválido</p>
-                        </div>
-                      </div>
-                      <!-- Input Fone -->
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label class="label">Fone:</label>
-                          <input type="text" nbInput class="form-control" placeholder="Fone" mask="(00) 00000-0000"
-                          formControlName="fone" 
-                          [ngClass]="{'status-danger':admForm.controls.fone.invalid && (admForm.controls.fone.dirty || admForm.controls.fone.touched),
-                                      'status-success':admForm.controls.fone.valid}"
-                          fullWidth>
-                          <p class="caption status-danger" *ngIf="admForm.controls.fone.invalid && (admForm.controls.fone.dirty || admForm.controls.fone.touched)">Fone é obrigatório</p>
-                        </div>
-                      </div>
-                      <!-- </form> -->
-                    </div>
-                    <div class="row d-flex justify-content-center mt-4">
-                      <div class="col-2">
-                        <button nbButton routerLink="../administrador">Voltar</button>
-                      </div>
-                      <div class="col-2">
-                        <button nbButton nbStepperNext status="primary" [disabled]="!admForm.valid">Avançar</button>
-                      </div>
-                    </div>
-                  </form>
-                </nb-step>
-                
-                <!-- Part 2 -->
-                <nb-step [label]="labelTwo">
-                  <ng-template #labelTwo>Endereço</ng-template>
-                  <app-address-form (formAddress) = "getAddressForm($event)"></app-address-form>
-                </nb-step>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="label">E-mail:</label>
+                <input type="email" nbInput class="form-control" placeholder="E-mail"
+                formControlName="email"
+                [ngClass]="{'status-danger':admForm.controls.email.invalid && (admForm.controls.email.dirty || admForm.controls.email.touched),
+                            'status-success':admForm.controls.email.valid}"
+                fullWidth>
+                <p class="caption status-danger" *ngIf="admForm.controls.email.invalid && (admForm.controls.email.dirty || admForm.controls.email.touched)">Email Inválido</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="label">Fone:</label>
+                <input type="text" nbInput class="form-control" placeholder="Fone" mask="(00) 00000-0000"
+                formControlName="fone" 
+                [ngClass]="{'status-danger':admForm.controls.fone.invalid && (admForm.controls.fone.dirty || admForm.controls.fone.touched),
+                            'status-success':admForm.controls.fone.valid}"
+                fullWidth>
+                <p class="caption status-danger" *ngIf="admForm.controls.fone.invalid && (admForm.controls.fone.dirty || admForm.controls.fone.touched)">Fone é obrigatório</p>
+              </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center mt-4">
+            <div class="col-2">
+              <button nbButton routerLink="../administrador">Voltar</button>
+            </div>
+            <div class="col-2">
+              <button nbButton nbStepperNext status="primary" [disabled]="!admForm.valid">Avançar</button>
+            </div>
+          </div>
+        </form>
+      </nb-step>
 
-                <!-- Part 3 -->
-                <nb-step label="Finalização">
-                  <h4 class="text-center text-success">Finalização</h4>
-                  <p class="lorem text-center text-success">
-                    Acesse a tabela de administrador para mais informações
-                  </p>
-                  <div class="row d-flex justify-content-center mt-4">
-                    <div class="col-2">
-                      <button type="submit" nbButton nbStepperNext status="success" (click)="submitForm()" fullWidth>Finalizar</button>
-                    </div>
-                  </div>
-                  
-                </nb-step>
-              </nb-stepper>
-            </nb-card-body>
-          </nb-card>
-    </nb-layout-column>
-        
-</nb-layout>
+      <nb-step [label]="labelTwo">
+        <ng-template #labelTwo>Endereço</ng-template>
+        <app-address-form (formAddress) = "getAddressForm($event)"></app-address-form>
+      </nb-step>
+
+      <nb-step label="Finalização">
+        <h4 class="text-center text-success">Finalização</h4>
+        <p class="lorem text-center text-success">
+          Acesse a tabela de administrador para mais informações
+        </p>
+        <div class="row d-flex justify-content-center mt-4">
+          <div class="col-2">
+            <button type="submit" nbButton nbStepperNext status="success" (click)="submitForm()" fullWidth>Finalizar</button>
+          </div>
+        </div>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>

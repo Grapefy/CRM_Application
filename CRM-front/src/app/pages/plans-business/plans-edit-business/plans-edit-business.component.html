@@ -1,82 +1,60 @@
-<nb-layout>
+<nb-card>
+  <nb-card-header>
+    <div class="row my-2">
+      <div class="col-md-1">
+        <button nbButton ghost status="primary" routerLink="/plans"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+      </div>
+      <div class="col-md-10">
+        <h4 class="text-center">Informações de Plano</h4>
+      </div>
+    </div>
+  </nb-card-header>
 
-    <nb-layout-header fixed>
-      <app-header></app-header>
-    </nb-layout-header>
-  
-    <nb-sidebar>
-      <app-menu></app-menu>
-    </nb-sidebar>
-  
-    <nb-layout-column>
-
-      <nb-card>
-        <nb-card-header>
-          <div class="row my-2">
-            <div class="col-md-1">
-              <button nbButton ghost status="primary" routerLink="/plans"><nb-icon icon="arrow-back-outline"></nb-icon></button>
-            </div>
-            <div class="col-md-10">
-              <h4 class="text-center">Informações de Plano</h4>
+  <nb-card-body class="mx-4">
+      <form [formGroup]="plansEditForm" *ngIf="plansEditForm">
+      <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+                <label class="label">Nome do Plano:</label>
+                <input type="text" nbInput class="form-control" value="Nome" formControlName="nome" fullWidth>
             </div>
           </div>
-          
-        </nb-card-header>
-
-        <nb-card-body class="mx-4">
-            <form [formGroup]="plansEditForm" *ngIf="plansEditForm">
-            <div class="row">
-                <!-- Input Name -->
-                <div class="col-md-4">
-                <div class="form-group">
-                    <label class="label">Nome do Plano:</label>
-                    <input type="text" nbInput class="form-control" value="Nome" formControlName="nome" fullWidth>
-                </div>
-                </div>
-                <!-- Input Recorrencia -->
-                <div class="col-md-4">
-                <div class="form-group">
-                    <label class="label">Recorrencia:</label>
-                    <input type="text" nbInput class="form-control" value="R$ 800,00" formControlName="recorrencia" fullWidth>
-                </div>
-                </div>
-                <!-- Input Valor -->
-                <div class="col-md-4">
-                <div class="form-group" >
-                    <label class="label">Valor:</label>
-                    <input type="text" nbInput class="form-control" value="R$ 800,00" formControlName="valor" fullWidth>
-                </div>
-                </div>
-                <div class="col-md-9">
-                <!-- Input descricao -->
-                <div class="form-group">
-                    <label class="label">Detalhes:</label>
-                    <textarea nbInput fullWidth placeholder="Descreva sobre o cargo." formControlName="detalhes"></textarea>
-                </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group" >
-                    <label class="label">Tipo de Plano:</label>
-                    <nb-select placeholder="Setor" formControlName="tipoplano" fullWidth>
-                      <nb-option *ngFor="let type of PlansType" [value]="type.value">{{ type.label }}</nb-option>
-                    </nb-select>
-                  </div>
-                </div>
+          <div class="col-md-4">
+            <div class="form-group">
+                <label class="label">Recorrencia:</label>
+                <input type="text" nbInput class="form-control" value="R$ 800,00" formControlName="recorrencia" fullWidth>
             </div>
-            <div class="row d-flex justify-content-center mt-4">
-                <div class="col-2">
-                <button nbButton routerLink="/plans">Voltar</button>
-                </div>
-                <div class="col-2">
-                    <!-- (click)="submitForm()" -->
-                <button nbButton status="success" (click)="submitForm()" [disabled]="!plansEditForm.valid">Editar</button>
-                </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" >
+                <label class="label">Valor:</label>
+                <input type="text" nbInput class="form-control" value="R$ 800,00" formControlName="valor" fullWidth>
             </div>
-            </form>
-        </nb-card-body>
-      </nb-card>
-
-    </nb-layout-column>
-  
-</nb-layout>
+          </div>
+          <div class="col-md-9">
+            <div class="form-group">
+                <label class="label">Detalhes:</label>
+                <textarea nbInput fullWidth placeholder="Descreva sobre o cargo." formControlName="detalhes"></textarea>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group" >
+              <label class="label">Tipo de Plano:</label>
+              <nb-select placeholder="Setor" formControlName="tipoplano" fullWidth>
+                <nb-option *ngFor="let type of PlansType" [value]="type.value">{{ type.label }}</nb-option>
+              </nb-select>
+            </div>
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mt-4">
+        <div class="col-2 text-center">
+          <button nbButton routerLink="/plans">Voltar</button>
+        </div>
+        <div class="col-2 text-center">
+          <button nbButton status="success" (click)="submitForm()" [disabled]="!plansEditForm.valid">Editar</button>
+        </div>
+      </div>
+      </form>
+  </nb-card-body>
+</nb-card>
 

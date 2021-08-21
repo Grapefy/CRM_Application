@@ -1,81 +1,64 @@
-<nb-layout>
-    <nb-layout-header fixed>
-        <app-header></app-header>
-    </nb-layout-header>
-
-    <nb-sidebar>
-        <app-menu></app-menu>
-    </nb-sidebar>
-
-    <nb-layout-column>
-        <nb-card>
-            <nb-card-header>
-              <div class="row my-2">
-                <div class="col-md-1">
-                  <button nbButton ghost status="primary" routerLink="../service"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+<nb-card>
+    <nb-card-header>
+        <div class="row my-2">
+            <div class="col-md-1">
+                <button nbButton ghost status="primary" routerLink="../service"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+            </div>
+            <div class="col-md-10">
+                <h4 class="text-center">Cadastro de Serviço</h4>
+            </div>
+        </div>
+    </nb-card-header>
+    <nb-card-body class="mx-4">
+        <form [formGroup]="serviceForm">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="label">Nome do Serviço:</label>
+                    <input type="text" nbInput class="form-control" placeholder="Nome"
+                    formControlName="nome" 
+                    [ngClass]="{'status-danger': serviceForm.controls.nome.invalid && (serviceForm.controls.nome.dirty || serviceForm.controls.nome.touched),
+                                'status-success':serviceForm.controls.nome.valid}"
+                    fullWidth>
+                    <p class="caption status-danger" *ngIf="serviceForm.controls.nome.invalid && (serviceForm.controls.nome.dirty || serviceForm.controls.nome.touched)">Nome é obrigatório</p>
                 </div>
-                <div class="col-md-10">
-                  <h4 class="text-center">Cadastro de Serviço</h4>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="label">Valor:</label>
+                    <input type="text" nbInput class="form-control" placeholder="R$ 0,00"
+                    formControlName="valor"
+                    [ngClass]="{'status-danger':serviceForm.controls.valor.invalid && (serviceForm.controls.valor.dirty || serviceForm.controls.valor.touched),
+                                'status-success':serviceForm.controls.valor.valid}"
+                    fullWidth>
+                    <p class="caption status-danger" *ngIf="serviceForm.controls.valor.invalid && (serviceForm.controls.valor.dirty || serviceForm.controls.valor.touched)">valor Inválido</p>
                 </div>
-              </div>
-            </nb-card-header>
-            <nb-card-body class="mx-4">
-                <form [formGroup]="serviceForm">
-                <div class="row">
-                    <!-- Input Name -->
-                    <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="label">Nome do Serviço:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Nome"
-                        formControlName="nome" 
-                        [ngClass]="{'status-danger': serviceForm.controls.nome.invalid && (serviceForm.controls.nome.dirty || serviceForm.controls.nome.touched),
-                                    'status-success':serviceForm.controls.nome.valid}"
-                        fullWidth>
-                        <p class="caption status-danger" *ngIf="serviceForm.controls.nome.invalid && (serviceForm.controls.nome.dirty || serviceForm.controls.nome.touched)">Nome é obrigatório</p>
-                    </div>
-                    </div>
-                    <!-- Input Valor -->
-                    <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="label">Valor:</label>
-                        <input type="text" nbInput class="form-control" placeholder="R$ 0,00"
-                        formControlName="valor"
-                        [ngClass]="{'status-danger':serviceForm.controls.valor.invalid && (serviceForm.controls.valor.dirty || serviceForm.controls.valor.touched),
-                                    'status-success':serviceForm.controls.valor.valid}"
-                        fullWidth>
-                        <p class="caption status-danger" *ngIf="serviceForm.controls.valor.invalid && (serviceForm.controls.valor.dirty || serviceForm.controls.valor.touched)">valor Inválido</p>
-                    </div>
-                    </div>
-                    <!-- Input Setor -->
-                    <div class="col-md-4">
-                    <div class="form-group" >
-                        <label class="label">Setor:</label>
-                        <nb-select placeholder="Setor" fullWidth formControlName="setor"
-                        [ngClass]="{'status-danger':serviceForm.controls.setor.invalid && (serviceForm.controls.setor.dirty || serviceForm.controls.setor.touched),
-                                    'status-success':serviceForm.controls.setor.valid}">
-                        <nb-option *ngFor="let sector of Sectors" [value]="sector.value">{{ sector.label }}</nb-option>
-                        </nb-select>
-                        <p class="caption status-danger" *ngIf="serviceForm.controls.setor.invalid && (serviceForm.controls.setor.dirty || serviceForm.controls.setor.touched)">setor é obrigatório</p>
-                    </div>
-                    </div>
-                    <!-- Input descricao -->
-                    <div class="form-group">
-                        <label class="label">Descrição:</label>
-                        <input type="text" nbInput class="form-control" placeholder="Descrição aqui..."
-                        formControlName="descricao" fullWidth>
-                    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group" >
+                    <label class="label">Setor:</label>
+                    <nb-select placeholder="Setor" fullWidth formControlName="setor"
+                    [ngClass]="{'status-danger':serviceForm.controls.setor.invalid && (serviceForm.controls.setor.dirty || serviceForm.controls.setor.touched),
+                                'status-success':serviceForm.controls.setor.valid}">
+                    <nb-option *ngFor="let sector of Sectors" [value]="sector.value">{{ sector.label }}</nb-option>
+                    </nb-select>
+                    <p class="caption status-danger" *ngIf="serviceForm.controls.setor.invalid && (serviceForm.controls.setor.dirty || serviceForm.controls.setor.touched)">setor é obrigatório</p>
                 </div>
-                <div class="row d-flex justify-content-center mt-4">
-                    <div class="col-2">
-                    <button nbButton routerLink="../service">Voltar</button>
-                    </div>
-                    <div class="col-2">
-                    <button nbButton status="success" (click)="submitForm()" [disabled]="!serviceForm.valid">Cadastrar</button>
-                    </div>
-                </div>
-                </form>
-            </nb-card-body>
-          </nb-card>
-    </nb-layout-column>
-        
-</nb-layout>
+            </div>
+            <div class="form-group">
+                <label class="label">Descrição:</label>
+                <input type="text" nbInput class="form-control" placeholder="Descrição aqui..."
+                formControlName="descricao" fullWidth>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center mt-4">
+            <div class="col-2 text-center">
+                <button nbButton routerLink="../service">Voltar</button>
+            </div>
+            <div class="col-2 text-center">
+                <button nbButton status="success" (click)="submitForm()" [disabled]="!serviceForm.valid">Cadastrar</button>
+            </div>
+        </div>
+        </form>
+    </nb-card-body>
+</nb-card>
