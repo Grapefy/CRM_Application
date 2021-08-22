@@ -11,11 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditOfficeComponent implements OnInit {
 
-  // Sectors = [
-  //   { value: 'TI', label: 'TI'},
-  //   { value: 'RH', label: 'RH' },
-  // ];
-
   Sectors: any = [];
   onEdit = false; 
   officeEditId!: number | string | null;
@@ -26,13 +21,11 @@ export class EditOfficeComponent implements OnInit {
   ngOnInit(): void {
     const id = this.lastRoute.snapshot.paramMap.get('id')
     this.officeEditId = id
-
     this.SectorService.list().subscribe( (setores: any) => {
       setores.setors.forEach( (element: any) => {
         this.Sectors.push({value: element.id_setor, label: element.nome})
       });
     })
-
     this.OfficeService.readById(id).subscribe((office: any) => {
       this.officeEditForm = this.fb.group({
         cargo: [office.cargo.nome, Validators.required],
@@ -40,10 +33,8 @@ export class EditOfficeComponent implements OnInit {
         salario_bruto: [office.cargo.salario_bruto,Validators.required],
         descricao: [office.cargo.descricao],
       });
-    
       this.officeEditForm.disable();
     })
-
   }
 
   onEditForm(){

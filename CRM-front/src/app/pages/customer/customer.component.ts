@@ -12,19 +12,6 @@ import { Customer } from 'src/app/models/customer.model';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit {
-
-  // customers: Customer[] = []
-
-  // customers: Customer[] = [
-  //   new Customer(1,'Gabriel', 'gabriel-feliciano@gmail.com'),
-  //   new Customer(2,'Lucas', 'lucas-firmiano@gmail.com'),
-  //   new Customer(3,'Inácio', 'gabriel-inácio@gmail.com'),
-  //   new Customer(4,'bot', 'server-bot@gmail.com'),
-  //   new Customer(5,'bot', 'server-bot@gmail.com'),
-  //   new Customer(6,'bot', 'server-bot@gmail.com'),
-  //   new Customer(7,'bot', 'server-bot@gmail.com'),
-  //   new Customer(8,'bot', 'server-bot@gmail.com'),
-  // ];
   
   displayedColumns: string[] = ['id', 'nome', 'email','actions'];
   dataSource =  new MatTableDataSource<Customer>();
@@ -41,21 +28,17 @@ export class CustomerComponent implements OnInit {
       this.dataSource.data = clientes.clientes;
     })
   }
-
   constructor(private dialogService: NbDialogService, private CustomerService: CustomerService) {
   }
   
-  //INICIAR PÁGINAÇÃO E QTD DE ITENS
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  //FILTRO
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

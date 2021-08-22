@@ -1,71 +1,55 @@
-<nb-layout>
+<nb-card>
+  <nb-card-header>
+    <div class="row my-2">
+      <div class="col-md-1">
+        <button nbButton ghost status="primary" routerLink="/sector"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+      </div>
+      <div class="col-md-10">
+        <h4 class="text-center">Informações de Setor</h4>
+      </div>
+    </div>
+  </nb-card-header>
 
-    <nb-layout-header fixed>
-      <app-header></app-header>
-    </nb-layout-header>
-  
-    <nb-sidebar>
-      <app-menu></app-menu>
-    </nb-sidebar>
-  
-    <nb-layout-column>
-
-      <nb-card>
-        <nb-card-header>
-          <div class="row my-2">
-            <div class="col-md-1">
-              <button nbButton ghost status="primary" routerLink="/sector"><nb-icon icon="arrow-back-outline"></nb-icon></button>
-            </div>
-            <div class="col-md-10">
-              <h4 class="text-center">Informações de Setor</h4>
-            </div>
+  <nb-card-body>
+    <form [formGroup]="sectorEditForm" *ngIf="sectorEditForm" class="step-container">
+      <div class="row m-2">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="label">Nome do setor:</label>
+            <input type="text" nbInput class="form-control" formControlName="setor" fullWidth>
           </div>
-          
-        </nb-card-header>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label class="label">Responsável:</label>
+            <input type="text" nbInput class="form-control" formControlName="responsavel" fullWidth>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="label">Descrição:</label>
+            <textarea nbInput fullWidth formControlName="descricao"></textarea>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="onEdit">
+        <div class="row d-flex justify-content-center mt-4" >
+          <div class="col-2 text-center">
+            <button nbButton (click)="offEditForm()">Cancelar</button>
+          </div>
+          <div class="col-2 text-center">
+            <button nbButton status="success" (click)="submitForm()">Salvar Alterações</button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="onEdit === false">
+        <div class="row d-flex justify-content-center mt-4">
+          <div class="col-2 text-center">
+            <button nbButton status="primary" (click)="onEditForm()">Editar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
 
-        <nb-card-body>
-          <form [formGroup]="sectorEditForm" *ngIf="sectorEditForm" class="step-container">
-            <div class="row m-2">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="label">Nome do setor:</label>
-                  <input type="text" nbInput class="form-control" formControlName="setor" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="label">Responsável:</label>
-                  <input type="text" nbInput class="form-control" formControlName="responsavel" fullWidth>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label class="label">Descrição:</label>
-                  <textarea nbInput fullWidth formControlName="descricao"></textarea>
-                </div>
-              </div>
-            </div>
-            <div *ngIf="onEdit">
-              <div class="row d-flex justify-content-center mt-4" >
-                <div class="col-2">
-                  <button nbButton (click)="offEditForm()">Cancelar</button>
-                </div>
-                <div class="col-2">
-                  <button nbButton status="success" (click)="submitForm()">Salvar Alterações</button>
-                </div>
-              </div>
-            </div>
-            <div *ngIf="onEdit === false">
-              <div class="row d-flex justify-content-center mt-4">
-                <div class="col-2">
-                  <button nbButton status="primary" (click)="onEditForm()">Editar</button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </nb-card-body>
-      </nb-card>
-
-    </nb-layout-column>
-  
-</nb-layout>

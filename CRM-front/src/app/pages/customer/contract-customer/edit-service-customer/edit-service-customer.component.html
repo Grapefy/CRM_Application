@@ -1,0 +1,70 @@
+<div class="row my-2">
+  <div class="col-md-1">
+    <a nbButton ghost status="primary" routerLink="../"><nb-icon icon="arrow-back-outline"></nb-icon></a>
+  </div>
+  <div class="col-md-10">
+    <h4 class="text-center">Editar Serviço</h4>
+  </div>
+</div>
+<div class="row my-4">
+  <p><strong>Cliente:</strong> {{ nameCustomer }}</p>
+</div>
+<div class="row my-4">
+  <nb-toggle status="success" [(ngModel)]="status">Status do Serviço</nb-toggle>          
+</div>
+<div class="row">
+  <nb-card>
+    <nb-card-body>
+        <form [formGroup]="serviceCustomerForm">
+          <div class="row">  
+            <div class="col-md-4">
+              <div class="form-group">
+                  <label class="label">Serviço:</label>
+                  <nb-select placeholder="Serviço" formControlName="servico" fullWidth >
+                  <nb-option *ngFor="let service of services" [value]="service.id">{{ service.nome }}</nb-option>
+                  </nb-select>
+              </div>
+            </div>
+            <div class="col-md-4">
+                <label class="label">Data de Adesão:</label>
+                <input nbInput placeholder="Data de Adesão" [nbDatepicker]="dateTimePicker" fullWidth format="dd\MM\yyyy" formControlName="dt_adesao">
+                <nb-datepicker #dateTimePicker></nb-datepicker>
+            </div>
+            <div class="col-md-4">
+                <label class="label" *ngIf="!status">Previsão de Entrega:</label>
+                <label class="label" *ngIf="status">Data de Entrega:</label>
+                <input nbInput placeholder="Data de Entrega" [nbDatepicker]="dateTimePicker2" fullWidth format="dd\MM\yyyy" formControlName="dt_entrega">
+                <nb-datepicker #dateTimePicker2></nb-datepicker>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="label">Valor Estimado:</label> 
+                <input type="text" nbInput class="form-control" currencyMask placeholder="Valor" fullWidth formControlName="valor_final">
+              </div>
+            </div>
+            <div class="col-md-4" *ngIf="status">
+                <div class="form-group">
+                <label class="label">Valor Adicional:</label> 
+                <input type="text" nbInput class="form-control" currencyMask placeholder="Valor" fullWidth [(ngModel)]="valor_adicional">
+                </div>
+            </div>
+            <div class="col-md-4" *ngIf="status">
+                <div class="form-group">
+                <label class="label">Valor Desconto:</label> 
+                <input type="text" nbInput class="form-control" currencyMask placeholder="Valor" fullWidth formControlName="valor_desconto">
+                </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center mt-4">
+            <div class="col-2">
+              <button nbButton routerLink="../">Cancelar</button>
+            </div>
+            <div class="col-2">
+              <button nbButton  status="primary" [disabled]="!serviceCustomerForm.valid">Editar</button>
+            </div>
+          </div>
+        </form>
+    </nb-card-body>
+  </nb-card>
+</div>
+

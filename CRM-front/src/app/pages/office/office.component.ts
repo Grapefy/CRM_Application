@@ -16,13 +16,6 @@ import { Office } from 'src/app/models/office.model';
 export class OfficeComponent implements OnInit {
 
   Sectors: any = [];
-
-
-  offices: Office[] = [
-    new Office(1,'Desenvolvedor Júnior', 'TI'),
-    new Office(2,'Desenvolvedor Pleno', 'TI'),
-  ];
-
   displayedColumns: string[] = ['id', 'cargo', 'setor','actions'];
   dataSource = new MatTableDataSource<Office>();
   selectedOffice: string = '';
@@ -37,17 +30,14 @@ export class OfficeComponent implements OnInit {
   constructor(private dialogService: NbDialogService, private fb: FormBuilder, private toastrService: NbToastrService, private OfficeService: OfficeService, private SectorService: SectorService) { }
 
   ngOnInit(): void {
-
     this.OfficeService.list().subscribe( (cargos: any) => {
       this.dataSource.data = cargos.cargos;
     })
-
     this.SectorService.list().subscribe( (setores: any) => {
       setores.setors.forEach( (element: any) => {
         this.Sectors.push({value: element.id_setor, label: element.nome})
       });
     })
-
     this.officeForm = this.fb.group({
       cargo:['', Validators.required],
       setor: ['', Validators.required],
@@ -56,17 +46,14 @@ export class OfficeComponent implements OnInit {
     });
   }
 
-  //INICIAR PÁGINAÇÃO E QTD DE ITENS
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  //FILTRO
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

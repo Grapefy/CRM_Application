@@ -1,3 +1,4 @@
+import { PlanService } from './../../services/plans.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import {  PlansSite, PlansSystem } from 'src/app/models/plans.model';
@@ -9,24 +10,25 @@ import {  PlansSite, PlansSystem } from 'src/app/models/plans.model';
 })
 export class PlansBusinessComponent implements OnInit {
 
-  planosSistema: PlansSystem[] = [
-    new PlansSystem(1,'Plano A','Semestral',5000.00,'Details here',2),
-    new PlansSystem(2,'Plano B','Mensal',700.00,'Details here')
-  ]
-
-  planosSite: PlansSite[] = [
-    new PlansSite(1,'Plano C','Semestral',5000.00,'Details here',2),
-    new PlansSite(2,'Plano D','Mensal',700.00,'Details here')
-  ]
-
+  planosSistema: PlansSystem[] = []
+  planosSite: PlansSite[] = []
   selectedPlan: string = '';
   selectedId!: number ;
   
-  constructor(private dialogService: NbDialogService,) { }
+  constructor(private dialogService: NbDialogService, private PlanService: PlanService) { }
 
   ngOnInit(): void {
+    this.PlanService.list().subscribe( (planos: any) => {
+      planos.planos.forEach( (element: any) => {
+        var tipoplanoID = element.tipoplano_id
+        if (tipoplanoID == 1) {
+          this.planosSistema.push(new PlansSystem(element.id_plano, element.nome, element.recorrencia, element.valor, element.detalhes))
+        } else if (tipoplanoID == 2) {
+          this.planosSite.push(new PlansSite(element.id_plano, element.nome, element.recorrencia, element.valor, element.detalhes))
+        }
+      });
+    })
   }
-
 
   openDelete(dialog: TemplateRef<any>, servico: string, id: number) {
     this.selectedPlan = servico,
@@ -35,10 +37,11 @@ export class PlansBusinessComponent implements OnInit {
   }
 
   submitDelete(id: number) {
-    // this.ServiceService.delete(id).subscribe( (result: any) => {
-    //   window.location.reload();
-    // }, error => {
-    //   window.location.reload();
-    // })
+    this.PlanService.delete(id).subscribe( (result: any) => {
+      window.location.reload();
+    }, error => {
+      window.location.reload();
+    })
   }
+  
 }
