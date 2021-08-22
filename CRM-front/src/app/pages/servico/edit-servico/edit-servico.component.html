@@ -1,73 +1,53 @@
-<nb-layout>
+<nb-card>
+  <nb-card-header>
+    <div class="row my-2">
+      <div class="col-md-1">
+        <button nbButton ghost status="primary" routerLink="/service"><nb-icon icon="arrow-back-outline"></nb-icon></button>
+      </div>
+      <div class="col-md-10">
+        <h4 class="text-center">Informações de Serviço</h4>
+      </div>
+    </div>
+  </nb-card-header>
 
-    <nb-layout-header fixed>
-      <app-header></app-header>
-    </nb-layout-header>
-  
-    <nb-sidebar>
-      <app-menu></app-menu>
-    </nb-sidebar>
-  
-    <nb-layout-column>
-
-      <nb-card>
-        <nb-card-header>
-          <div class="row my-2">
-            <div class="col-md-1">
-              <button nbButton ghost status="primary" routerLink="/service"><nb-icon icon="arrow-back-outline"></nb-icon></button>
-            </div>
-            <div class="col-md-10">
-              <h4 class="text-center">Informações de Serviço</h4>
+  <nb-card-body class="mx-4">
+    <form [formGroup]="serviceEditForm" *ngIf="serviceEditForm">
+      <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+                <label class="label">Nome do Serviço:</label>
+                <input type="text" nbInput class="form-control" value="Nome" formControlName="nome" fullWidth>
             </div>
           </div>
-          
-        </nb-card-header>
-
-        <nb-card-body class="mx-4">
-            <form [formGroup]="serviceEditForm" *ngIf="serviceEditForm">
-            <div class="row">
-                <!-- Input Name -->
-                <div class="col-md-4">
-                <div class="form-group">
-                    <label class="label">Nome do Serviço:</label>
-                    <input type="text" nbInput class="form-control" value="Nome" formControlName="nome" fullWidth>
-                </div>
-                </div>
-                <!-- Input Valor -->
-                <div class="col-md-4">
-                <div class="form-group">
-                    <label class="label">Valor:</label>
-                    <input type="text" nbInput class="form-control" value="R$ 800,00" formControlName="valor" fullWidth>
-                </div>
-                </div>
-                <!-- Input Setor -->
-                <div class="col-md-4">
-                <div class="form-group" >
-                    <label class="label">Setor:</label>
-                    <nb-select placeholder="Setor" formControlName="setor" fullWidth>
-                    <nb-option *ngFor="let sector of Sectors" [value]="sector.value">{{ sector.label }}</nb-option>
-                    </nb-select>
-                </div>
-                </div>
-                <!-- Input descricao -->
-                <div class="form-group">
-                    <label class="label">Descrição:</label>
-                    <textarea nbInput fullWidth placeholder="Descreva sobre o cargo." formControlName="descricao"></textarea>
-                </div>
+          <div class="col-md-4">
+            <div class="form-group">
+                <label class="label">Valor:</label>
+                <input type="text" nbInput class="form-control" value="R$ 800,00" formControlName="valor" fullWidth>
             </div>
-            <div class="row d-flex justify-content-center mt-4">
-                <div class="col-2">
-                <button nbButton routerLink="/service">Voltar</button>
-                </div>
-                <div class="col-2">
-                <button nbButton status="success" (click)="submitForm()" [disabled]="!serviceEditForm.valid">Editar</button>
-                </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" >
+                <label class="label">Setor:</label>
+                <nb-select placeholder="Setor" formControlName="setor" fullWidth>
+                <nb-option *ngFor="let sector of Sectors" [value]="sector.value">{{ sector.label }}</nb-option>
+                </nb-select>
             </div>
-            </form>
-        </nb-card-body>
-      </nb-card>
+          </div>
+          <div class="form-group">
+              <label class="label">Descrição:</label>
+              <textarea nbInput fullWidth placeholder="Descreva sobre o cargo." formControlName="descricao"></textarea>
+          </div>
+      </div>
+      <div class="row d-flex justify-content-center mt-4">
+        <div class="col-2 text-center">
+          <button nbButton routerLink="/service">Voltar</button>
+        </div>
+        <div class="col-2 text-center">
+          <button nbButton status="success" (click)="submitForm()" [disabled]="!serviceEditForm.valid">Editar</button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
 
-    </nb-layout-column>
-  
-</nb-layout>
 

@@ -11,9 +11,7 @@ import {  PlansSite, PlansSystem } from 'src/app/models/plans.model';
 export class PlansBusinessComponent implements OnInit {
 
   planosSistema: PlansSystem[] = []
-
   planosSite: PlansSite[] = []
-
   selectedPlan: string = '';
   selectedId!: number ;
   
@@ -31,7 +29,6 @@ export class PlansBusinessComponent implements OnInit {
       });
     })
   }
-
 
   openDelete(dialog: TemplateRef<any>, servico: string, id: number) {
     this.selectedPlan = servico,

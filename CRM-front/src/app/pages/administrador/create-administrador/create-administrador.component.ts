@@ -23,14 +23,12 @@ export class CreateAdministradorComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       fone: ['', Validators.required],
     });
-
   }
 
   getAddressForm(event:any){
     this.addressForm = event.value
   }
 
-  // FUNCAO TESTE QUE ME BASEEI PRA VERIFICAR COMO OBTER OS PARAMETROS PRO BD (NAO APAGAR ELA)
   submitForm() {
     var CF = {}
     CF = this.AdministratorService.generateArrayAdm(this.admForm);

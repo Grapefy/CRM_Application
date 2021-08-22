@@ -19,18 +19,14 @@ export class EditServicoComponent implements OnInit {
   constructor(private lastRoute: ActivatedRoute, private fb: FormBuilder, private SectorService: SectorService, private ServiceService: ServiceService,
     private AlertsService: AlertsService, private Router: Router) { }
 
-
   ngOnInit(): void {
-
     const id = this.lastRoute.snapshot.paramMap.get('id')
     this.serviceEditId = id
-
     this.SectorService.list().subscribe( (setores: any) => {
       setores.setors.forEach( (element: any) => {
         this.Sectors.push({value: element.id_setor, label: element.nome})
       });
     })
-
     this.ServiceService.readById(id).subscribe((servico: any) => {
       this.serviceEditForm = this.fb.group({
         nome: [servico.servico.nome, Validators.required],
@@ -44,7 +40,6 @@ export class EditServicoComponent implements OnInit {
   submitForm() {
     var SF = {}
     SF = this.ServiceService.generateArrayService(this.serviceEditForm);
-
     this.ServiceService.update(JSON.stringify(SF), this.serviceEditId).subscribe((result) => {
       this.AlertsService.showAlertSuccess('Verifique a tabela e veja mais informacoes', 'Servico Editado!');
       setTimeout(() => {

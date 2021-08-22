@@ -15,36 +15,21 @@ import { Administrador } from 'src/app/models/administrador.model';
 })
 export class AdministradorComponent implements OnInit {
 
-  //nome variavel: tipo = valor
-
-  // administradores: Administrador[] = [
-  //   new Administrador(1,'Gabriel', 'gabriel-feliciano@gmail.com'),
-  //   new Administrador(2,'Lucas', 'lucas-firmiano@gmail.com'),
-  //   new Administrador(3,'Inácio', 'gabriel-inácio@gmail.com'),
-  //   new Administrador(4,'bot', 'server-bot@gmail.com'),
-  //   new Administrador(5,'bot', 'server-bot@gmail.com'),
-  //   new Administrador(6,'bot', 'server-bot@gmail.com'),
-  // ];
-
   displayedColumns: string[] = ['id', 'nome', 'email','actions'];
   dataSource = new MatTableDataSource<Administrador>();
   selectedName: string = '';
   selectedId: number = 0;
 
-  @ViewChild(MatPaginator)
+  @ViewChild(MatPaginator) 
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
-    
 
   constructor(private dialogService: NbDialogService, private AdministratorService: AdministratorService, private LoginService: LoginService, private Router: Router) { 
-    // this.dataSource = new MatTableDataSource(this.administradores);
   }
-
 
   ngOnInit(): void {
     this.LoginService.canAccess('administradores').subscribe((userCanAccess: any) => {
-      // console.log(userCanAccess)
       if (!userCanAccess.message) {
         this.Router.navigate(['customer'])
       }
@@ -54,14 +39,11 @@ export class AdministradorComponent implements OnInit {
     })
   }
 
-
-  // //INICIAR PÁGINAÇÃO E QTD DE ITENS
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  //FILTRO
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

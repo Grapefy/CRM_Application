@@ -22,13 +22,11 @@ export class PlansEditBusinessComponent implements OnInit {
   ngOnInit(): void {
     const id = this.lastRoute.snapshot.paramMap.get('id')
     this.planEditId = id
-
     this.PlanTypeService.list().subscribe( (tipoplanos: any) => {
       tipoplanos.tipoplanos.forEach( (element: any) => {
         this.PlansType.push({value: element.id_tipoplano, label: element.nome})
       });
     })
-
     this.PlanService.readById(id).subscribe((plan: any) => {
       this.plansEditForm = this.fb.group({
         nome: [plan.plano.nome, Validators.required],
@@ -43,7 +41,6 @@ export class PlansEditBusinessComponent implements OnInit {
   submitForm() {
     var PF = {}
     PF = this.PlanService.generateArrayPlan(this.plansEditForm);
-
     this.PlanService.update(JSON.stringify(PF),this.planEditId).subscribe((result) => {
       this.AlertsService.showAlertSuccess('Verifique a tabela e veja mais informacoes', 'Plano Editado!');
       setTimeout(() => {

@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-plans-business.component.scss']
 })
 export class CreatePlansBusinessComponent implements OnInit {
+  
   plansForm!: FormGroup;
   PlansType: any = [];
 
@@ -18,13 +19,11 @@ export class CreatePlansBusinessComponent implements OnInit {
     private Router: Router) { }
 
   ngOnInit(): void {
-
     this.PlanTypeService.list().subscribe( (tipoplanos: any) => {
       tipoplanos.tipoplanos.forEach( (element: any) => {
         this.PlansType.push({value: element.id_tipoplano, label: element.nome})
       });
     })
-
     this.plansForm = this.fb.group({
       nome: ['', Validators.required],
       recorrencia: ['',Validators.required],
@@ -34,11 +33,9 @@ export class CreatePlansBusinessComponent implements OnInit {
     });
   }
   
-
   submitForm() {
     var PF = {}
     PF = this.PlanService.generateArrayPlan(this.plansForm);
-
     this.PlanService.create(JSON.stringify(PF)).subscribe((result) => {
       this.AlertsService.showAlertSuccess('Verifique a tabela e veja mais informacoes', 'Plano Cadastrado!');
       setTimeout(() => {

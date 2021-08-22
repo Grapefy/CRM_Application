@@ -46,9 +46,7 @@ export class EditCustomerComponent implements OnInit {
 
       this.addressEditForm.disable();
       this.customerEditForm.disable();
-
     })
-
   }
 
   onEditForm(){
@@ -96,7 +94,6 @@ export class EditCustomerComponent implements OnInit {
     };
 
     return retorno;
-
   }
 
 }

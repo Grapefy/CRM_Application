@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<nb-layout>
+    <nb-layout-header fixed *ngIf="mostrarPainel" >
+      <app-header></app-header>
+    </nb-layout-header>
+    <nb-sidebar *ngIf="mostrarMenu">
+      <app-menu></app-menu>
+    </nb-sidebar>
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+</nb-layout>

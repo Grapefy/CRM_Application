@@ -28,21 +28,17 @@ export class CustomerComponent implements OnInit {
       this.dataSource.data = clientes.clientes;
     })
   }
-
   constructor(private dialogService: NbDialogService, private CustomerService: CustomerService) {
   }
   
-  //INICIAR PÁGINAÇÃO E QTD DE ITENS
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  //FILTRO
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

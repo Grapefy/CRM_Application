@@ -1,55 +1,40 @@
-<nb-layout>
-
-    <nb-layout-header fixed>
-      <app-header></app-header>
-    </nb-layout-header>
-  
-    <nb-sidebar>
-      <app-menu></app-menu>
-    </nb-sidebar>
-  
-    <nb-layout-column>
-        <div class="row mb-4">
-            <div class="col-md-10 offset-md-1">
-              <h4 class="text-center">
-                Serviços
-              </h4>
-            </div>
-            <div class="col-md-1">
-              <!-- Cadastro de Serviço -->
-              <button nbButton hero status="success" routerLink="../create-service"><nb-icon icon="plus-outline"></nb-icon></button>            
-            </div>
+<div class="row mb-4">
+  <div class="col-md-10 offset-md-1">
+    <h4 class="text-center">
+      Serviços
+    </h4>
+  </div>
+  <div class="col-md-1">
+    <button nbButton hero status="success" routerLink="../create-service"><nb-icon icon="plus-outline"></nb-icon></button>            
+  </div>
+</div>
+<nb-accordion multi>
+  <nb-accordion-item *ngFor="let servico of services" >
+    <nb-accordion-item-header>
+        {{ servico.nome }}
+    </nb-accordion-item-header>
+    <nb-accordion-item-body>
+        {{ servico.descricao }}
+        <br><br>
+        <strong>Setor:</strong> {{ servico.setor.nome }}
+        <br>
+        <strong>Valor:</strong> R${{ servico.valor }}
+        <br><br>
+        <div class="row">
+          <button nbButton outline status="primary" routerLink="../edit-service/{{ servico.id_servico }}" class="mb-2"><nb-icon icon="edit-outline"></nb-icon></button>  
+          <button nbButton outline status="danger" (click)="openDelete(dialog, servico.nome, servico.id_servico)"><nb-icon icon="trash-2-outline"></nb-icon></button>
         </div>
-        <nb-accordion multi>
-            <nb-accordion-item *ngFor="let servico of services" >
-                <nb-accordion-item-header>
-                    {{ servico.nome }}
-                </nb-accordion-item-header>
-                <nb-accordion-item-body>
-                    {{ servico.descricao }}
-                    <br><br>
-                    <strong>Setor:</strong> {{ servico.setor.nome }}
-                    <br>
-                    <strong>Valor:</strong> R${{ servico.valor }}
-                    <br><br>
-                    <div class="row">
-                        <button nbButton outline status="primary" routerLink="../edit-service/{{ servico.id_servico }}" class="mb-2"><nb-icon icon="edit-outline"></nb-icon></button>  
-                        <button nbButton outline status="danger" (click)="openDelete(dialog, servico.nome, servico.id_servico)"><nb-icon icon="trash-2-outline"></nb-icon></button>
-                    </div>
-                </nb-accordion-item-body>
-                </nb-accordion-item>
-        </nb-accordion>
-    </nb-layout-column>
-  
-  </nb-layout>
+    </nb-accordion-item-body>
+  </nb-accordion-item>
+</nb-accordion>
 
-  <!-- Modal Delete -->
+<!-- Modal Delete -->
 <ng-template #dialog let-data let-ref="dialogRef" >
   <app-modal-delete [componentSelected]="selectedService" [idSelected]="selectedId" nameComponent="Serviço">
-    <div class="col">
+    <div class="col text-center">
       <button nbButton (click)="ref.close()">Voltar</button>
     </div>
-    <div class="col">
+    <div class="col text-center">
       <button nbButton (click)="submitDelete(selectedId)" status="danger">Excluir</button>
     </div>     
   </app-modal-delete>

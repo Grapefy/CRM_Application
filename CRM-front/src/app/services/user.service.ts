@@ -21,10 +21,6 @@ export class UserService {
     return this.http.get<JSON>(url)
   }
 
-//   create(setor: any): Observable<JSON>{
-//     return this.http.post<JSON>(this.baseUrl + 'add', setor)
-//   }
-
   update(user: any, id_user:any): Observable<JSON> {
     const url =`${this.baseUrl}edit/${id_user}`
     return this.http.post<JSON>(url,user)

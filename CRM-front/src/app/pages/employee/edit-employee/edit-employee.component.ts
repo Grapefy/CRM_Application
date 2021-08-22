@@ -13,10 +13,6 @@ export class EditEmployeeComponent implements OnInit {
   onEdit = false; 
   employeeEditForm!: FormGroup;
   addressEditForm!: FormGroup;
-  Offices = [
-    { value: 'Desenvolvedor Júnior', label: 'Desenvolvedor Júnior'},
-    { value: 'Desenvolvedor Pleno', label: 'Desenvolvedor Pleno' },
-  ];
   employeeEditId!: number | string | null;
   addressEditId!: number | string | null;
 

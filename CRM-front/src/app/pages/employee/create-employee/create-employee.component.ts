@@ -11,11 +11,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateEmployeeComponent implements OnInit {
 
-  Offices = [
-    { value: 'Desenvolvedor Júnior', label: 'Desenvolvedor Júnior'},
-    { value: 'Desenvolvedor Pleno', label: 'Desenvolvedor Pleno' },
-  ];
-
   linearMode = true;
   employeeForm!: FormGroup;
   addressForm!: FormGroup;
@@ -36,14 +31,10 @@ export class CreateEmployeeComponent implements OnInit {
   getAddressForm(event:any){
     this.addressForm = event.value
   }
-
-  // FUNCAO TESTE QUE ME BASEEI PRA VERIFICAR COMO OBTER OS PARAMETROS PRO BD (NAO APAGAR ELA)
+  
   submitForm() {
     var EF = {}
     EF = this.EmployeeService.generateArrayEmployee(this.employeeForm);
-
-    // console.log(this.addressForm)
-
     this.EmployeeService.create(JSON.stringify([EF,this.addressForm])).subscribe((result) => {
       this.AlertsService.showAlertSuccess('Verifique a tabela e veja mais informacoes', 'Funcionario Cadastrado!');
       setTimeout(() => {

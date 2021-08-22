@@ -19,15 +19,12 @@ export class EditSectorComponent implements OnInit {
   ngOnInit(): void {
     const id = this.lastRoute.snapshot.paramMap.get('id')
     this.sectorEditId = id;
-
     this.SectorService.readById(id).subscribe((setors: any) => {
-
       this.sectorEditForm = this.fb.group({
         setor: [setors.setor.nome, Validators.required],
         responsavel: [setors.setor.responsavel,Validators.required],
         descricao: [setors.setor.descricao],
       });
-    
       this.sectorEditForm.disable();
     })
   }
@@ -45,11 +42,7 @@ export class EditSectorComponent implements OnInit {
   submitForm() {
     var SF = {}
     SF = this.generateArraySetor(this.sectorEditForm);
-
-    console.log(SF)
-
     this.SectorService.update(JSON.stringify(SF), this.sectorEditId).subscribe((result) => {
-      console.log(result)
     })
   }
 
